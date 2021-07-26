@@ -1,0 +1,25 @@
+% !TeX root = ./butons.tex
+\setuppapersize[A7][A7]
+\setupinteraction[state=start]
+\setupbodyfont[10pt]
+
+\definelayer[MyButton]
+	[width=\paperwidth,height=\paperheight]
+
+\setlayerframed[MyButton]
+	[x=30mm,y=40mm,
+	location={lo,hi}]
+	[width=50mm,height=30mm,
+	%offset=-1mm,
+	frame=on]
+	{\button[frame=off]{\scale[height=2em]{\symbol[navigation 1][nextpage]}}[NextPage] \endgraf
+	We have a nice button here}
+
+\setupbackgrounds[page]
+	[background={MyButton}]
+\starttext
+We have here a page with a layer containing a button.
+\page
+This is a second page, and here is a button to go back 
+\button{\symbol[navigation 1][previouspage]}[PreviousPage].
+\stoptext

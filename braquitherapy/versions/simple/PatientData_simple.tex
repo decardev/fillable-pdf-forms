@@ -1,0 +1,379 @@
+% !TeX root = ./PatientData_simple.tex
+
+\setupinteraction[state=start]
+
+\setuppapersize[A4][A4]
+\definefontfamily [mainface] [rm] [Calibri]
+\definefontfamily [mainface] [ss] [Calibri]
+\definefontfamily [mainface] [tt] [Calibri]
+\definefontfamily [mainface] [mm] [Calibri]
+
+%\setupbodyfont[hero, ss, 9pt]
+\setupbodyfont[mainface, ss, 10pt]
+
+\setuplayout[topspace=10mm, header=20mm, headerdistance=5mm, backspace=20mm, width=170mm, height=280mm]
+\setuppagenumbering[location=]
+
+
+\startJSpreamble {EXAMPLE} used now
+function toUpperCase() {event.change = event.change.toUpperCase();}
+
+
+for (var i = 0; i < numFields; i++) {
+    var fName = getNthFieldName(i);
+    var f = getField(fName);
+    if (f.type === "text" || f.type == "combobox") {
+		f.alignment ="left";
+		f.textFont = font.Helv;
+		f.textSize = 9;
+		f.setAction("Keystroke", "toUpperCase()");
+    }
+}
+
+this.getField("")
+
+//var d = new Date();
+//var df = this.getField("text_name");
+//df.value = "TEXTO"; //util.printd("dd.mm.yyyy", d);
+
+//function toggleField(){
+//	var f = this.getField("Line1");
+//	f.display = ! f.display;
+//}
+\stopJSpreamble
+
+
+
+\setupbutton[myButton][frame=on, width=48.2mm, height=39.4mm]
+
+\setupfield[TextLineLong][height=4.5mm, width=70mm, frame=on, offset=0mm]
+%\setupfield[TextLineMedium][][[height=4.5mm, width=40mm, frame=on, offset=0mm]]
+\setupfield[TextLineShort][height=4.5mm, width=9mm, frame=on, offset=0mm]
+\setupfield[CheckBox][width=5mm, 5mm, frame=off] %, corner=round, framecolor=red]
+\setupfield[UglySetup][width=20mm,height=4.5mm]
+\setupbutton[MyButton][color=green]
+
+
+\definefield[text_name][line][TextLineLong][][]
+\definefield[text_ID][line][TextLineLong][][]
+\definefield[text_diag][line][TextLineLong][][]
+
+\definefield[checkme][check][CheckBox][yes,no][no]
+\definefield[sl1][line][TextLineShort][][]
+
+
+
+\setupTABLE[frame=off]
+\setupTABLE[r][each][height=5mm]
+\setupTABLE[c][each][width=10mm]
+\setupTABLE[c][1][leftframe=on, rulethickness=0.8mm, toffset=-0.7mm]
+\setupTABLE[c][18][width=0mm, rightframe=on, rulethickness=0.8mm]
+\setupTABLE[r][9, 17, 25, 31][height=5.5mm]
+\setupTABLE[r][1, 10, 18, 26, 32][height=6mm, frame=on, rulethickness=0.8mm, align=middle, offset=0.9mm]
+\setupTABLE[r][19, 27, 33][align=middle]
+\setupTABLE[r][42][height=0mm, topframe=on, rulethickness=0.8mm]
+\setupTABLE[r][46][height=0mm, topframe=off, frame=on, rulethickness=0.8mm]
+
+
+\bTABLE
+	\bTR \bTD[nc=18, nr=1] \tfa \bf DATOS GENERALES DEL PACIENTE \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Nombre y Apellido: \eTD
+		\bTD[nc=8] \field[text_name] \eTD
+		\bTD[nc=5, nr=8] \button[width=10mm, height=10mm]{myButon}[NextPage]\eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf ID (DNI): \eTD
+		\bTD[nc=8] \field[text_ID] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Diagnóstico: \eTD
+		\bTD[nc=8] \field[text_diag] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Tratamiento Previo: \eTD
+		\bTD[nc=8] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[checkme]\eTD
+		\bTD[nc=3] \bf Braquiterapia (cGy)\eTD
+		\bTD[nc=1] PTV \eTD
+		\bTD[nc=1] \field[sl1] \eTD
+		\bTD[nc=1] Recto \eTD
+		\bTD[nc=1] \field[sl1] \eTD
+		\bTD[nc=1] Vejiga \eTD
+		\bTD[nc=1] \field[sl1] \eTD
+		\bTD[nc=1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[checkme]\eTD
+		\bTD[nc=3] \bf Teleterapia (cGy)\eTD
+		\bTD[nc=1] PTV \eTD
+		\bTD[nc=1] \field[sl1] \eTD
+		\bTD[nc=1] Recto \eTD
+		\bTD[nc=1] \field[sl1] \eTD
+		\bTD[nc=1] Vejiga \eTD
+		\bTD[nc=1] \field[sl1] \eTD
+		\bTD[nc=1] \eTD
+	\eTR
+	
+	\bTR \bTD[nc=12] \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Firma Médico: \eTD
+		\bTD[nc=3] ***** \eTD
+		\bTD[nc=5] 13/04/2020 \eTD
+	\eTR
+
+	\bTR \bTD[nc=18, nr=1] \tfa \bf PRESCRIPCIÓN DEL TRATAMIENTO \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Unidad de Tratamiento \eTD
+		\bTD[nc=4]   \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=4] \bf Aplicador Utilizado\eTD
+		\bTD[nc=4] ***** \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=4] \bf Dosis/Fracción (cGy): \eTD
+		\bTD[nc=4]   \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=4] \bf Puntos de Prescripción:\eTD
+		\bTD[nc=4, nr=1] **** \eTD
+	\eTR	
+	\bTR 
+		\bTD[nc=4] \bf Fracciones: \eTD
+		\bTD[nc=4] ***** \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=4] \bf Simulación: \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=4] \bf Dosis Total (cGy): \eTD
+		\bTD[nc=3] ***** \eTD
+		\bTD[nc=10] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=4] \bf Sedación: \eTD
+		\bTD[nc=3] ***** \eTD
+		\bTD[nc=10] \eTD
+	\eTR
+
+	\bTR \bTD[m=18] \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Firma Médico: \eTD
+		\bTD[nc=3] ***** \eTD
+		\bTD[nc=3] 13/04/2020 \eTD
+		\bTD[nc=7, nr=1] \eTD
+	\eTR
+	
+	\bTR \bTD[nc=18, nr=1] \tfa \bf APLICADOR FLETCHER \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=1] \bf 1\eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \bf 2\eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \bf 3\eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \bf 4\eTD
+		\bTD[nc=1] \eTD
+		\bTD[m=16] \bf 5\eTD
+		\bTD[nc=1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Histerometría (cm)\eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Angulo de Sonda Uterina (grados))\eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Tamaño de los Ovoides (mm)\eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Blindaje \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Activa Sonda Uterina (cm) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Activa Ovoides (cm) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+
+	\bTR \bTD[nc=18, nr=1] \tfa \bf APLICADOR CILINDRICO \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=2] \bf 1\eTD
+		\bTD[nc=2] \bf 2\eTD
+		\bTD[nc=2] \bf 3\eTD
+		\bTD[nc=2] \bf 4\eTD
+		\bTD[nc=2] \bf 5\eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Diámetro Cilindros (cm) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud de Cilindros (cm) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Sonda Uterina (cm) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Activa (cm) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+
+	\bTR \bTD[nc=18, nr=1] \tfa \bf REGISTRO DE TRATAMIENTO \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=2] \bf 1\eTD
+		\bTD[nc=2] \bf 2\eTD
+		\bTD[nc=2] \bf 3\eTD
+		\bTD[nc=2] \bf 4\eTD
+		\bTD[nc=2] \bf 5\eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Fecha\eTD
+		\bTD[nc=2] *** \eTD
+		\bTD[nc=2] *** \eTD
+		\bTD[nc=2] *** \eTD
+		\bTD[nc=2] *** \eTD
+		\bTD[nc=2] *** \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Dosis Prescripta por Fracción (cGy)\eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Int. de Kerma en Aire (cGy.cm2/h)\eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Tiempo de Irradiación (s)\eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Dosis Vejiga (cGy) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Dosis Recto (cGy) \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+		\bTD[nc=2] \field[sl1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Firma Físico\eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Firma Médico\eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+		\bTD[nc=2] ** \eTD
+	\eTR
+
+	\bTR \bTD[m=18] \eTD \eTR
+	
+	\bTR \bTD[nc=4, nr=3] \bf OBSERVACIONES:\eTD \bTD[nc=13] \eTD \eTR
+
+	\bTR \bTD[nc=13] \eTD \eTR
+
+	\bTR \bTD[nc=13] \eTD \eTR 
+
+	\bTR \bTD[nc=18] \eTD \eTR 
+\eTABLE

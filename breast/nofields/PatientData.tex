@@ -1,0 +1,341 @@
+% !TeX root = ./PatientData.tex
+
+\setupinteraction[state=start]
+
+\setuppapersize[A4][A4]
+\definefontfamily [mainface] [rm] [Calibri]
+\definefontfamily [mainface] [ss] [Calibri]
+\definefontfamily [mainface] [tt] [Calibri]
+\definefontfamily [mainface] [mm] [Calibri]
+
+%\setupbodyfont[hero, ss, 9pt]
+\setupbodyfont[mainface, ss, 9pt]
+
+\setuplayout[topspace=10mm, header=30mm, headerdistance=5mm, backspace=20mm, width=170mm, height=280mm, footer=10mm]
+\setuppagenumbering[location=]
+
+%\showframe
+
+\setupheader
+  [text]
+  [before={
+		\setupTABLE[frame=off]		
+		%\setupTABLE[c][1, 2, 3][leftframe=on, topframe=on, rulethickness=1mm]
+		%\setupTABLE[r][1, 2, 3][frame=on, rulethickness=1mm]
+		\setupTABLE[c][align={middle, lohi}]
+			\bTABLE
+				\bTR 
+					\bTD[nr=2, width=30mm, height=30mm, frame=on, rulethickness=1mm] \bf LOGO INTECNUS \eTD 
+					\bTD[nc=1, width=110mm, topframe=on, rulethickness=1mm] \tfa \bf INSTITUTO DE TECNOLOGIAS NUCLEARES PARA LA SALUD     \eTD 
+					\bTD[nr=2, width=30mm, frame=on, rulethickness=1mm] \bf Página 1 de 1\eTD 
+				\eTR
+				\bTR
+					\bTD[topframe=on, rulethickness=1mm] \tfa \bf PRESCRIPCIÓN \eTD 
+				\eTR
+		\eTABLE
+		},
+  after={},
+  ]
+
+\setupTABLE[frame=off]
+\setupTABLE[r][each][height=5mm]
+\setupTABLE[c][each][width=5mm]
+
+\setupTABLE[c][1, 35][leftframe=on, rulethickness=0.2mm]
+\setupTABLE[r][1, 8, 20, 23, 26, 29, 32, 34, 43][topframe=on, rulethickness=0.2mm]
+
+\setupTABLE[row][last] [bottomframe=on, rulethickness=0.2mm]
+
+
+
+%\setupTABLE[c][18][width=0mm, rightframe=on, rulethickness=0.8mm]
+% \setupTABLE[r][9, 17, 25, 31][height=5.5mm]
+%\setupTABLE[r][43][height=0mm, topframe=on, rulethickness=0.8mm]
+%\setupTABLE[r][47][height=0mm, topframe=off, frame=on, rulethickness=0.8mm]
+
+%\framed[strut=no,corner=round,offset=.5\linewidth,,rulethickness=1mm]\bgroup
+	\bTABLE
+
+		\bTR 
+			\bTD[nc=6] \bf Nombre y Apellido: \eTD
+			\bTD[nc=18] Diego Carrasco\eTD
+			\bTD[nc=10, nr=7] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Documento: \eTD
+			\bTD[nc=8] 95337425 \eTD
+			\bTD[nc=4] \bf HC: \eTD
+			\bTD[nc=6] 120 \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Nacimiento: \eTD
+			\bTD[nc=8] 18/04/1989 \eTD
+			\bTD[nc=4] \bf Edad: \eTD
+			\bTD[nc=6] 32 \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Domicilio: \eTD
+			\bTD[nc=8] De los orfebres 849\eTD
+			\bTD[nc=4] \bf Provincia: \eTD
+			\bTD[nc=6] Río Negro\eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Ocupación: \eTD
+			\bTD[nc=8] Fisico Médico \eTD
+			\bTD[nc=4] \bf Telefono: \eTD
+			\bTD[nc=6] 2612060961\eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=6] \bf Obra Social: \eTD
+			\bTD[nc=8] OSDE \eTD
+			\bTD[nc=4] \bf Número: \eTD
+			\bTD[nc=6] 123412341234 \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Derivante: \eTD
+			\bTD[nc=8] Anton \eTD
+			\bTD[nc=4] \bf Centro: \eTD
+			\bTD[nc=6] INTECNUS \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf CANCER DE MAMA \eTD
+			\bTD[nc=4] lateralidad \eTD
+			\bTD[nc=8] cuadrante \eTD
+			\bTD[nc=1, align=flushright] \bf E \eTD
+			\bTD[nc=1] IV\eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=1, align=flushright] \bf T \eTD
+			\bTD[nc=1] IV\eTD
+			\bTD[nc=1, align=flushright] \bf N \eTD
+			\bTD[nc=1] IV\eTD
+			\bTD[nc=1, align=flushright] \bf M \eTD
+			\bTD[nc=1] IV\eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Karnofsky: \eTD
+			\bTD[nc=2] 100 \eTD
+			\bTD[nc=2] \bf PS: \eTD
+			\bTD[nc=2] 0 \eTD
+			\bTD[nc=6] \bf Comorbilidades: \eTD
+			\bTD[nc=18] bla bla bla bla \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=34, nr=8] 
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				\eTD 
+		\eTR 
+
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+
+
+		\bTR 
+			\bTD[nc=4] \bf Derivación: \eTD
+			\bTD[nc=30] Se deriva a radioterapia RT con braquiterapia y oncomedicina \eTD
+		\eTR
+
+		\bTR \bTD[m=34] \eTD \eTR
+
+
+		\bTR 
+			\bTD[nc=3] \bf PLAN RT\eTD
+			\bTD[nc=3] \bf IMRT \eTD
+			\bTD[nc=3, align=flushright] \bf PTV VMI \eTD
+			\bTD[nc=4] \bf 5000/200\eTD
+			\bTD[nc=3, align=flushright] \bf PTV ASC \eTD
+			\bTD[nc=4] \bf 5000/200\eTD
+			\bTD[nc=3, align=flushright] \bf PTV CMI \eTD
+			\bTD[nc=4] \bf 5000/200\eTD
+			\bTD[nc=3, align=flushright] \bf BOOST \eTD
+			\bTD[nc=4] \bf 1600/200\eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] \bf IDEAL \eTD
+			\bTD[nc=10] \bf ACEPTABLE \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \bf PTV VMI: 5000cGy = 25Fx \times\ 200cGy\eTD
+			\bTD[nc=10] V48,5 \leq \ 95\% \eTD
+			\bTD[nc=10] V47,5 \geq \ 90\% \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] D98\% \geq \ 47,5 Gy \eTD
+			\bTD[nc=10] D98\% \geq \ 45 Gy \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] D2\% < 15\% -- 20\% \eTD
+			\bTD[nc=10] D2\% < 30\% \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \bf PTV ASC: 5000cGy = 25Fx \times\ 200cGy\eTD
+			\bTD[nc=10] V47,5 \leq \ 95\% \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] D98\% \geq \ 45 Gy \eTD
+			\bTD[nc=10] D98\% \geq \ 42,75 Gy \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] D2\% < 15\% -- 20\% \eTD
+			\bTD[nc=10] D2\% < 30\% \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \bf PTV CMI: 5000cGy = 25Fx \times\ 200cGy\eTD
+			\bTD[nc=10] V47,5 \leq 95\% \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10]  D98\%  \geq \ 45 Gy \eTD
+			\bTD[nc=10]  D98\%  \geq \ 42,75 Gy \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] D2\% < 15\% -- 20\% \eTD
+			\bTD[nc=10] D2\% < 30\% \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \bf BOOST: 1600cGy = 8Fx de 200cGy\eTD
+			\bTD[nc=10] V15,5 \geq 95\% \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \eTD
+			\bTD[nc=10] D98\% \geq \ 45 Gy \eTD
+			\bTD[nc=10] D98\% \geq \ 42,75 Gy \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=14] \bf OARs: (NSABP B-51 / RTOG: 1304 ) \eTD
+			\bTD[nc=10] \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] CORAZÓN \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \geq 42,75 Gy \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] PULMON IPSILATERAL \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \geq 42,75 Gy \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] PULMON CONTRALATERAL \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] MAMA CONTRALATERAL \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10]  \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] TIROIDES \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] CANAL MEDULAR \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] ESOFAGO \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=12] HUMERO IPSILATERAL \eTD
+			\bTD[nc=10] \geq 45 Gy \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=10] \bf OBSERVACIONES: \eTD
+			\bTD[nc=14] \eTD
+			\bTD[nc=10, nr=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=24, nr=2] 
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=24] \eTD
+			\bTD[nc=10] \eTD
+		\eTR
+
+		\bTR[bottonframe=on] 
+			\bTD[nc=24] \eTD
+			\bTD[nc=10, align=center] FIRMA \eTD
+		\eTR
+
+
+
+	\eTABLE

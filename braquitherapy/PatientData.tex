@@ -1,0 +1,800 @@
+% !TeX root = ./PatientData.tex
+
+\setupinteraction[state=start]
+
+\setuppapersize[A4][A4]
+\definefontfamily [mainface] [rm] [Calibri]
+\definefontfamily [mainface] [ss] [Calibri]
+\definefontfamily [mainface] [tt] [Calibri]
+\definefontfamily [mainface] [mm] [Calibri]
+
+%\setupbodyfont[hero, ss, 9pt]
+\setupbodyfont[mainface, ss, 10pt]
+
+\setuplayout[topspace=10mm, header=20mm, headerdistance=5mm, backspace=20mm, width=170mm, height=280mm]
+\setuppagenumbering[location=]
+
+
+\startJSpreamble {INITIAL} used now
+
+for (var i = 0; i < numFields; i++) { var f = getField(getNthFieldName(i));  f.textFont = font.Helv;  f.textSize = 9; }
+getField("lbl_DemoSign").readonly  = 1; getField("lbl_DemoDate").readonly  = 1;
+getField("lbl_PrescSign").readonly = 1; getField("lbl_PrescDate").readonly = 1;
+getField("lbl_TTOSign_1").readonly = 1; getField("lbl_TTOSign_2").readonly = 1; getField("lbl_TTOSign_3").readonly = 1; getField("lbl_TTOSign_4").readonly = 1; getField("lbl_TTOSign_5").readonly = 1;
+getField("lbl_TTODate_1").readonly = 1; getField("lbl_TTODate_2").readonly = 1; getField("lbl_TTODate_3").readonly = 1; getField("lbl_TTODate_4").readonly = 1; getField("lbl_TTODate_5").readonly = 1;
+
+var cFormat = "dd/mm/yy";
+//f.setAction("Format", "AFNumber_Format(0, 0, 0, 0, \"\", true);");
+//f.setAction("Keystroke", "AFNumber_Keystroke(0, 0, 0, 0, \"\", true);");
+
+getField("nbr_tto1_14").setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")"); getField("nbr_tto1_14").setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
+getField("nbr_tto2_14").setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")"); getField("nbr_tto2_14").setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
+getField("nbr_tto3_14").setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")"); getField("nbr_tto3_14").setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
+getField("nbr_tto4_14").setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")"); getField("nbr_tto4_14").setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
+
+
+
+
+var credentials = {
+	admin: {name: "admin", password: "admin"},
+	dcarrasco: {name: "Carraso", password: "dcdcarrasco"},
+	aalvares: {name: "Alvares", password: "aalvares"},
+	rventimiglia: {name: "Ventimiglia", password: "rventimiglia"},
+	a: {name: "a", password: "a"}
+};
+
+function toggleVisibility(name, num=0){
+	if (num == 0) { name.forEach(function(n){ var f = getField(n); f.display = !f.display; }); }
+	if (num > 0) { name.forEach(function(n){ for (var i=1; i<=num; i++) {var f = getField(n + i); f.display = !f.display;} }); }
+}
+
+function toggleReadOnly(name, num=0){
+	if (num == 0) { name.forEach(function(n){ var f = getField(n); f.readonly = !f.readonly; }); }
+	if (num > 0) { name.forEach(function(n){ for (var i=1; i<=num; i++) {var f = getField(n + i); f.readonly = !f.readonly;} }); }
+}
+
+function userPasswordCategory(){
+	var response;
+	var sector;
+	var dlg = {
+		initialize: function (dialog) {
+			var frac  = getField("pop_Fracciones").value;
+			var signs = [getField("lbl_TTOSign_1").value, getField("lbl_TTOSign_2").value, getField("lbl_TTOSign_3").value, getField("lbl_TTOSign_4").value, getField("lbl_TTOSign_5").value]; 
+			dialog.load({ date: util.printd("dd/mm/yyyy", new Date()) });
+			if ((signs[0] == "") && (frac >= 1)) { 
+				dialog.load({ "tto1": true }); 
+				dialog.enable({ "tto2": false, "tto3": false, "tto4": false, "tto5": false }); 
+			} else if ((signs[1] == "") && (frac >= 2)) { 
+				dialog.load({ "tto2": true }); 
+				dialog.enable({ "tto3": false, "tto4": false, "tto5": false }); 
+			} else if ((signs[2] == "") && (frac >= 3)) { 
+				dialog.load({ "tto3": true }); 
+				dialog.enable({ "tto4": false, "tto5":false }); 
+			} else if ((signs[3] == "") && (frac >= 4)) { 
+				dialog.load({ "tto4": true }); 
+				dialog.enable({ "tto5": false }); 
+			} else if ((signs[4] == "") && (frac == 5)) { 
+				dialog.load({ "tto5": true }); 
+			} else { 
+				dialog.enable({ "tto1": signs[0] != "", "tto2": signs[1] != "", "tto3": signs[2] != "", "tto4": signs[3] != "", "tto5": signs[4] != ""});
+			} 
+		},
+		
+		sign:function (dialog) {
+			var store = dialog.store();	
+			sector = store.tto5 ? 5 : store.tto4 ? 4 : store.tto3 ? 3 : store.tto2 ? 2 : store.tto1 ? 1 : 0;
+			if (store.user in credentials) {
+				if (store.password == credentials[store.user].password) {
+					response = { user: credentials[store.user].name, date: util.printd("dd/mm/yy", new Date()) , sector: sector};
+					dialog.end("ok");
+				} else { dialog.load({ help_text: "CONTRASE\321A INCORRECTA" }); }
+			} else { dialog.load({ help_text: "USUARIO INCORRECTO" }); }
+		},
+
+		cncl: function (dialog) { dialog.end("cancel") },
+		
+		description: { 
+			name: "Información de Usuario", elements: [
+				{ type: "view", width: 250, elements: [
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "static_text", name: "Usuario:", width: 70, height: 20 },
+						{ type: "edit_text", item_id: "user", width: 150, height: 20 }
+					]},
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "static_text", name: "Password:", width: 70, height: 20 },
+						{ type: "edit_text", item_id: "password", password: true, width: 150, height: 20 }
+					]},
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "static_text", name: "Fecha:", width: 70, height: 20 },
+						{ type: "edit_text", item_id: "date", width: 150, height: 20}
+					]},
+					{ type: "static_text", name: "Fracci\363n de Tratamiento", bold: true, alignment: "align_center" },
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "radio", item_id: "tto1", group_id: "rado", name: "1" },
+						{ type: "radio", item_id: "tto2", group_id: "rado", name: "2" },
+						{ type: "radio", item_id: "tto3", group_id: "rado", name: "3" },
+						{ type: "radio", item_id: "tto4", group_id: "rado", name: "4" },
+						{ type: "radio", item_id: "tto5", group_id: "rado", name: "5" }
+					]},
+					{ type: "static_text", item_id: "help_text", name: "", bold: true, alignment: "align_center" },
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "button", item_id: "cncl", name: "Cancel" },
+						{ type: "button", item_id: "sign", name: "Firmar", bold: true }
+					]}
+				]}
+			]}
+	};
+
+	app.execDialog(dlg);
+	return response;
+}
+
+
+function userPassword(){
+	var response;
+	var dlg = {
+		initialize: function (dialog) {
+			dialog.load({ date: util.printd("dd/mm/yy", new Date()) });
+		},
+		
+		sign:function (dialog) {
+			var store = dialog.store();	
+			if (store.user in credentials) {
+				if (store.password == credentials[store.user].password) {
+					response = { user: credentials[store.user].name, date: util.printd("dd/mm/yyyy", new Date()) };
+					dialog.end("ok");
+				} else { dialog.load({ help_text: "CONTRASE\321A INCORRECTA" }); }
+			} else { dialog.load({ help_text: "USUARIO INCORRECTO" }); }
+		},
+
+		cncl: function (dialog) { dialog.end("cancel") },
+		
+		description: { 
+			name: "Información de Usuario", elements: [
+				{ type: "view", width: 250, elements: [
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "static_text", name: "Usuario:", width: 70, height: 20 },
+						{ type: "edit_text", item_id: "user", width: 150, height: 20 }
+					]},
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "static_text", name: "Password:", width: 70, height: 20 },
+						{ type: "edit_text", item_id: "password", password: true, width: 150, height: 20 }
+					]},
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "static_text", name: "Fecha:", width: 70, height: 20 },
+						{ type: "edit_text", item_id: "date", width: 150, height: 20}
+					]},
+					{ type: "static_text", item_id: "help_text", name: "", bold: true, alignment: "align_center" },
+					{ type: "view", align_children: "align_row", elements: [
+						{ type: "button", item_id: "cncl", name: "Cancel" },
+						{ type: "button", item_id: "sign", name: "Firmar", bold: true }
+					]}
+				]}
+			]}
+	};
+
+	app.execDialog(dlg);
+	return response;
+}
+
+\stopJSpreamble
+
+%//f.setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
+%//f.setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
+%
+%//for (var i = 0; i < numFields; i++) {
+%//    var fName = getNthFieldName(i);
+%//    var f = getField(fName);
+%//    if (f.type === "text" || f.type == "combobox") {
+%//		f.alignment ="left";
+%//		f.textFont = font.Helv;
+%//		f.textSize = 9;
+%//		f.setAction("Keystroke", "toUpperCase()");
+%//    }
+%//}
+
+%//var d = new Date();
+
+%//var df = this.getField("dose_old_tto");
+%//df.display = display.hidden; 
+
+%//util.printd("dd.mm.yyyy", d);
+
+%//function toggleField(){
+%//var f = this.getField("txt_Name");
+%//f.value = "Texto";	 //! f.display;
+
+
+\startJScode {textToUpperCase} 	event.value = event.value.toUpperCase(); 															\stopJScode
+\startJScode {textOnlyNumbers}  if(!event.willCommit){event.rc = /^[0-9]*$/.test(event.change)};//$ 								\stopJScode
+\startJScode {importImage}		event.target.buttonPosition = position.iconOnly; event.target.buttonImportIcon(); 					\stopJScode
+\startJScode {displayBQT} 		toggleVisibility(["lbl_BQT_D","nbr_BQT_D"], 4); toggleReadOnly(["lbl_BQT_D"], 4); 					\stopJScode
+\startJScode {displayRTP} 		toggleVisibility(["lbl_RTP_D","nbr_RTP_D"], 4); toggleReadOnly(["lbl_RTP_D"], 4); 					\stopJScode
+
+\startJScode {initFrac}
+	var tto_signs = [getField("lbl_TTOSign_1").value, getField("lbl_TTOSign_2").value, getField("lbl_TTOSign_3").value, getField("lbl_TTOSign_4").value, getField("lbl_TTOSign_5").value];
+	var items     = tto_signs[4] ? ["5"] : tto_signs[3] ? ["4", "5"] : tto_signs[2] ? ["3", "4", "5"] : tto_signs[1] ? ["2", "3", "4", "5"] : ["1", "2", "3", "4", "5"] ;
+	getField("pop_Fracciones").setItems(items);
+\stopJScode
+
+\startJScode {selectFrac}
+	var frac      = getField("pop_Fracciones").value; 
+	var dose      = getField("nbr_DoseFrac").value;
+	var check     = getField("sgn_TTO");
+
+	var tto_signs = [getField("lbl_TTOSign_1").value, getField("lbl_TTOSign_2").value, getField("lbl_TTOSign_3").value, getField("lbl_TTOSign_4").value, getField("lbl_TTOSign_5").value];
+	getField("lbl_Dosis").value = frac * dose ; 	
+	getField("lbl_Dosis").readonly = 1; getField("lbl_Dosis").display = 0;
+	getField("lbl_tto1").readonly = 1; getField("lbl_tto2").readonly = 1; getField("lbl_tto3").readonly = 1; getField("lbl_tto4").readonly = 1; getField("lbl_tto5").readonly = 1; 
+	
+	switch (frac){
+		case 1: 
+			getField("lbl_tto1").display = 0; getField("lbl_tto2").display = 1; getField("lbl_tto3").display = 1; getField("lbl_tto4").display = 1; getField("lbl_tto5").display = 1; 
+			if ((tto_signs[0] == "") && (getField("nbr_tto1_1").display == 1)) { toggleVisibility(["nbr_tto1_"], 14); }
+			else if ((tto_signs[1] == "") && (getField("nbr_tto2_1").display == 0)){ toggleVisibility(["nbr_tto2_"], 14); }
+			break;
+		case 2: 
+			getField("lbl_tto1").display = 0; getField("lbl_tto2").display = 0; getField("lbl_tto3").display = 1; getField("lbl_tto4").display = 1; getField("lbl_tto5").display = 1; 
+			if ((tto_signs[0] == "") && (getField("nbr_tto1_1").display == 1)) { toggleVisibility(["nbr_tto1_"], 14); }
+			else if ((tto_signs[0] != "") && (getField("nbr_tto2_1").display == 1)){ toggleVisibility(["nbr_tto2_"], 14); }
+			else if ((tto_signs[2] == "") && (getField("nbr_tto3_1").display == 0)){ toggleVisibility(["nbr_tto3_"], 14); }
+			break;
+		case 3: 
+			getField("lbl_tto1").display = 0; getField("lbl_tto2").display = 0; getField("lbl_tto3").display = 0; getField("lbl_tto4").display = 1; getField("lbl_tto5").display = 1; 
+			if ((tto_signs[0] == "") && (getField("nbr_tto1_1").display == 1)) { toggleVisibility(["nbr_tto1_"], 14); }
+			else if ((tto_signs[0] != "") && (getField("nbr_tto2_1").display == 1)){ toggleVisibility(["nbr_tto2_"], 14); }
+			else if ((tto_signs[1] != "") && (getField("nbr_tto3_1").display == 1)){ toggleVisibility(["nbr_tto3_"], 14); }
+			else if ((tto_signs[3] == "") && (getField("nbr_tto4_1").display == 0)){ toggleVisibility(["nbr_tto4_"], 14); }
+			break;
+		case 4: 
+			getField("lbl_tto1").display = 0; getField("lbl_tto2").display = 0; getField("lbl_tto3").display = 0; getField("lbl_tto4").display = 0; getField("lbl_tto5").display = 1; 
+			if ((tto_signs[0] == "") && (getField("nbr_tto1_1").display == 1)) { toggleVisibility(["nbr_tto1_"], 14); }
+			else if ((tto_signs[0] != "") && (getField("nbr_tto2_1").display == 1)){ toggleVisibility(["nbr_tto2_"], 14); }
+			else if ((tto_signs[1] != "") && (getField("nbr_tto3_1").display == 1)){ toggleVisibility(["nbr_tto3_"], 14); }
+			else if ((tto_signs[2] != "") && (getField("nbr_tto4_1").display == 1)){ toggleVisibility(["nbr_tto4_"], 14); }	
+			else if ((tto_signs[4] == "") && (getField("nbr_tto5_1").display == 0)){ toggleVisibility(["nbr_tto5_"], 14); }		
+			break;
+		case 5: 
+			getField("lbl_tto1").display = 0; getField("lbl_tto2").display = 0; getField("lbl_tto3").display = 0; getField("lbl_tto4").display = 0; getField("lbl_tto5").display = 0; 
+			if ((tto_signs[0] == "") && (getField("nbr_tto1_1").display == 1)) { toggleVisibility(["nbr_tto1_"], 14); }
+			else if ((tto_signs[0] != "") && (getField("nbr_tto2_1").display == 1)){ toggleVisibility(["nbr_tto2_"], 14); }
+			else if ((tto_signs[1] != "") && (getField("nbr_tto3_1").display == 1)){ toggleVisibility(["nbr_tto3_"], 14); }
+			else if ((tto_signs[2] != "") && (getField("nbr_tto4_1").display == 1)){ toggleVisibility(["nbr_tto4_"], 14); }	
+			else if ((tto_signs[3] != "") && (getField("nbr_tto5_1").display == 1)){ toggleVisibility(["nbr_tto5_"], 14); }	
+			break;
+	}
+
+	var last_sign = tto_signs[0] != "" ? tto_signs[1] != "" ? tto_signs[2] != "" ? tto_signs[3] != "" ? tto_signs[4] != "" ? 5: 4 : 3 : 2 : 1 : 1 ; 
+	if (frac == last_sign) { check.buttonSetCaption("X", 0); } 
+	else { check.buttonSetCaption("", 0); }
+
+\stopJScode
+
+
+\startJScode {controlPoints}
+	switch (getField("pop_Aplicador").value){
+    	case "CILINDRO": getField("pop_Puntos").setItems(["SUPERFICIAL", "5mm"]); break;
+    	case "FLETCHER": getField("pop_Puntos").setItems(["PUNTOS A"]); break;   
+	}
+\stopJScode
+
+\startJScode {signDemographics}
+	var sign = userPassword();
+	if ( "user" in sign ){
+		toggleReadOnly(["txt_Name", "txt_ID", "txt_Diagnostic", "btn_ImagePatient", "chk_BQT", "chk_RTP"]);
+		toggleReadOnly(["nbr_BQT_D", "nbr_RTP_D"], 3);
+		
+		getField("sgn_Demo").position = position.textOnly;
+		if (getField("lbl_DemoSign").value == "") { getField("sgn_Demo").buttonSetCaption("X", 0); }
+		if (getField("lbl_DemoSign").value != "") { getField("sgn_Demo").buttonSetCaption("", 0); }
+
+		toggleVisibility(["lbl_DemoSign", "lbl_DemoDate"]);
+
+		getField("lbl_DemoSign").value = getField("lbl_DemoSign").value == "" ? sign.user : "";
+		getField("lbl_DemoDate").value = getField("lbl_DemoDate").value == "" ? sign.date : "";
+	}
+\stopJScode
+
+\startJScode {signPrescription}
+	var sign = userPassword();
+	if ( "user" in sign ){
+		toggleReadOnly(["pop_Machine", "pop_Aplicador", "pop_Puntos", "nbr_DoseFrac", "pop_Fracciones", "pop_Sedacion"]);
+		toggleReadOnly(["chk_sim"], 4);
+		
+		getField("sgn_Presc").position = position.textOnly;
+		if (getField("lbl_PrescSign").value == "") { getField("sgn_Presc").buttonSetCaption("X", 0); }
+		if (getField("lbl_PrescSign").value != "") { getField("sgn_Presc").buttonSetCaption("", 0); }
+
+		toggleVisibility(["lbl_PrescSign", "lbl_PrescDate"]);
+
+		getField("lbl_PrescSign").value = getField("lbl_PrescSign").value == "" ? sign.user : "";
+		getField("lbl_PrescDate").value = getField("lbl_PrescDate").value == "" ? sign.date : "";
+	}
+\stopJScode
+
+\startJScode {signTreatment}
+	var sign = userPasswordCategory();
+	var frac = getField("pop_Fracciones").value;
+	var tto_signs = [getField("lbl_TTOSign_1"), getField("lbl_TTOSign_2"), getField("lbl_TTOSign_3"), getField("lbl_TTOSign_4"), getField("lbl_TTOSign_5")];
+	var tto_dates = [getField("lbl_TTODate_1"), getField("lbl_TTODate_2"), getField("lbl_TTODate_3"), getField("lbl_TTODate_4"), getField("lbl_TTODate_5")];
+	var check     = getField("sgn_TTO");
+
+	check.position = position.textOnly;
+
+	if ( "user" in sign ){
+		switch(sign.sector){
+			case 1:
+				toggleReadOnly(["nbr_tto1_"], 14);
+				if ((tto_signs[1].value == "") && (frac > 1)) { toggleVisibility(["nbr_tto2_"], 14); }
+				tto_signs[0].value = tto_signs[0].value == "" ? sign.user : "";
+				tto_dates[0].value = tto_dates[0].value == "" ? sign.date : "";
+				toggleVisibility(["lbl_TTOSign_1", "lbl_TTODate_1"]);
+				break;
+			case 2:
+				toggleReadOnly(["nbr_tto2_"], 14);
+				if ((tto_signs[2].value == "") && (frac > 2)) { toggleVisibility(["nbr_tto3_"], 14); } 
+				tto_signs[1].value = tto_signs[1].value == "" ? sign.user : "";
+				tto_dates[1].value = tto_dates[1].value == "" ? sign.date : "";
+				toggleVisibility(["lbl_TTOSign_2", "lbl_TTODate_2"]);
+				break;
+			case 3: 
+				toggleReadOnly(["nbr_tto3_"], 14);
+				if ((tto_signs[3].value == "") && (frac > 3))  { toggleVisibility(["nbr_tto4_"], 14); } 
+				tto_signs[2].value = tto_signs[2].value == "" ? sign.user : "";
+				tto_dates[2].value = tto_dates[2].value == "" ? sign.date : "";
+				toggleVisibility(["lbl_TTOSign_3", "lbl_TTODate_3"]);
+				break;
+			case 4:
+				toggleReadOnly(["nbr_tto4_"], 14);
+				if ((tto_signs[4].value == "") && (frac > 4))  { toggleVisibility(["nbr_tto5_"], 14); } 
+				tto_signs[3].value = tto_signs[3].value == "" ? sign.user : "";
+				tto_dates[3].value = tto_dates[3].value == "" ? sign.date : "";
+				toggleVisibility(["lbl_TTOSign_4", "lbl_TTODate_4"]);
+				break;
+			case 5:
+				toggleReadOnly(["nbr_tto5_"], 14);
+				tto_signs[4].value = tto_signs[4].value == "" ? sign.user : "";
+				tto_dates[4].value = tto_dates[4].value == "" ? sign.date : "";
+				toggleVisibility(["lbl_TTOSign_5", "lbl_TTODate_5"]);
+				break;
+		}
+
+		var last_sign = tto_signs[0].value != "" ? tto_signs[1].value != "" ? tto_signs[2].value != "" ? tto_signs[3].value != "" ? tto_signs[4].value != "" ? 5: 4 : 3 : 2 : 1 : 1 ; 
+		if (frac == last_sign) { check.buttonSetCaption("X", 0); } 
+		else { check.buttonSetCaption("", 0); }
+	}
+\stopJScode
+
+
+
+\setupfield[TextL]		[height=4.5mm, 	width=79mm, 	frame=off, 	offset=0mm, align=flushleft, validate=JS(textToUpperCase)]
+\setupfield[PopupL]		[height=4.5mm, 	width=40mm, 	frame=off, 	offset=0mm, align=flushleft]
+\setupfield[PopupM]		[height=4.5mm, 	width=30mm, 	frame=off, 	offset=0mm, align=flushleft]
+\setupfield[PopupS]		[height=4.5mm, 	width=9mm, 		frame=off, 	offset=0mm, align=flushleft]
+\setupfield[NumberS]	[height=4.5mm, 	width=9mm,  	frame=off, 	offset=0mm, align=flushleft,  							  afterkey=JS(textOnlyNumbers)]
+\setupfield[NumberSH]	[height=4.5mm, 	width=9mm, 		frame=off, 	offset=0mm, align=flushleft,  option=hidden, 			  afterkey=JS(textOnlyNumbers)]
+\setupfield[LabelSR]    [height=4.5mm, 	width=20mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
+\setupfield[LabelSR2]   [height=4.5mm, 	width=15mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
+\setupfield[LabelSH]	[height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushright, option=hidden]
+\setupfield[LabelSHC]   [height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
+\setupfield[ImageBox]	[height=39.4mm, width=48.2mm, 	frame=on, 	offset=0mm, clickout=JS(importImage)]
+
+\setupfield[PopupSOp1]	[height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushleft, focusin=JS(initFrac), focusout=JS(selectFrac)]
+\setupfield[NumberSOp1]	[height=4.5mm, 	width=10mm,  	frame=off, 	offset=0mm, align=flushleft,                       focusout=JS(selectFrac), afterkey=JS(textOnlyNumbers)]
+\setupfield[PopupMOp1]	[height=4.5mm, 	width=30mm, 	frame=off, 	offset=0mm, align=flushleft, focusout=JS(controlPoints)]
+
+
+\setupfield[CheckBQT][width=5mm, 5mm, frame=off, clickin=JS(displayBQT)]
+\setupfield[CheckRTP][width=5mm, 5mm, frame=off, clickin=JS(displayRTP)]
+\setupfield[CheckSim][width=5mm, 5mm, frame=off]
+
+\setupfield[CheckDemo][height=4mm, width=5mm, frame=on, background=color, backgroundcolor=gray, clickin=JS(signDemographics)]
+\setupfield[CheckPres][height=4mm, width=5mm, frame=on, background=color, backgroundcolor=gray, clickin=JS(signPrescription)]
+\setupfield[CheckTTO][height=4mm, width=5mm, frame=on, background=color, backgroundcolor=gray,  clickin=JS(signTreatment)]
+
+
+
+\definefield[txt_Name][line][TextL]
+\definefield[txt_ID][line][TextL]
+\definefield[txt_Diagnostic][line][TextL]
+
+\definefield[btn_ImagePatient][push][ImageBox][btn1] % Super important bt1 to differenciate from others
+
+\definefield[chk_BQT][check][CheckBQT]
+\definefield[lbl_BQT_D1][line][LabelSH][PTV] 	\definefield[nbr_BQT_D1][line][NumberSH] 
+\definefield[lbl_BQT_D2][line][LabelSH][Boost]	\definefield[nbr_BQT_D2][line][NumberSH] 
+\definefield[lbl_BQT_D3][line][LabelSH][Recto]	\definefield[nbr_BQT_D3][line][NumberSH] 
+\definefield[lbl_BQT_D4][line][LabelSH][Vejiga]	\definefield[nbr_BQT_D4][line][NumberSH]
+
+\definefield[chk_RTP][check][CheckRTP]
+\definefield[lbl_RTP_D1][line][LabelSH][PTV] 	\definefield[nbr_RTP_D1][line][NumberSH] 
+\definefield[lbl_RTP_D2][line][LabelSH][Boost]	\definefield[nbr_RTP_D2][line][NumberSH] 	
+\definefield[lbl_RTP_D3][line][LabelSH][Recto]	\definefield[nbr_RTP_D3][line][NumberSH] 	
+\definefield[lbl_RTP_D4][line][LabelSH][Vejiga]	\definefield[nbr_RTP_D4][line][NumberSH]
+
+
+\definefield[sgn_Demo][push][CheckDemo][btn2]
+\definefield[lbl_DemoSign][line][LabelSR]
+\definefield[lbl_DemoDate][line][LabelSR]
+
+\definefield[pop_Machine][popup][PopupL][FLEXITRON Co60 T123, FLEXITRON Ir192 T123]
+\definefield[pop_Aplicador][popup][PopupMOp1][CILINDRO, FLETCHER]
+\definefield[pop_Puntos][popup][PopupM][]
+\definefield[nbr_DoseFrac][line][NumberSOp1] 
+\definefield[pop_Fracciones][popup][PopupSOp1][1, 2, 3, 4, 5]
+\definefield[lbl_Dosis][line][LabelSR]
+\definefield[pop_Sedacion][popup][PopupS][SI, NO]
+\definefield[chk_sim1][check][CheckSim]  \definefield[chk_sim2][check][CheckSim] \definefield[chk_sim3][check][CheckSim] \definefield[chk_sim4][check][CheckSim]
+
+\definefield[sgn_Presc][push][CheckPres][btn3]
+\definefield[lbl_PrescSign][line][LabelSR]
+\definefield[lbl_PrescDate][line][LabelSR]
+
+
+\definefield[lbl_tto1][line][LabelSHC][1]  \definefield[lbl_tto2][line][LabelSHC][2] \definefield[lbl_tto3][line][LabelSHC][3] \definefield[lbl_tto4][line][LabelSHC][4] \definefield[lbl_tto5][line][LabelSHC][5]
+\definefield[nbr_tto1_1][line][NumberSH]   \definefield[nbr_tto2_1][line][NumberSH]  \definefield[nbr_tto3_1][line][NumberSH]  \definefield[nbr_tto4_1][line][NumberSH]  \definefield[nbr_tto5_1][line][NumberSH]
+\definefield[nbr_tto1_2][line][NumberSH]   \definefield[nbr_tto2_2][line][NumberSH]  \definefield[nbr_tto3_2][line][NumberSH]  \definefield[nbr_tto4_2][line][NumberSH]  \definefield[nbr_tto5_2][line][NumberSH]
+\definefield[nbr_tto1_3][line][NumberSH]   \definefield[nbr_tto2_3][line][NumberSH]  \definefield[nbr_tto3_3][line][NumberSH]  \definefield[nbr_tto4_3][line][NumberSH]  \definefield[nbr_tto5_3][line][NumberSH]
+\definefield[nbr_tto1_4][line][NumberSH]   \definefield[nbr_tto2_4][line][NumberSH]  \definefield[nbr_tto3_4][line][NumberSH]  \definefield[nbr_tto4_4][line][NumberSH]  \definefield[nbr_tto5_4][line][NumberSH]
+\definefield[nbr_tto1_5][line][NumberSH]   \definefield[nbr_tto2_5][line][NumberSH]  \definefield[nbr_tto3_5][line][NumberSH]  \definefield[nbr_tto4_5][line][NumberSH]  \definefield[nbr_tto5_5][line][NumberSH]
+\definefield[nbr_tto1_6][line][NumberSH]   \definefield[nbr_tto2_6][line][NumberSH]  \definefield[nbr_tto3_6][line][NumberSH]  \definefield[nbr_tto4_6][line][NumberSH]  \definefield[nbr_tto5_6][line][NumberSH]
+\definefield[nbr_tto1_7][line][NumberSH]   \definefield[nbr_tto2_7][line][NumberSH]  \definefield[nbr_tto3_7][line][NumberSH]  \definefield[nbr_tto4_7][line][NumberSH]  \definefield[nbr_tto5_7][line][NumberSH]
+\definefield[nbr_tto1_8][line][NumberSH]   \definefield[nbr_tto2_8][line][NumberSH]  \definefield[nbr_tto3_8][line][NumberSH]  \definefield[nbr_tto4_8][line][NumberSH]  \definefield[nbr_tto5_8][line][NumberSH]
+\definefield[nbr_tto1_9][line][NumberSH]   \definefield[nbr_tto2_9][line][NumberSH]  \definefield[nbr_tto3_9][line][NumberSH]  \definefield[nbr_tto4_9][line][NumberSH]  \definefield[nbr_tto5_9][line][NumberSH]
+\definefield[nbr_tto1_10][line][NumberSH]  \definefield[nbr_tto2_10][line][NumberSH] \definefield[nbr_tto3_10][line][NumberSH] \definefield[nbr_tto4_10][line][NumberSH] \definefield[nbr_tto5_10][line][NumberSH]
+\definefield[nbr_tto1_11][line][NumberSH]  \definefield[nbr_tto2_11][line][NumberSH] \definefield[nbr_tto3_11][line][NumberSH] \definefield[nbr_tto4_11][line][NumberSH] \definefield[nbr_tto5_11][line][NumberSH]
+\definefield[nbr_tto1_12][line][NumberSH]  \definefield[nbr_tto2_12][line][NumberSH] \definefield[nbr_tto3_12][line][NumberSH] \definefield[nbr_tto4_12][line][NumberSH] \definefield[nbr_tto5_12][line][NumberSH]
+\definefield[nbr_tto1_13][line][NumberSH]  \definefield[nbr_tto2_13][line][NumberSH] \definefield[nbr_tto3_13][line][NumberSH] \definefield[nbr_tto4_13][line][NumberSH] \definefield[nbr_tto5_13][line][NumberSH]
+\definefield[nbr_tto1_14][line][LabelSR2]  \definefield[nbr_tto2_14][line][LabelSR2] \definefield[nbr_tto3_14][line][LabelSR2] \definefield[nbr_tto4_14][line][LabelSR2] \definefield[nbr_tto5_14][line][LabelSR2]
+
+
+\definefield[lbl_TTOSign_1][line][LabelSR]	\definefield[lbl_TTOSign_2][line][LabelSR]	\definefield[lbl_TTOSign_3][line][LabelSR] \definefield[lbl_TTOSign_4][line][LabelSR]	\definefield[lbl_TTOSign_5][line][LabelSR]	
+\definefield[lbl_TTODate_1][line][LabelSR]	\definefield[lbl_TTODate_2][line][LabelSR]	\definefield[lbl_TTODate_3][line][LabelSR] \definefield[lbl_TTODate_4][line][LabelSR]	\definefield[lbl_TTODate_5][line][LabelSR]	
+
+\definefield[sgn_TTO][push][CheckTTO][btn4]
+
+
+
+%\definefield[sl1][line][NumberS]
+
+
+
+%\definefield[Ugly2][popup][UglySetup][UGLY,AWFUL,BAD] [AWFUL]
+
+
+
+\setupTABLE[frame=off]
+\setupTABLE[r][each][height=5mm]
+\setupTABLE[c][each][width=10mm]
+\setupTABLE[c][1][leftframe=on, rulethickness=0.8mm, toffset=-0.7mm]
+\setupTABLE[c][18][width=0mm, rightframe=on, rulethickness=0.8mm]
+\setupTABLE[r][9, 17, 25, 31][height=5.5mm]
+\setupTABLE[r][1, 10, 18, 26, 32][height=6mm, frame=on, rulethickness=0.8mm, align=middle, offset=0.9mm]
+\setupTABLE[r][43][height=0mm, topframe=on, rulethickness=0.8mm]
+\setupTABLE[r][47][height=0mm, topframe=off, frame=on, rulethickness=0.8mm]
+
+
+
+\bTABLE
+	\bTR \bTD[nc=18, nr=1] \tfa \bf DATOS GENERALES DEL PACIENTE \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Nombre y Apellido: \eTD
+		\bTD[nc=8] \field[txt_Name] \eTD
+		\bTD[nc=5, nr=8] \field[btn_ImagePatient] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf ID (DNI): \eTD
+		\bTD[nc=8] \field[txt_ID] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Diagnóstico: \eTD
+		\bTD[nc=8] \field[txt_Diagnostic] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Tratamiento Previo: \eTD
+		\bTD[nc=8] \eTD
+	\eTR
+
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[chk_BQT]\eTD
+		\bTD[nc=3] \bf Braquiterapia (cGy)\eTD
+		\bTD[nc=1] \field[lbl_BQT_D1] \eTD \bTD[nc=1] \field[nbr_BQT_D1] \eTD
+		\bTD[nc=1] \field[lbl_BQT_D2] \eTD \bTD[nc=1] \field[nbr_BQT_D2] \eTD
+		\bTD[nc=1] \field[lbl_BQT_D3] \eTD \bTD[nc=1] \field[nbr_BQT_D3] \eTD
+		\bTD[nc=1] \field[lbl_BQT_D4] \eTD \bTD[nc=1] \field[nbr_BQT_D4] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[chk_RTP] \eTD
+		\bTD[nc=3] \bf Teleterapia (cGy)\eTD
+		\bTD[nc=1] \field[lbl_RTP_D1] \eTD \bTD[nc=1] \field[nbr_RTP_D1] \eTD
+		\bTD[nc=1] \field[lbl_RTP_D2] \eTD \bTD[nc=1] \field[nbr_RTP_D2] \eTD
+		\bTD[nc=1] \field[lbl_RTP_D3] \eTD \bTD[nc=1] \field[nbr_RTP_D3] \eTD
+		\bTD[nc=1] \field[lbl_RTP_D4] \eTD \bTD[nc=1] \field[nbr_RTP_D4] \eTD
+	\eTR
+	
+	\bTR \bTD[nc=12] \eTD \eTR
+
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[sgn_Demo] \eTD
+		\bTD[nc=3] \bf Firma Médico: \eTD
+		\bTD[nc=2] \field[lbl_DemoSign] \eTD
+		\bTD[nc=2] \field[lbl_DemoDate] \eTD
+		\bTD[nc=4] \eTD
+	\eTR
+
+	\bTR \bTD[nc=18, nr=1] \tfa \bf PRESCRIPCIÓN DEL TRATAMIENTO \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=4] \bf Unidad de Tratamiento \eTD
+		\bTD[nc=4] \field[pop_Machine] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=4] \bf Aplicador Utilizado\eTD
+		\bTD[nc=4] \field[pop_Aplicador] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=4] \bf Dosis/Fracción (cGy): \eTD
+		\bTD[nc=4] \field[nbr_DoseFrac] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=4] \bf Puntos de Prescripción:\eTD
+		\bTD[nc=4] \field[pop_Puntos] \eTD
+	\eTR	
+	\bTR 
+		\bTD[nc=4] \bf Fracciones: \eTD
+		\bTD[nc=4] \field[pop_Fracciones] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=4] \bf Simulación: \eTD
+		\bTD[nc=4] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=4] \bf Dosis Total (cGy): \eTD
+		\bTD[nc=3] \field[lbl_Dosis] \eTD
+		\bTD[nc=2] \eTD
+		\bTD[nc=1, align=flushright] \field[chk_sim1] \eTD
+		\bTD[nc=1] RX \eTD
+		\bTD[nc=1, align=flushright] \field[chk_sim2] \eTD
+		\bTD[nc=1] US \eTD
+		\bTD[nc=1, align=flushright] \field[chk_sim3] \eTD
+		\bTD[nc=1] CT \eTD
+		\bTD[nc=1, align=flushright] \field[chk_sim4] \eTD
+		\bTD[nc=1] RM \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=4] \bf Sedación: \eTD
+		\bTD[nc=3] \field[pop_Sedacion] \eTD
+		\bTD[nc=10] \eTD
+	\eTR
+
+	\bTR \bTD[m=18] \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[sgn_Presc] \eTD
+		\bTD[nc=3] \bf Firma Médico: \eTD
+		\bTD[nc=2] \field[lbl_PrescSign] \eTD
+		\bTD[nc=2] \field[lbl_PrescDate] \eTD
+		\bTD[nc=9, nr=1] \eTD
+	\eTR
+	
+	\bTR \bTD[nc=18, nr=1] \tfa \bf APLICADOR FLETCHER \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=1] \field[lbl_tto1] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto2] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto3] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto4] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[m=16] \field[lbl_tto5] \eTD
+		\bTD[nc=1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Histerometría (cm)\eTD
+		\bTD[nc=2] \field[nbr_tto1_1] \eTD
+		\bTD[nc=2] \field[nbr_tto2_1] \eTD
+		\bTD[nc=2] \field[nbr_tto3_1] \eTD
+		\bTD[nc=2] \field[nbr_tto4_1] \eTD
+		\bTD[nc=2] \field[nbr_tto5_1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Angulo de Sonda Uterina (grados))\eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Tamaño de los Ovoides (mm)\eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+		\bTD[nc=2]  \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Blindaje \eTD
+		\bTD[nc=2] \field[nbr_tto1_2] \eTD
+		\bTD[nc=2] \field[nbr_tto2_2] \eTD
+		\bTD[nc=2] \field[nbr_tto3_2] \eTD
+		\bTD[nc=2] \field[nbr_tto4_2] \eTD
+		\bTD[nc=2] \field[nbr_tto5_2] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Activa Sonda Uterina (cm) \eTD
+		\bTD[nc=2] \field[nbr_tto1_3] \eTD
+		\bTD[nc=2] \field[nbr_tto2_3] \eTD
+		\bTD[nc=2] \field[nbr_tto3_3] \eTD
+		\bTD[nc=2] \field[nbr_tto4_3] \eTD
+		\bTD[nc=2] \field[nbr_tto5_3] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Activa Ovoides (cm) \eTD
+		\bTD[nc=2] \field[nbr_tto1_4] \eTD
+		\bTD[nc=2] \field[nbr_tto2_4] \eTD
+		\bTD[nc=2] \field[nbr_tto3_4] \eTD
+		\bTD[nc=2] \field[nbr_tto4_4] \eTD
+		\bTD[nc=2] \field[nbr_tto5_4] \eTD
+	\eTR
+	
+	\bTR \bTD[nc=18, nr=1] \tfa \bf APLICADOR CILINDRICO \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=1] \field[lbl_tto1] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto2] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto3] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto4] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[m=16] \field[lbl_tto5] \eTD
+		\bTD[nc=1] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Diámetro Cilindros (cm) \eTD
+		\bTD[nc=2] \field[nbr_tto1_5] \eTD
+		\bTD[nc=2] \field[nbr_tto2_5] \eTD
+		\bTD[nc=2] \field[nbr_tto3_5] \eTD
+		\bTD[nc=2] \field[nbr_tto4_5] \eTD
+		\bTD[nc=2] \field[nbr_tto5_5] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud de Cilindros (cm) \eTD
+		\bTD[nc=2] \field[nbr_tto1_6] \eTD
+		\bTD[nc=2] \field[nbr_tto2_6] \eTD
+		\bTD[nc=2] \field[nbr_tto3_6] \eTD
+		\bTD[nc=2] \field[nbr_tto4_6] \eTD
+		\bTD[nc=2] \field[nbr_tto5_6] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Sonda Uterina (cm) \eTD
+		\bTD[nc=2] \field[nbr_tto1_7] \eTD
+		\bTD[nc=2] \field[nbr_tto2_7] \eTD
+		\bTD[nc=2] \field[nbr_tto3_7] \eTD
+		\bTD[nc=2] \field[nbr_tto4_7] \eTD
+		\bTD[nc=2] \field[nbr_tto5_7] \eTD
+	\eTR
+	\bTR 
+		\bTD[nc=7] Longitud Activa (cm) \eTD
+		\bTD[nc=2] \field[nbr_tto1_8] \eTD
+		\bTD[nc=2] \field[nbr_tto2_8] \eTD
+		\bTD[nc=2] \field[nbr_tto3_8] \eTD
+		\bTD[nc=2] \field[nbr_tto4_8] \eTD
+		\bTD[nc=2] \field[nbr_tto5_8] \eTD
+	\eTR
+
+	\bTR \bTD[nc=18, nr=1] \tfa \bf REGISTRO DE TRATAMIENTO \eTD \eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=1] \field[lbl_tto1] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto2] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto3] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[nc=1] \field[lbl_tto4] \eTD
+		\bTD[nc=1] \eTD
+		\bTD[m=16] \field[lbl_tto5] \eTD
+		\bTD[nc=1] \eTD
+	\eTR
+
+	\bTR
+		\bTD[nc=7] Fecha del Tratamiento \eTD
+		\bTD[nc=2] \field[nbr_tto1_14] \eTD
+		\bTD[nc=2] \field[nbr_tto2_14] \eTD
+		\bTD[nc=2] \field[nbr_tto3_14] \eTD
+		\bTD[nc=2] \field[nbr_tto4_14] \eTD
+		\bTD[nc=2] \field[nbr_tto5_14] \eTD
+	\eTR
+
+
+	\bTR 
+		\bTD[nc=7] Dosis Prescripta por Fracción (cGy)\eTD
+		\bTD[nc=2] \field[nbr_tto1_9] \eTD
+		\bTD[nc=2] \field[nbr_tto2_9] \eTD
+		\bTD[nc=2] \field[nbr_tto3_9] \eTD
+		\bTD[nc=2] \field[nbr_tto4_9] \eTD
+		\bTD[nc=2] \field[nbr_tto5_9] \eTD
+	\eTR
+
+	\bTR 
+		\bTD[nc=7] Int. de Kerma en Aire (cGy.cm2/h)\eTD
+		\bTD[nc=2] \field[nbr_tto1_10] \eTD
+		\bTD[nc=2] \field[nbr_tto2_10] \eTD
+		\bTD[nc=2] \field[nbr_tto3_10] \eTD
+		\bTD[nc=2] \field[nbr_tto4_10] \eTD
+		\bTD[nc=2] \field[nbr_tto5_10] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Tiempo de Irradiación (s)\eTD
+		\bTD[nc=2] \field[nbr_tto1_11] \eTD
+		\bTD[nc=2] \field[nbr_tto2_11] \eTD
+		\bTD[nc=2] \field[nbr_tto3_11] \eTD
+		\bTD[nc=2] \field[nbr_tto4_11] \eTD
+		\bTD[nc=2] \field[nbr_tto5_11] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Dosis Vejiga (cGy) \eTD
+		\bTD[nc=2] \field[nbr_tto1_12] \eTD
+		\bTD[nc=2] \field[nbr_tto2_12] \eTD
+		\bTD[nc=2] \field[nbr_tto3_12] \eTD
+		\bTD[nc=2] \field[nbr_tto4_12] \eTD
+		\bTD[nc=2] \field[nbr_tto5_12] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] Dosis Recto (cGy) \eTD
+		\bTD[nc=2] \field[nbr_tto1_13] \eTD
+		\bTD[nc=2] \field[nbr_tto2_13] \eTD
+		\bTD[nc=2] \field[nbr_tto3_13] \eTD
+		\bTD[nc=2] \field[nbr_tto4_13] \eTD
+		\bTD[nc=2] \field[nbr_tto5_13] \eTD
+	\eTR
+
+	\bTR \bTD[nc=17] \eTD \eTR
+
+	\bTR 
+		\bTD[nc=1, align=flushright] \field[sgn_TTO] \eTD
+		\bTD[nc=6] \bf Firma Médico\eTD
+		\bTD[nc=2] \field[lbl_TTOSign_1] \eTD
+		\bTD[nc=2] \field[lbl_TTOSign_2] \eTD
+		\bTD[nc=2] \field[lbl_TTOSign_3] \eTD
+		\bTD[nc=2] \field[lbl_TTOSign_4] \eTD
+		\bTD[nc=2] \field[lbl_TTOSign_5] \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=7] \eTD
+		\bTD[nc=2] \field[lbl_TTODate_1] \eTD
+		\bTD[nc=2] \field[lbl_TTODate_2] \eTD
+		\bTD[nc=2] \field[lbl_TTODate_3] \eTD
+		\bTD[nc=2] \field[lbl_TTODate_4] \eTD
+		\bTD[nc=2] \field[lbl_TTODate_5] \eTD
+	\eTR
+
+	\bTR \bTD[m=18] \eTD \eTR
+	
+	\bTR \bTD[nc=4, nr=3] \bf OBSERVACIONES:\eTD \bTD[nc=13] \eTD \eTR
+
+	\bTR \bTD[nc=13] \eTD \eTR
+
+	\bTR \bTD[nc=13] \eTD \eTR 
+
+	\bTR \bTD[nc=18] \eTD \eTR 
+\eTABLE
