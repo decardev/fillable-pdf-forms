@@ -1,0 +1,691 @@
+% !TeX root = ./PatientData.tex
+\setupinteraction[state=start]
+
+\setuppapersize[A4][A4]
+\definefontfamily [mainface] [rm] [Calibri]
+\definefontfamily [mainface] [ss] [Calibri]
+\definefontfamily [mainface] [tt] [Calibri]
+\definefontfamily [mainface] [mm] [Calibri]
+
+\setupbodyfont[mainface, ss, 9pt]
+
+\setuplayout[topspace=10mm, header=30mm, headerdistance=5mm, backspace=20mm, width=170mm, height=285mm, footer=5mm]
+\setuppagenumbering[location=]
+
+%\showframe
+
+\setupheader
+  [text]
+  [before={
+		\setupTABLE[frame=off]		
+		\setupTABLE[c][align={middle, lohi}]
+			\bTABLE
+				\bTR 
+					\bTD[nr=2, width=30mm, height=30mm, frame=on, rulethickness=1mm] \bf LOGO INTECNUS \eTD 
+					\bTD[nc=1, width=110mm, topframe=on, rulethickness=1mm] \tfa \bf INSTITUTO DE TECNOLOGÍAS NUCLEARES PARA LA SALUD     \eTD 
+					\bTD[nr=2, width=30mm, frame=on, rulethickness=1mm] \bf Página 1 de 1\eTD 
+				\eTR
+				\bTR
+					\bTD[topframe=on, rulethickness=1mm] \tfb \bf PRESCRIPCIÓN MÉDICA\eTD 
+				\eTR
+		\eTABLE
+		},
+  after={},
+  ]
+	
+\setupfield[sf_text_xlong][height=4.5mm, width=149mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_text_long][height=4.5mm, width=94mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_text_mlong][height=4.5mm, width=69mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_text_medium][height=4.5mm, width=34mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_text_short][height=4.5mm, width=34mm, frame=off, offset=0mm, align=flushleft]
+
+\setupfield[sf_number_medium][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_number_short][height=4.5mm, width=9mm, frame=off, offset=0mm, align=flushleft]
+
+\setupfield[sf_symbol][height=4.5mm, width=4mm, frame=off, offset=0mm, align=flushleft]
+
+\setupfield[sf_popup_medium][height=4.5mm, width=29mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_popup_mshort][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_popup_short][height=4.5mm, width=14mm, frame=off, offset=0mm, align=flushleft]
+
+
+
+
+
+
+% --------------------------- RENAMED ---------------------------------------------
+
+\setupfield[sf_dates_birth][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+
+
+\setupfield[sf_popup_modal][height=6.5mm, width=18mm, frame=off, toffset=0mm, align=flushleft]
+\setupfield[sf_dates_start][height=6.5mm, width=19mm, frame=off, toffset=0mm, align=flushleft]
+\setupfield[sf_line_rxname][height=6.5mm, width=34mm, frame=off, toffset=0mm, align=flushleft]
+
+
+\setupfield[sf_popup_TO_zona][height=4.5mm, width=29mm, frame=off, offset=0mm, align=flushleft]
+
+\setupfield[sf_popup_VM_tipo][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_popup_LN_tipo][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_popup_CM_tipo][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_popup_BT_tipo][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+
+
+\setupfield[sf_line_TTO_15][height=4.5mm, width=14mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_line_TTO_10][height=4.5mm, width=9mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_line_TTO_05][height=4.5mm, width=4mm, frame=off, offset=0mm, align=flushleft]
+
+\setupfield[sf_line_OAR_45][height=4.5mm, width=44mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_line_OAR_35][height=4.5mm, width=34mm, frame=off, offset=0mm, align=flushleft]
+
+
+\setupfield[sf_text_clinic][height=33.8mm, width=168.8mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_text_coment][height=4.5mm, width=88.8mm, frame=off, offset=0mm, align=flushleft]
+
+\setupfield[sf_popup_OARs][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft]
+
+% ---------------------------------------------------------------------------------
+
+
+
+%\setupfield[PopupL]		[height=4.5mm, 	width=40mm, 	frame=off, 	offset=0mm, align=flushleft]
+%\setupfield[PopupM]		[height=4.5mm, 	width=30mm, 	frame=off, 	offset=0mm, align=flushleft]
+%\setupfield[PopupS]		[height=4.5mm, 	width=9mm, 		frame=off, 	offset=0mm, align=flushleft]
+%\setupfield[NumberS]	[height=4.5mm, 	width=9mm,  	frame=off, 	offset=0mm, align=flushleft,  							  afterkey=JS(textOnlyNumbers)]
+%\setupfield[NumberSH]	[height=4.5mm, 	width=9mm, 		frame=off, 	offset=0mm, align=flushleft,  option=hidden, 			  afterkey=JS(textOnlyNumbers)]
+%\setupfield[LabelSR]    [height=4.5mm, 	width=20mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
+%\setupfield[LabelSR2]   [height=4.5mm, 	width=15mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
+%\setupfield[LabelSH]	[height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushright, option=hidden]
+%\setupfield[LabelSHC]   [height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
+%\setupfield[ImageBox]	[height=39.4mm, width=48.2mm, 	frame=on, 	offset=0mm, clickout=JS(importImage)]
+
+%\setupfield[PopupSOp1]	[height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushleft, focusin=JS(initFrac), focusout=JS(selectFrac)]
+%\setupfield[NumberSOp1]	[height=4.5mm, 	width=10mm,  	frame=off, 	offset=0mm, align=flushleft,                       focusout=JS(selectFrac), afterkey=JS(textOnlyNumbers)]
+%\setupfield[PopupMOp1]	[height=4.5mm, 	width=30mm, 	frame=off, 	offset=0mm, align=flushleft, focusout=JS(controlPoints)]
+
+
+
+
+\definefield[df_name][line][sf_text_long]
+\definefield[df_ID_tipo][combo][sf_popup_short][ , ID, PASS]			
+\definefield[df_ID][line][sf_number_medium] 			
+\definefield[df_HC][line][sf_number_medium]
+\definefield[df_dates_birth][line][sf_dates_birth]
+\definefield[df_age][line][sf_number_medium]
+\definefield[df_home][line][sf_text_medium]
+\definefield[df_region][combo][sf_text_medium][ , Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, Mendoza, Misiones, Neuquén, Río Negro, Salta, San Jua, San Luis, Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumá]
+\definefield[df_work][line][sf_text_medium]
+\definefield[df_phone][line][sf_text_medium]
+\definefield[df_social][combo][sf_text_medium][ , ACA SALUD, AMEPBA, CAJA FORENSE, DIBA, GALEANO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUSS, MEDIFE, OMINT, OSBA, OSDE, OSECAC, OSPAT, OSPE, OSPECON, OSPLAD, OSSEG ,OSUTHGRA, PAMI, POLICIA FEDERAL, SALUD PUBLICA, SANCOR SALUD, SERGOS, SMG, SOSUNC, SWISS MEDICAL, UP]
+\definefield[df_social_number][line][sf_number_medium]
+\definefield[df_derivation][line][sf_text_medium]
+\definefield[df_derivation_center][line][sf_text_medium]
+
+\definefield[df_lateral][popup][sf_popup_mshort][ , Izquierda, Derecha, Bilateral]
+\definefield[df_cuadrante][popup][sf_popup_medium][ , Superior Izquierdo, Superior Derecho, Inferior Izquierdo, Inferior Derecho, Central]
+\definefield[df_TNM_E][popup][sf_popup_short][ , E0, EIA, EIB, EIIA, EIIB, EIIIA, EIIIB, EIIIC, EIIINOS, EIV, EUNK]
+\definefield[df_TNM_T][popup][sf_popup_short][ , T0, T1a, T1b, T1c, T1mi, T1NOS, T2, T3, T4a, T4b, T4c, T4d, T4NOS, Tis, TX]
+\definefield[df_TNM_N][popup][sf_popup_short][ , N0, N1, N1NOS, N2a, N2b, N2NOS, N3a, N3b, N3c, N3NOS, NX]
+\definefield[df_TNM_M][popup][sf_popup_short][ , M0, Mo(i+), M1]
+
+\definefield[df_karnofsky][line][sf_number_short]
+\definefield[df_PS][line][sf_number_short]
+\definefield[df_comorbilidades][line][sf_text_mlong]
+\definefield[df_clinic][text][sf_text_clinic]
+
+
+\definefield[df_derivacion][line][sf_text_xlong]
+
+\definefield[df_tecnica][popup][sf_popup_modal][ , 3D, IMRT, VMAT]
+\definefield[df_dates_start][line][sf_dates_start]
+\definefield[df_rxname][line][sf_line_rxname]
+
+
+
+
+
+
+
+% --------------------------- PTV VM ---------------------------------------------
+\definefield[df_Z1_zona][combo][sf_popup_TO_zona][ , PTV_VMI, PTV_VMD, PTV_VMI_VMD]
+\definefield[df_Z1_tipo][popup][sf_popup_VM_tipo][ , Normo, Hipo, Otro]
+\definefield[df_Z1_fx_1][line][sf_line_TTO_15]
+\definefield[df_Z1_fx_2][line][sf_line_TTO_05]
+\definefield[df_Z1_fx_3][line][sf_line_TTO_15]
+\definefield[df_Z1_fx_4][line][sf_line_TTO_05]
+\definefield[df_Z1_fx_5][line][sf_line_TTO_10]
+
+\definefield[df_Z1_id_1][line][sf_line_TTO_15]
+\definefield[df_Z1_id_2][line][sf_line_TTO_05]
+\definefield[df_Z1_id_3][line][sf_line_TTO_15]
+\definefield[df_Z1_id_4][line][sf_line_TTO_15]
+\definefield[df_Z1_id_5][line][sf_line_TTO_05]
+\definefield[df_Z1_id_6][line][sf_line_TTO_15]
+\definefield[df_Z1_id_7][line][sf_line_TTO_15]
+\definefield[df_Z1_id_8][line][sf_line_TTO_05]
+\definefield[df_Z1_id_9][line][sf_line_TTO_15]
+
+\definefield[df_Z1_ac_1][line][sf_line_TTO_15]
+\definefield[df_Z1_ac_2][line][sf_line_TTO_05]
+\definefield[df_Z1_ac_3][line][sf_line_TTO_15]
+\definefield[df_Z1_ac_4][line][sf_line_TTO_15]
+\definefield[df_Z1_ac_5][line][sf_line_TTO_05]
+\definefield[df_Z1_ac_6][line][sf_line_TTO_15]
+\definefield[df_Z1_ac_7][line][sf_line_TTO_15]
+\definefield[df_Z1_ac_8][line][sf_line_TTO_05]
+\definefield[df_Z1_ac_9][line][sf_line_TTO_15]
+% --------------------------------------------------------------------------------
+
+% --------------------------- PTV LN ---------------------------------------------
+\definefield[df_Z2_zona][combo][sf_popup_TO_zona]
+\definefield[df_Z2_tipo][combo][sf_popup_LN_tipo][ , Normo, Hipo, Otro]
+\definefield[df_Z2_fx_1][line][sf_line_TTO_15]
+\definefield[df_Z2_fx_2][line][sf_line_TTO_05]
+\definefield[df_Z2_fx_3][line][sf_line_TTO_15]
+\definefield[df_Z2_fx_4][line][sf_line_TTO_05]
+\definefield[df_Z2_fx_5][line][sf_line_TTO_10]
+
+\definefield[df_Z2_id_1][line][sf_line_TTO_15]
+\definefield[df_Z2_id_2][line][sf_line_TTO_05]
+\definefield[df_Z2_id_3][line][sf_line_TTO_15]
+\definefield[df_Z2_id_4][line][sf_line_TTO_15]
+\definefield[df_Z2_id_5][line][sf_line_TTO_05]
+\definefield[df_Z2_id_6][line][sf_line_TTO_15]
+\definefield[df_Z2_id_7][line][sf_line_TTO_15]
+\definefield[df_Z2_id_8][line][sf_line_TTO_05]
+\definefield[df_Z2_id_9][line][sf_line_TTO_15]
+
+\definefield[df_Z2_ac_1][line][sf_line_TTO_15]
+\definefield[df_Z2_ac_2][line][sf_line_TTO_05]
+\definefield[df_Z2_ac_3][line][sf_line_TTO_15]
+\definefield[df_Z2_ac_4][line][sf_line_TTO_15]
+\definefield[df_Z2_ac_5][line][sf_line_TTO_05]
+\definefield[df_Z2_ac_6][line][sf_line_TTO_15]
+\definefield[df_Z2_ac_7][line][sf_line_TTO_15]
+\definefield[df_Z2_ac_8][line][sf_line_TTO_05]
+\definefield[df_Z2_ac_9][line][sf_line_TTO_15]
+% --------------------------------------------------------------------------------
+
+% --------------------------- PTV CMI ---------------------------------------------
+\definefield[df_Z3_zona][combo][sf_popup_TO_zona]
+\definefield[df_Z3_tipo][combo][sf_popup_CM_tipo][ , Normo, Hipo, Otro]
+\definefield[df_Z3_fx_1][line][sf_line_TTO_15]
+\definefield[df_Z3_fx_2][line][sf_line_TTO_05]
+\definefield[df_Z3_fx_3][line][sf_line_TTO_15]
+\definefield[df_Z3_fx_4][line][sf_line_TTO_05]
+\definefield[df_Z3_fx_5][line][sf_line_TTO_10]
+\definefield[df_Z3_fx_3][line][sf_line_TTO_15]
+\definefield[df_Z3_fx_4][line][sf_line_TTO_05]
+\definefield[df_Z3_fx_5][line][sf_line_TTO_10]
+
+\definefield[df_Z3_id_1][line][sf_line_TTO_15]
+\definefield[df_Z3_id_2][line][sf_line_TTO_05]
+\definefield[df_Z3_id_3][line][sf_line_TTO_15]
+\definefield[df_Z3_id_4][line][sf_line_TTO_15]
+\definefield[df_Z3_id_5][line][sf_line_TTO_05]
+\definefield[df_Z3_id_6][line][sf_line_TTO_15]
+\definefield[df_Z3_id_7][line][sf_line_TTO_15]
+\definefield[df_Z3_id_8][line][sf_line_TTO_05]
+\definefield[df_Z3_id_9][line][sf_line_TTO_15]
+
+\definefield[df_Z3_ac_1][line][sf_line_TTO_15]
+\definefield[df_Z3_ac_2][line][sf_line_TTO_05]
+\definefield[df_Z3_ac_3][line][sf_line_TTO_15]
+\definefield[df_Z3_ac_4][line][sf_line_TTO_15]
+\definefield[df_Z3_ac_5][line][sf_line_TTO_05]
+\definefield[df_Z3_ac_6][line][sf_line_TTO_15]
+\definefield[df_Z3_ac_7][line][sf_line_TTO_15]
+\definefield[df_Z3_ac_8][line][sf_line_TTO_05]
+\definefield[df_Z3_ac_9][line][sf_line_TTO_15]
+% --------------------------------------------------------------------------------
+
+% --------------------------- PTV BOOST ---------------------------------------------
+\definefield[df_Z4_zona][combo][sf_popup_TO_zona]
+\definefield[df_Z4_tipo][combo][sf_popup_BT_tipo][ , Normo, Hipo, Otro]
+\definefield[df_Z4_fx_1][line][sf_line_TTO_15]
+\definefield[df_Z4_fx_2][line][sf_line_TTO_05]
+\definefield[df_Z4_fx_3][line][sf_line_TTO_15]
+\definefield[df_Z4_fx_4][line][sf_line_TTO_05]
+\definefield[df_Z4_fx_5][line][sf_line_TTO_10]
+
+\definefield[df_Z4_id_1][line][sf_line_TTO_15]
+\definefield[df_Z4_id_2][line][sf_line_TTO_05]
+\definefield[df_Z4_id_3][line][sf_line_TTO_15]
+\definefield[df_Z4_id_4][line][sf_line_TTO_15]
+\definefield[df_Z4_id_5][line][sf_line_TTO_05]
+\definefield[df_Z4_id_6][line][sf_line_TTO_15]
+\definefield[df_Z4_id_7][line][sf_line_TTO_15]
+\definefield[df_Z4_id_8][line][sf_line_TTO_05]
+\definefield[df_Z4_id_9][line][sf_line_TTO_15]
+
+\definefield[df_Z4_ac_1][line][sf_line_TTO_15]
+\definefield[df_Z4_ac_2][line][sf_line_TTO_05]
+\definefield[df_Z4_ac_3][line][sf_line_TTO_15]
+\definefield[df_Z4_ac_4][line][sf_line_TTO_15]
+\definefield[df_Z4_ac_5][line][sf_line_TTO_05]
+\definefield[df_Z4_ac_6][line][sf_line_TTO_15]
+\definefield[df_Z4_ac_7][line][sf_line_TTO_15]
+\definefield[df_Z4_ac_8][line][sf_line_TTO_05]
+\definefield[df_Z4_ac_9][line][sf_line_TTO_15]
+
+% --------------------------------------------------------------------------------
+
+\definefield[oa_list][popup][sf_popup_OARs][ , Estandar, Modificado]
+
+
+\definefield[oa_z1_1][line][sf_line_OAR_45] \definefield[oa_z1_2][line][sf_line_OAR_35] \definefield[oa_z1_3][line][sf_line_OAR_35] \definefield[oa_z1_4][line][sf_line_OAR_35]
+\definefield[oa_z2_1][line][sf_line_OAR_45] \definefield[oa_z2_2][line][sf_line_OAR_35] \definefield[oa_z2_3][line][sf_line_OAR_35] \definefield[oa_z2_4][line][sf_line_OAR_35]
+\definefield[oa_z3_1][line][sf_line_OAR_45] \definefield[oa_z3_2][line][sf_line_OAR_35] \definefield[oa_z3_3][line][sf_line_OAR_35] \definefield[oa_z3_4][line][sf_line_OAR_35]
+\definefield[oa_z4_1][line][sf_line_OAR_45] \definefield[oa_z4_2][line][sf_line_OAR_35] \definefield[oa_z4_3][line][sf_line_OAR_35] \definefield[oa_z4_4][line][sf_line_OAR_35]
+\definefield[oa_z5_1][line][sf_line_OAR_45] \definefield[oa_z5_2][line][sf_line_OAR_35] \definefield[oa_z5_3][line][sf_line_OAR_35] \definefield[oa_z5_4][line][sf_line_OAR_35]
+\definefield[oa_z6_1][line][sf_line_OAR_45] \definefield[oa_z6_2][line][sf_line_OAR_35] \definefield[oa_z6_3][line][sf_line_OAR_35] \definefield[oa_z6_4][line][sf_line_OAR_35]
+\definefield[oa_z7_1][line][sf_line_OAR_45] \definefield[oa_z7_2][line][sf_line_OAR_35] \definefield[oa_z7_3][line][sf_line_OAR_35] \definefield[oa_z7_4][line][sf_line_OAR_35]
+\definefield[oa_z8_1][line][sf_line_OAR_45] \definefield[oa_z8_2][line][sf_line_OAR_35] \definefield[oa_z8_3][line][sf_line_OAR_35] \definefield[oa_z8_4][line][sf_line_OAR_35]
+\definefield[oa_z9_1][line][sf_line_OAR_45] \definefield[oa_z9_2][line][sf_line_OAR_35] \definefield[oa_z9_3][line][sf_line_OAR_35] \definefield[oa_z9_4][line][sf_line_OAR_35]
+\definefield[oa_z10_1][line][sf_line_OAR_45] \definefield[oa_z10_2][line][sf_line_OAR_35] \definefield[oa_z10_3][line][sf_line_OAR_35] \definefield[oa_z10_4][line][sf_line_OAR_35]
+
+\definefield[sf_coment][text][sf_text_coment]
+
+
+
+
+\setupTABLE[frame=off]
+\setupTABLE[r][each][height=5mm]
+\setupTABLE[c][each][width=5mm]
+\setupTABLE[r][8][height=7mm, offset=1mm]
+%\setupTABLE[r][20][height=5mm, offset=1mm]
+
+
+\setupTABLE[c][1, 35][leftframe=on, rulethickness=0.2mm]
+\setupTABLE[r][1, 8, 19][topframe=on, rulethickness=0.2mm]
+%\setupTABLE[r][23, 26, 29, 32, 34][rulethickness=0.2mm]
+
+
+\setupTABLE[r][last][bottomframe=on, rulethickness=0.2mm]
+
+
+
+%\setupTABLE[c][18][width=0mm, rightframe=on, rulethickness=0.8mm]
+% \setupTABLE[r][9, 17, 25, 31][height=5.5mm]
+%\setupTABLE[r][43][height=0mm, topframe=on, rulethickness=0.8mm]
+%\setupTABLE[r][47][height=0mm, topframe=off, frame=on, rulethickness=0.8mm]
+
+%\framed[strut=no,corner=round,offset=.5\linewidth,,rulethickness=1mm]\bgroup
+	\bTABLE
+
+		\bTR 
+			\bTD[nc=6] \bf Nombre y Apellido: \eTD
+			\bTD[nc=19] \field[df_name] \eTD
+			\bTD[nc=9, nr=7] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Documento: \eTD
+			\bTD[nc=3] \field[df_ID_tipo] \eTD
+			\bTD[nc=5] \field[df_ID] \eTD
+			\bTD[nc=4] \bf HC: \eTD
+			\bTD[nc=7] \field[df_HC] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Nacimiento: \eTD
+			\bTD[nc=8] \field[df_dates_birth] \eTD
+			\bTD[nc=4] \bf Edad: \eTD
+			\bTD[nc=7] \field[df_age] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Ciudad: \eTD
+			\bTD[nc=8] \field[df_home] \eTD
+			\bTD[nc=4] \bf Región: \eTD
+			\bTD[nc=7] \field[df_region] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Ocupación: \eTD
+			\bTD[nc=8] \field[df_work] \eTD
+			\bTD[nc=4] \bf Teléfono: \eTD
+			\bTD[nc=7] \field[df_phone] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=6] \bf Obra Social: \eTD
+			\bTD[nc=8] \field[df_social] \eTD
+			\bTD[nc=4] \bf Número: \eTD
+			\bTD[nc=7] \field[df_social_number] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Derivante: \eTD
+			\bTD[nc=8] \field[df_derivation] \eTD
+			\bTD[nc=4] \bf Centro: \eTD
+			\bTD[nc=7] \field[df_derivation_center] \eTD
+		\eTR
+
+		\bTR \bTD[nc=34, align=center] \tfc \bf CA DE MAMA TEST\eTD \eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Lateralidad: \eTD
+			\bTD[nc=5] \field[df_lateral] \eTD
+			\bTD[nc=4] \bf Cuadrante: \eTD
+			\bTD[nc=7] \field[df_cuadrante] \eTD
+			\bTD[nc=3] \field[df_TNM_T] \eTD
+			\bTD[nc=3] \field[df_TNM_N] \eTD
+			\bTD[nc=3] \field[df_TNM_M] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_TNM_E] \eTD
+
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Karnofsky: \eTD
+			\bTD[nc=3] \field[df_karnofsky] \eTD
+			\bTD[nc=2] \bf PS: \eTD
+			\bTD[nc=4] \field[df_PS] \eTD
+			\bTD[nc=6] \bf Comorbilidades: \eTD
+			\bTD[nc=14] \field[df_comorbilidades] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=34, nr=6] \field[df_clinic] \eTD 
+		\eTR 
+
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR 
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD 
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD 		
+		\eTR 
+
+		\bTR 
+			\bTD[nc=4] \bf Derivación: \eTD
+			\bTD[nc=30] \field[df_derivacion] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=4, nr=2] \eTD
+			\bTD[nc=6, nr=2, align=lohi] \tfb \bf MODALIDAD: \eTD 
+			\bTD[nc=4, nr=2, align=lohi] \field[df_tecnica]\eTD
+			\bTD[nc=3, nr=2, align=lohi] \tfb \bf FECHA: \eTD
+			\bTD[nc=4, nr=2, align=lohi] \field[df_dates_start]\eTD
+			\bTD[nc=2, nr=2, align=lohi] \tfb \bf RX: \eTD
+			\bTD[nc=4, nr=2, align=lohi] \field[df_rxname]\eTD
+			\bTD[nc=7, nr=2, align=lohi] \eTD
+		\eTR
+		\bTR \bTD[nc=34] \eTD \eTR 
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=7, align=middle] \bf IDEAL \eTD
+			\bTD[nc=2] \eTD
+			\bTD[nc=7, align=middle] \bf ACEPTABLE \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+
+		%\definefield[df_PTV_VM_dose][line][sf_number_short]
+		%\definefield[df_PTV_VM_frac][line][sf_number_short]
+		%\definefield[df_PTV_VM_total][line][sf_number_short]
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z1_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z1_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z1_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z1_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z1_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z1_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z1_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z1_ac_3] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z1_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z1_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z1_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z1_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z1_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z1_id_4] \eTD
+			\bTD[nc=1] \field[df_Z1_id_5] \eTD
+			\bTD[nc=5] \field[df_Z1_id_6] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z1_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_6] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z1_id_7] \eTD
+			\bTD[nc=1] \field[df_Z1_id_8] \eTD
+			\bTD[nc=5] \field[df_Z1_id_9] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z1_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z2_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z2_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z2_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z2_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z2_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z2_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z2_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z2_ac_3] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z2_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z2_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z2_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z2_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z2_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z2_id_4] \eTD
+			\bTD[nc=1] \field[df_Z2_id_5] \eTD
+			\bTD[nc=5] \field[df_Z2_id_6] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z2_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_6] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z2_id_7] \eTD
+			\bTD[nc=1] \field[df_Z2_id_8] \eTD
+			\bTD[nc=5] \field[df_Z2_id_9] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z2_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z3_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z3_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z3_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z3_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z3_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z3_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z3_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z3_ac_3] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z3_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z3_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z3_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z3_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z3_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z3_id_4] \eTD
+			\bTD[nc=1] \field[df_Z3_id_5] \eTD
+			\bTD[nc=5] \field[df_Z3_id_6] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z3_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_6] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z3_id_7] \eTD
+			\bTD[nc=1] \field[df_Z3_id_8] \eTD
+			\bTD[nc=5] \field[df_Z3_id_9] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z3_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z4_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z4_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z4_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z4_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z4_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z4_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z4_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z4_ac_3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z4_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z4_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z4_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z4_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z4_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z4_id_4] \eTD
+			\bTD[nc=1] \field[df_Z4_id_5] \eTD
+			\bTD[nc=5] \field[df_Z4_id_6] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z4_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_6] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z4_id_7] \eTD
+			\bTD[nc=1] \field[df_Z4_id_8] \eTD
+			\bTD[nc=5] \field[df_Z4_id_9] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z4_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=28, topframe=on] \eTD
+			\bTD[nc=3]\eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=7] \eTD
+			\bTD[nc=19, align=middle] \bf Restricciones a Órganos Recomendadas (NSABP B-51 / RTOG: 1304 ):  \eTD
+			\bTD[nc=7] \field[oa_list] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9, topframe=on] \field[oa_z1_1]  \eTD
+			\bTD[nc=7, topframe=on] \field[oa_z1_2] \eTD
+			\bTD[nc=7, topframe=on] \field[oa_z1_3] \eTD
+			\bTD[nc=7, topframe=on] \field[oa_z1_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z2_1] \eTD
+			\bTD[nc=7] \field[oa_z2_2] \eTD
+			\bTD[nc=7] \field[oa_z2_3] \eTD
+			\bTD[nc=7] \field[oa_z2_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z3_1]  \eTD
+			\bTD[nc=7] \field[oa_z3_2] \eTD
+			\bTD[nc=7] \field[oa_z3_3] \eTD
+			\bTD[nc=7] \field[oa_z3_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z4_1]  \eTD
+			\bTD[nc=7] \field[oa_z4_2] \eTD
+			\bTD[nc=7] \field[oa_z4_3] \eTD
+			\bTD[nc=7] \field[oa_z4_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z5_1]  \eTD
+			\bTD[nc=7] \field[oa_z5_2] \eTD
+			\bTD[nc=7] \field[oa_z5_3] \eTD
+			\bTD[nc=7] \field[oa_z5_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z6_1] \eTD
+			\bTD[nc=7] \field[oa_z6_2] \eTD
+			\bTD[nc=7] \field[oa_z6_3] \eTD
+			\bTD[nc=7] \field[oa_z6_4] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z7_1]  \eTD
+			\bTD[nc=7] \field[oa_z7_2] \eTD
+			\bTD[nc=7] \field[oa_z7_3] \eTD
+			\bTD[nc=7] \field[oa_z7_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z8_1]  \eTD
+			\bTD[nc=7] \field[oa_z8_2] \eTD
+			\bTD[nc=7] \field[oa_z8_3] \eTD
+			\bTD[nc=7] \field[oa_z8_4] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z9_1] \eTD
+			\bTD[nc=7] \field[oa_z9_2] \eTD
+			\bTD[nc=7] \field[oa_z9_3] \eTD
+			\bTD[nc=7] \field[oa_z9_4] \eTD
+		\eTR
+
+		\bTR \bTD[nc=34] \eTD \eTR 
+		
+		\bTR 			
+			\bTD[nc=2] \eTD 
+			\bTD[nc=5] Observaciones: \eTD 
+			\bTD[nc=16] \field[sf_coment] \eTD 
+		\eTR 
+
+		\bTR 			
+			\bTD[nc=25] \eTD 
+			\bTD[nc=8, align=middle] \bf Firma\eTD 
+		\eTR 
+	\eTABLE
