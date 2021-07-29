@@ -1,0 +1,108 @@
+% !TeX root = ./intecnus-prescription.tex
+\setupinteraction[state=start]
+
+\setuppapersize[A5][A5]
+\definefontfamily [mainface] [rm] [Calibri] %[file:c:/windows/fonts/calibri.ttf]
+\definefontfamily [mainface] [ss] [Calibri] %[file:c:/windows/fonts/calibri.ttf]
+\definefontfamily [mainface] [tt] [Calibri] %[file:c:/windows/fonts/calibri.ttf]
+\definefontfamily [mainface] [mm] [Calibri] %[file:c:/windows/fonts/calibri.ttf]
+
+\setupbodyfont[mainface, ss, 14pt]
+
+\setuplayout[topspace=5mm, header=20mm, headerdistance=5mm, backspace=20mm, width=108mm, height=210mm, footer=5mm]
+\setuppagenumbering[location=]
+
+% \showframe
+
+\setupfield[sf_rp][height=36mm, width=108mm, frame=off, offset=0mm, align=flushleft]\definefield[df_rp][text][sf_rp]
+\setupfield[sf_dx][height=36mm, width=108mm, frame=off, offset=0mm, align=flushleft]\definefield[df_dx][text][sf_dx]
+
+\setupfield[sf_info][height=5.5mm, width=60mm, frame=off, offset=0mm, align=flushleft]
+\definefield[df_pt_name][line][sf_info]
+\definefield[df_os_name][line][sf_info]
+\definefield[df_os_numb][line][sf_info]
+\definefield[df_pt_iden][line][sf_info]
+
+\setupfield[sf_date][height=6mm, width=30mm, frame=off, offset=0mm, align=flushleft]
+\definefield[df_date][line][sf_date]
+
+
+\defineoverlay[WatermarkOverlay][
+	{\framed[frame=off,foregroundcolor=gray]
+  {\scale[sx=12,sy=12]
+  {\rotate[rotation=20.0]{Draft}}}}
+]
+\setupbackgrounds[page][background=WatermarkOverlay]
+
+\setupheader[text][
+	before={
+		\setupTABLE		
+		\bTABLE
+			\bTR 
+				\bTD[width=108mm, height=20mm, align=center] \ \externalfigure[logo-intecnus.jpg][height=18mm]\eTD 
+			\eTR
+		\eTABLE
+		},
+  after={},
+]
+
+\setupTABLE[frame=off]
+\setupTABLE[r][each][height=6mm]
+\setupTABLE[c][each][width=6mm]
+
+\bTABLE
+
+	\bTR \bTD[nc=18, topframe=on, rulethickness=0.6mm] \eTD\eTR
+	
+	\bTR 
+		\bTD[nc=1]\eTD
+		\bTD[nc=6] NOMBRE: \eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_pt_name]} \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=6] OBRA SOCIAL:\eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_os_name]}\eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=6] Nro AFILIADO/A: \eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_os_numb]}\eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=6] DNI: \eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_pt_iden]}\eTD
+	\eTR
+
+	\bTR\bTD[m=18]\eTD\eTR 
+
+	\bTR[topframe=on, rulethickness=0.6mm] \bTD[nc=18] \eTD \eTR
+
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=15] \bi Rp. \eTD
+	\eTR
+
+	\bTR\bTD[height=42mm] {\switchtobodyfont[10pt] \field[df_rp]} \eTD\eTR 
+
+	\bTR\bTD\eTD\bTD[nc=15] \bi Dx. \eTD\eTR
+	\bTR\bTD[height=42mm] {\switchtobodyfont[10pt] \field[df_dx]} \eTD\eTR 
+		
+	\bTR[height=12mm] \eTR
+	
+	\bTR 
+		\bTD[nc=3] \bf FECHA:\eTD
+		\bTD[nc=9] {\switchtobodyfont[12pt]\field[df_date]} \eTD
+		\bTD[nc=6, topframe=on, align=center] \bf FIRMA Y SELLO \eTD
+	\eTR
+	
+	\bTR\bTD[m=18]\eTD\eTR 
+	
+	\bTR\bTD [nc=18, topframe=on, align=center, height=4mm] \bfxx Ruta Provincial 82 s/n · C P 8400 · S. C. de Bariloche · Río Negro · Argentina \eTD\eTR
+	\bTR\bTD [nc=18, align=center] \bfxx TE: +54 294 474 6050 · turnos@intecnus.org.ar · www.intecnus.org.ar \eTD\eTR
+
+\eTABLE
