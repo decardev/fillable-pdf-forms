@@ -1,0 +1,403 @@
+% !TeX root = ./breast.tex
+\startproject breast
+	\environment env_page
+	\environment env_fields
+
+
+	%\setupTABLE[r][20][height=5mm, offset=1mm]
+	
+	
+	
+	
+	% \setupTABLE[r][last][bottomframe=on, rulethickness=0.2mm]
+	
+
+
+
+
+
+%\setupTABLE[c][18][width=0mm, rightframe=on, rulethickness=0.8mm]
+% \setupTABLE[r][9, 17, 25, 31][height=5.5mm]
+%\setupTABLE[r][43][height=0mm, topframe=on, rulethickness=0.8mm]
+%\setupTABLE[r][47][height=0mm, topframe=off, frame=on, rulethickness=0.8mm]
+
+	\bTABLE[setups=maintable]
+
+		\bTR[topframe=on, rulethickness=0.2mm] 
+			\bTD[nc=6] \bf Nombre y Apellido: \eTD
+			\bTD[nc=19] \field[df_name] \eTD
+			\bTD[nc=9, nr=7] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Documento: \eTD
+			\bTD[nc=3] \field[df_ID_tipo] \eTD
+			\bTD[nc=5] \field[df_ID] \eTD
+			\bTD[nc=4] \bf HC: \eTD
+			\bTD[nc=7] \field[df_HC] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Nacimiento: \eTD
+			\bTD[nc=8] \field[df_dates_birth] \eTD
+			\bTD[nc=4] \bf Edad: \eTD
+			\bTD[nc=7] \field[df_age] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Ciudad: \eTD
+			\bTD[nc=8] \field[df_home] \eTD
+			\bTD[nc=4] \bf Región: \eTD
+			\bTD[nc=7] \field[df_region] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Ocupación: \eTD
+			\bTD[nc=8] \field[df_work] \eTD
+			\bTD[nc=4] \bf Teléfono: \eTD
+			\bTD[nc=7] \field[df_phone] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=6] \bf Obra Social: \eTD
+			\bTD[nc=8] \field[df_social] \eTD
+			\bTD[nc=4] \bf Número: \eTD
+			\bTD[nc=7] \field[df_social_number] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=6] \bf Derivante: \eTD
+			\bTD[nc=8] \field[df_derivation] \eTD
+			\bTD[nc=4] \bf Centro: \eTD
+			\bTD[nc=7] \field[df_derivation_center] \eTD
+		\eTR
+
+		\bTR[height=7mm, offset=1mm, topframe=on, rulethickness=0.2mm] \bTD[nc=34, align=center] \bfc CA DE MAMA TEST\eTD \eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Lateralidad: \eTD
+			\bTD[nc=5] \field[df_lateral] \eTD
+			\bTD[nc=4] \bf Cuadrante: \eTD
+			\bTD[nc=7] \field[df_cuadrante] \eTD
+			\bTD[nc=3] \field[df_TNM_T] \eTD
+			\bTD[nc=3] \field[df_TNM_N] \eTD
+			\bTD[nc=3] \field[df_TNM_M] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_TNM_E] \eTD
+
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Karnofsky: \eTD
+			\bTD[nc=3] \field[df_karnofsky] \eTD
+			\bTD[nc=2] \bf PS: \eTD
+			\bTD[nc=4] \field[df_PS] \eTD
+			\bTD[nc=6] \bf Comorbilidades: \eTD
+			\bTD[nc=14] \field[df_comorbilidades] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=34, nr=6] \field[df_clinic] \eTD 
+		\eTR 
+
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+		\bTR 
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD 
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD
+			\bTD\eTD \bTD\eTD \bTD\eTD \bTD\eTD 		
+		\eTR 
+
+		\bTR 
+			\bTD[nc=4] \bf Derivación: \eTD
+			\bTD[nc=30] \field[df_derivacion] \eTD
+		\eTR
+
+		\bTR[topframe=on, rulethickness=0.2mm]
+			\bTD[nc=4, nr=2] \eTD
+			\bTD[nc=6, nr=2, align=lohi] \tfb \bf MODALIDAD: \eTD 
+			\bTD[nc=4, nr=2, align=lohi] \field[df_tecnica]\eTD
+			\bTD[nc=3, nr=2, align=lohi] \tfb \bf FECHA: \eTD
+			\bTD[nc=4, nr=2, align=lohi] \field[df_dates_start]\eTD
+			\bTD[nc=2, nr=2, align=lohi] \tfb \bf RX: \eTD
+			\bTD[nc=4, nr=2, align=lohi] \field[df_rxname]\eTD
+			\bTD[nc=7, nr=2, align=lohi] \eTD
+		\eTR
+		\bTR \bTD[nc=34] \eTD \eTR 
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=7, align=middle] \bf IDEAL \eTD
+			\bTD[nc=2] \eTD
+			\bTD[nc=7, align=middle] \bf ACEPTABLE \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+
+		%\definefield[df_PTV_VM_dose][line][sf_number_short]
+		%\definefield[df_PTV_VM_frac][line][sf_number_short]
+		%\definefield[df_PTV_VM_total][line][sf_number_short]
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z1_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z1_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z1_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z1_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z1_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z1_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z1_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z1_ac_3] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z1_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z1_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z1_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z1_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z1_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z1_id_4] \eTD
+			\bTD[nc=1] \field[df_Z1_id_5] \eTD
+			\bTD[nc=5] \field[df_Z1_id_6] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z1_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_6] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z1_id_7] \eTD
+			\bTD[nc=1] \field[df_Z1_id_8] \eTD
+			\bTD[nc=5] \field[df_Z1_id_9] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z1_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z1_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z2_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z2_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z2_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z2_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z2_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z2_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z2_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z2_ac_3] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z2_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z2_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z2_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z2_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z2_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z2_id_4] \eTD
+			\bTD[nc=1] \field[df_Z2_id_5] \eTD
+			\bTD[nc=5] \field[df_Z2_id_6] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z2_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_6] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z2_id_7] \eTD
+			\bTD[nc=1] \field[df_Z2_id_8] \eTD
+			\bTD[nc=5] \field[df_Z2_id_9] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z2_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z2_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z3_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z3_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z3_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z3_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z3_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z3_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z3_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z3_ac_3] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z3_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z3_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z3_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z3_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z3_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z3_id_4] \eTD
+			\bTD[nc=1] \field[df_Z3_id_5] \eTD
+			\bTD[nc=5] \field[df_Z3_id_6] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z3_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_6] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z3_id_7] \eTD
+			\bTD[nc=1] \field[df_Z3_id_8] \eTD
+			\bTD[nc=5] \field[df_Z3_id_9] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z3_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z3_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z4_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_Z4_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z4_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z4_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_Z4_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z4_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_Z4_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_Z4_ac_3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_Z4_fx_1] \eTD
+			\bTD[nc=1] \field[df_Z4_fx_2] \eTD
+			\bTD[nc=3] \field[df_Z4_fx_3] \eTD
+			\bTD[nc=1] \field[df_Z4_fx_4] \eTD
+			\bTD[nc=4] \field[df_Z4_fx_5] \eTD
+			\bTD[nc=3] \field[df_Z4_id_4] \eTD
+			\bTD[nc=1] \field[df_Z4_id_5] \eTD
+			\bTD[nc=5] \field[df_Z4_id_6] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_4] \eTD
+			\bTD[nc=1] \field[df_Z4_ac_5] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_6] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_Z4_id_7] \eTD
+			\bTD[nc=1] \field[df_Z4_id_8] \eTD
+			\bTD[nc=5] \field[df_Z4_id_9] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_7] \eTD
+			\bTD[nc=1] \field[df_Z4_ac_8] \eTD
+			\bTD[nc=3] \field[df_Z4_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=28, topframe=on] \eTD
+			\bTD[nc=3]\eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=7] \eTD
+			\bTD[nc=19, align=middle] \bf Restricciones a Órganos Recomendadas (NSABP B-51 / RTOG: 1304 ):  \eTD
+			\bTD[nc=7] \field[oa_list] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9, topframe=on] \field[oa_z1_1]  \eTD
+			\bTD[nc=7, topframe=on] \field[oa_z1_2] \eTD
+			\bTD[nc=7, topframe=on] \field[oa_z1_3] \eTD
+			\bTD[nc=7, topframe=on] \field[oa_z1_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z2_1] \eTD
+			\bTD[nc=7] \field[oa_z2_2] \eTD
+			\bTD[nc=7] \field[oa_z2_3] \eTD
+			\bTD[nc=7] \field[oa_z2_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z3_1]  \eTD
+			\bTD[nc=7] \field[oa_z3_2] \eTD
+			\bTD[nc=7] \field[oa_z3_3] \eTD
+			\bTD[nc=7] \field[oa_z3_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z4_1]  \eTD
+			\bTD[nc=7] \field[oa_z4_2] \eTD
+			\bTD[nc=7] \field[oa_z4_3] \eTD
+			\bTD[nc=7] \field[oa_z4_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z5_1]  \eTD
+			\bTD[nc=7] \field[oa_z5_2] \eTD
+			\bTD[nc=7] \field[oa_z5_3] \eTD
+			\bTD[nc=7] \field[oa_z5_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z6_1] \eTD
+			\bTD[nc=7] \field[oa_z6_2] \eTD
+			\bTD[nc=7] \field[oa_z6_3] \eTD
+			\bTD[nc=7] \field[oa_z6_4] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z7_1]  \eTD
+			\bTD[nc=7] \field[oa_z7_2] \eTD
+			\bTD[nc=7] \field[oa_z7_3] \eTD
+			\bTD[nc=7] \field[oa_z7_4] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z8_1]  \eTD
+			\bTD[nc=7] \field[oa_z8_2] \eTD
+			\bTD[nc=7] \field[oa_z8_3] \eTD
+			\bTD[nc=7] \field[oa_z8_4] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[oa_z9_1] \eTD
+			\bTD[nc=7] \field[oa_z9_2] \eTD
+			\bTD[nc=7] \field[oa_z9_3] \eTD
+			\bTD[nc=7] \field[oa_z9_4] \eTD
+		\eTR
+
+		\bTR \bTD[nc=34] \eTD \eTR 
+		
+		\bTR 			
+			\bTD[nc=2] \eTD 
+			\bTD[nc=5] Observaciones: \eTD 
+			\bTD[nc=16] \field[sf_coment] \eTD 
+		\eTR 
+
+		\bTR[bottomframe=on, rulethickness=0.2mm] 			
+			\bTD[nc=25] \eTD 
+			\bTD[nc=8, align=middle] \bf Firma\eTD 
+		\eTR 
+	\eTABLE
+
+\stopproject
