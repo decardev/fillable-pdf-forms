@@ -1,0 +1,398 @@
+\startenvironment env_script
+
+	\startJSpreamble {INITIAL} used now
+		
+		function makeDate(name){
+			var cFormat = "dd/mm/yyyy";
+
+			if (typeof(name) === "string" ) {	
+				getField(name).setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
+			}
+			else if (typeof(name) === "object") {	
+				for (var i=1; i<=name.length; i++) {
+					getField(name[i-1]).setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
+				} 
+			}
+
+		}
+
+		function toggleRW(name, rw=[1, 1], num=0){ 
+			if (typeof(rw[0]) === "object") {
+				for (var i=1; i<=rw.length; i++) {
+					var f = getField(name + "_" + i); 
+					f.display =  !rw[i-1][0]; 
+					f.readonly = !rw[i-1][1]; 
+				} 
+			}	
+			else if (typeof(rw[0]) === "number") {
+				if (num == 0) {
+					var f = getField(name); 
+					f.display =  !rw[0]; 
+					f.readonly = !rw[1]; 
+				}
+				if (num > 0) {
+					for (var i=1; i<=num; i++) {
+						var f = getField(name + "_" + i); 
+						f.display  = !rw[0]; 
+						f.readonly = !rw[1];
+					} 
+				}
+			}
+		}
+
+		function value(name, value="@#", num=0){ 
+			if (typeof(value) === "string" ) {	
+				if (num == 0) {
+					if (value == "@#") { 
+						return getField(name).value; 
+					} 
+					else { 
+						getField(name).value = value; 
+					}
+				}
+				if (num > 0){
+					for (var i=1; i<=num; i++) {
+						getField(name + "_" + i).value = value; 
+					} 
+				}
+			}
+			else if (typeof(value) === "object") {	
+				for (var i=1; i<=value.length; i++) {
+					getField(name + "_" + i).value = value[i-1]; 
+				} 
+			}
+		}
+
+		function zn_reset(name, num = 0){
+
+			if (num <= 1){ value(name + "_zona", "");  toggleRW(name + "_zona", [0, 0]);  }
+			if (num <= 2){ value(name + "_tipo", "");  toggleRW(name + "_tipo", [0, 0]);  }
+			if (num <= 3){ value(name + "_fx", "", 5); toggleRW(name + "_fx", [0, 0], 5); } 
+			if (num <= 4){ value(name + "_id", "", 9); toggleRW(name + "_id", [0, 0], 9); }
+			if (num <= 5){ value(name + "_ac", "", 9); toggleRW(name + "_ac", [0, 0], 9); }
+		}
+
+		function oa_reset(){
+			value("oa_list", "");
+			for (var i=1; i<=9; i++) {
+				call = "oa_z" + i;
+				value(call, " ", 4);
+				toggleRW(call, [0, 1], 4); 	
+			}
+		}
+
+
+		for (var i = 0; i < numFields; i++) { var f = getField(getNthFieldName(i));  f.textFont = font.Helv;  f.textSize = 7; }
+		getField("df_tecnica").textSize = 9; getField("df_dates_start").textSize = 9; getField("df_rxname").textSize = 9;
+
+
+		makeDate(["df_dates_start"]);
+
+		getField("df_clinic").charLimit = 10000;
+
+		toggleRW("df_Z2_zona", [0, 1]); toggleRW("df_Z3_zona", [0, 1]); toggleRW("df_Z4_zona", [0, 1]); 
+		toggleRW("df_Z1_tipo", [0, 1]); toggleRW("df_Z1_fx", [0, 0], 5); toggleRW("df_Z1_id", [0, 0], 9); toggleRW("df_Z1_ac", [0, 0], 9);
+		toggleRW("df_Z2_tipo", [0, 1]); toggleRW("df_Z2_fx", [0, 0], 5); toggleRW("df_Z2_id", [0, 0], 9); toggleRW("df_Z2_ac", [0, 0], 9);
+		toggleRW("df_Z3_tipo", [0, 1]); toggleRW("df_Z3_fx", [0, 0], 5); toggleRW("df_Z3_id", [0, 0], 9); toggleRW("df_Z3_ac", [0, 0], 9);
+		toggleRW("df_Z4_tipo", [0, 1]); toggleRW("df_Z4_fx", [0, 0], 5); toggleRW("df_Z4_id", [0, 0], 9); toggleRW("df_Z4_ac", [0, 0], 9);
+
+		toggleRW("df_Z4_tipo", [0, 1]); toggleRW("df_Z4_fx", [0, 0], 5); toggleRW("df_Z4_id", [0, 0], 9); toggleRW("df_Z4_ac", [0, 0], 9);
+		toggleRW("df_Z4_tipo", [0, 1]); toggleRW("df_Z4_fx", [0, 0], 5); toggleRW("df_Z4_id", [0, 0], 9); toggleRW("df_Z4_ac", [0, 0], 9);
+		toggleRW("df_Z4_tipo", [0, 1]); toggleRW("df_Z4_fx", [0, 0], 5); toggleRW("df_Z4_id", [0, 0], 9); toggleRW("df_Z4_ac", [0, 0], 9);
+		toggleRW("df_Z4_tipo", [0, 1]); toggleRW("df_Z4_fx", [0, 0], 5); toggleRW("df_Z4_id", [0, 0], 9); toggleRW("df_Z4_ac", [0, 0], 9);
+		toggleRW("df_Z4_tipo", [0, 1]); toggleRW("df_Z4_fx", [0, 0], 5); toggleRW("df_Z4_id", [0, 0], 9); toggleRW("df_Z4_ac", [0, 0], 9);
+
+		toggleRW("oa_z1", [0, 1], 4); toggleRW("oa_z2", [0, 1], 4); toggleRW("oa_z3", [0, 1], 4); toggleRW("oa_z4", [0, 1], 4); 
+		toggleRW("oa_z5", [0, 1], 4); toggleRW("oa_z6", [0, 1], 4); toggleRW("oa_z7", [0, 1], 4); toggleRW("oa_z8", [0, 1], 4); toggleRW("oa_z9", [0, 1], 4); 
+	\stopJSpreamble
+
+
+	\startJScode {fn_AGE_calc}
+		var d = value("df_dates_birth");	
+
+		var date = new Date(d.substr(6, 4), +d.substr(3, 2)-1, d.substr(0, 2));
+		var age =  ~~((Date.now() - date) / (31557600000));
+		var valid = (date.getDate() == d.substr(0, 2)) && 
+								(date.getMonth() == +d.substr(3, 2)-1) && 
+								(date.getFullYear() == d.substr(6, 4)) &&
+								d.length == 10 && Date.now() > date &&
+								d.substr(2, 1) == "/" && d.substr(5, 1) == "/";
+
+		if (valid) { value("df_age", String(age)); }
+		else { value("df_dates_birth", ""); value("df_age", ""); }
+	\stopJScode
+
+	\startJScode {fn_TO_zone}  
+		var tipo = [" "];
+		var rw = [1, 1];  
+		var res = 0;
+		var call = "df_Z2";
+
+		switch(event.target.name){
+			case "df_Z1_zona":  
+				switch(event.target.value){
+					case "PTV_VMI":     tipo = [" ", "Normo", "Hipo", "Otro"]; break;
+					case "PTV_VMD":     tipo = [" ", "Normo", "Hipo", "Otro"]; break;
+					case "PTV_VMI_VMD": tipo = [" ", "Normo", "Hipo", "Otro"]; break;
+					default: rw = [0, 1]; break;
+				}
+				var call = "df_Z1"; res = 2; break;
+
+			case "df_Z2_zona":  
+				switch(event.target.value){
+					case "PTV_LN":  tipo = [" ", "Normo", "Otro"]; 				 break;
+					case "PTV_CMI": tipo = [" ", "Normo", "Otro"]; 				 break;
+					case "BOOST":   tipo = [" ", "Normo", "Hipo", "Otro"]; break;
+					default: rw = [0, 1]; res = 3; break;
+				}
+				var call = "df_Z2"; break;
+
+			case "df_Z3_zona":  
+				switch(event.target.value){
+					case "PTV_CMI": tipo = [" ", "Normo", "Otro"];         break;
+					case "BOOST":   tipo = [" ", "Normo", "Hipo", "Otro"]; break;
+					default: rw = [0, 1]; res = 4; break;
+				}
+				var call = "df_Z3"; break;
+
+			case "df_Z4_zona":  
+				switch(event.target.value){
+					case "BOOST": tipo = [" ", "Normo", "Hipo", "Otro"]; break;
+					default: rw = [0, 1]; break;
+				}
+				var call = "df_Z4"; break;
+		}
+
+
+		if (res == 2){ zn_reset("df_Z2", 1); zn_reset("df_Z3", 1); zn_reset("df_Z4", 1);}
+		if (res == 3){ zn_reset("df_Z3", 1); zn_reset("df_Z4", 1);} 
+		if (res == 4){ zn_reset("df_Z4", 1);}
+
+		field = getField(call + "_tipo"); 
+		field.setItems(tipo); field.value = " ";
+		toggleRW(call + "_tipo", rw);
+
+		value(call + "_fx", "", 5); toggleRW(call + "_fx", [0, 0], 5);
+		value(call + "_id", "", 9); toggleRW(call + "_id", [0, 0], 9);
+		value(call + "_ac", "", 9);	toggleRW(call + "_ac", [0, 0], 9);
+
+		oa_reset();
+	\stopJScode
+
+
+	\startJScode {fn_ZN_data}
+		var VM_fx_normo = ["5000 cGy", "=", "200 cGy", "\u00D7", "25"];
+		var VM_id_normo = ["V48,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "47,50 Gy", "D2\%", "\u2264", "52,50 Gy"];
+		var VM_ac_normo = ["V47,50 cGy", "\u2265", "90\%", "D98\%", "\u2265", "45,00 Gy", "D2\%", "\u2264", "53,50 Gy"]; 
+		var VM_fx_hipo  = ["4005 cGy", "=", "267 cGy", "\u00D7", "15"];
+		var VM_id_hipo  = ["V38,85 Gy", "\u2265", "95\%", "D98\%", "\u2265", "38,00 Gy", "D2\%", "\u2264", "42,05 Gy"];
+		var VM_ac_hipo  = ["V38,05 Gy", "\u2265", "90\%", "D98\%", "\u2265", "36,00 Gy", "D2\%", "\u2264", "42,85 Gy"]; 
+
+		var LN_fx_normo = ["5000 cGy", "=", "200 cGy", "\u00D7", "25"];
+		var LN_id_normo = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "D2", "\u2264", "52,50 Gy"];
+		var LN_ac_normo = ["", "", "", "D98\%", "\u2265", "4275 cGy", "D2", "\u2264", "5350 cGy"]; 
+		var LN_fx_hipo  = ["4005 cGy", "=", "267 cGy", "\u00D7", "15"];
+		var LN_id_hipo  = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "", "", ""];
+		var LN_ac_hipo  = ["", "", "", "D98\%", "\u2265", "4275 cGy", "", "", ""]; 
+
+		var CM_fx_normo = ["5000 cGy", "=", "200 cGy", "\u00D7", "25"];
+		var CM_id_normo = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "D2", "\u2264", "52,50 Gy"];
+		var CM_ac_normo = ["",      "",       "",     "D98\%", "\u2265", "4275 cGy", "D2", "\u2264", "5350 cGy"]; 
+		var CM_fx_hipo  = ["4005 cGy", "=", "267 cGy", "\u00D7", "15"];
+		var CM_id_hipo  = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "", "", ""];
+		var CM_ac_hipo  = ["", "", "", "D98\%", "\u2265", "4275 cGy", "", "", ""]; 
+
+		var BT_fx_normo = ["1600 cGy", "=", "200 cGy", "\u00D7", "8"];
+		var BT_id_normo = ["V15,52 Gy", "\u2265", "95\%", "D2\%", "\u2264", "17,62 Gy", "", "", ""];
+		var BT_ac_normo = ["V15,20 Gy", "\u2265", "90\%", "D2\%", "\u2264", "17,60 Gy", "", "", ""]; 	
+		var BT_fx_hipo  = ["1068 cGy", "=", "267 cGy", "\u00D7", "4"];
+		var BT_id_hipo  = ["", "\u2265", "", "D2\%", "\u2264", "", "", "", ""];
+		var BT_ac_hipo  = ["", "", "", "", "\u2265", "", "", "", ""]; 
+
+		var zn_fx_otro  = ["", "=", "", "\u00D7", ""];
+		var zn_fx_deft  = ["", "", "", "", ""];
+		var zn_zn_otro  = [" ", "PTV_LN", "PTV_CMI", "BOOST"];
+
+		var call = "";
+		var target = "";
+		var zona = [" "];
+		var res = 0;
+
+		switch(event.target.name){
+
+			case "df_Z1_tipo":  
+				switch(event.target.value){
+					case "Normo": 
+						switch(value("df_Z1_zona")){
+							case "PTV_VMI":     var fx = VM_fx_normo; var id = VM_id_normo; var ac = VM_ac_normo; var rw = [1, 0]; zona = [" ", "PTV_LN", "PTV_CMI", "BOOST"]; break;
+							case "PTV_VMD":     var fx = VM_fx_normo; var id = VM_id_normo; var ac = VM_ac_normo; var rw = [1, 0]; zona = [" ", "PTV_LN", "PTV_CMI", "BOOST"]; break;
+							case "PTV_VMI_VMD": var fx = VM_fx_normo; var id = VM_id_normo; var ac = VM_ac_normo; var rw = [1, 0]; zona = [" ", "PTV_LN", "PTV_CMI", "BOOST"]; break;
+						}; break;
+					case "Hipo":  
+						switch(value("df_Z1_zona")){
+							case "PTV_VMI":     var fx = VM_fx_hipo; var id = VM_id_hipo;  var ac = VM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"]; break;
+							case "PTV_VMD":     var fx = VM_fx_hipo; var id = VM_id_hipo;  var ac = VM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"]; break;
+							case "PTV_VMI_VMD": var fx = VM_fx_hipo; var id = VM_id_hipo;  var ac = VM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"]; break;
+						}; break;
+					case "Otro":            var fx = zn_fx_otro; var id = "";          var ac = "";          var rw = [1, 1]; zona = zn_zn_otro;    break;
+					default:                var fx = zn_fx_deft; var id = "";          var ac = "";          var rw = [0, 1]; zona = [" "];         break;
+				}
+				call = "df_Z1"; target = "df_Z2_zona"; res = 2; break;
+
+			case "df_Z2_tipo":  
+				switch(event.target.value){
+					case "Normo": 
+						switch(value("df_Z2_zona")){
+							case "PTV_LN":  var fx = LN_fx_normo; var id = LN_id_normo; var ac = LN_ac_normo; var rw = [1, 0]; zona = [" ", "PTV_CMI", "BOOST"]; break;
+							case "PTV_CMI": var fx = CM_fx_normo; var id = CM_id_normo; var ac = CM_ac_normo; var rw = [1, 0]; zona = [" ", "BOOST"];            break;
+							case "BOOST":   var fx = BT_fx_normo; var id = BT_id_normo; var ac = BT_ac_normo; var rw = [1, 0]; zona = [" "];                     break;
+						}; break;
+					case "Hipo":  
+						switch(value("df_Z2_zona")){
+							case "PTV_LN":  var fx = LN_fx_hipo; var id = LN_id_hipo;  var ac = LN_ac_hipo;  var rw = [1, 0]; zona = [" ", "PTV_CMI", "BOOST"]; break;
+							case "PTV_CMI": var fx = CM_fx_hipo; var id = CM_id_hipo;  var ac = CM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"];            break;
+							case "BOOST":   var fx = BT_fx_hipo; var id = BT_id_hipo;  var ac = BT_ac_hipo;  var rw = [1, 0]; zona = [" "];                     break;
+						}; break;
+					case "Otro":        var fx = zn_fx_otro; var id = "";          var ac = "";          var rw = [1, 1]; zona = zn_zn_otro;                break;
+					default:            var fx = zn_fx_deft; var id = "";          var ac = "";          var rw = [0, 1]; zona = [" "];                     break;
+				}
+				call = "df_Z2"; target = "df_Z3_zona"; res = 3; break;
+
+			case "df_Z3_tipo":  
+				switch(event.target.value){
+					case "Normo": 
+						switch(value("df_Z3_zona")){
+							case "PTV_CMI": var fx = CM_fx_normo; var id = CM_id_normo; var ac = CM_ac_normo; var rw = [1, 0]; zona = [" ", "BOOST"];            break;
+							case "BOOST":   var fx = BT_fx_normo; var id = BT_id_normo; var ac = BT_ac_normo; var rw = [1, 0]; zona = [" "];                     break;
+						}; break;				
+					case "Hipo":  
+						switch(value("df_Z3_zona")){
+							case "PTV_CMI": var fx = CM_fx_hipo; var id = CM_id_hipo;  var ac = CM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"];            break;
+							case "BOOST":   var fx = BT_fx_hipo; var id = BT_id_hipo;  var ac = BT_ac_hipo;  var rw = [1, 0]; zona = [" "];                     break;
+						}; break;
+					case "Otro":        var fx = zn_fx_otro; var id = "";          var ac = "";          var rw = [1, 1]; zona = zn_zn_otro;                break;
+					default:            var fx = zn_fx_deft; var id = "";          var ac = "";          var rw = [0, 1]; zona = [" "];                     break;
+				}
+				call = "df_Z3"; target = "df_Z4_zona"; res = 4; break;
+
+			case "df_Z4_tipo":  
+				switch(event.target.value){
+					case "Normo":      var fx = BT_fx_normo;    var id = BT_id_normo; var ac = BT_ac_normo; var rw = [1, 0]; break;
+					case "Hipo":       var fx = BT_fx_hipo;     var id = BT_id_hipo;  var ac = BT_ac_hipo;  var rw = [1, 0]; break;
+					case "Otro":       var fx = zn_fx_otro;     var id = "";          var ac = "";          var rw = [1, 1]; break;
+					default:           var fx = zn_fx_deft;     var id = "";          var ac = "";          var rw = [0, 1]; break;
+				}
+				call = "df_Z4"; break;
+		}
+
+		if (res == 2){ zn_reset("df_Z2", 2); zn_reset("df_Z3", 1); zn_reset("df_Z4", 1);}
+		if (res == 3){ zn_reset("df_Z3", 2); zn_reset("df_Z4", 1);} 
+		if (res == 4){ zn_reset("df_Z4", 2);}
+
+		if (target) {
+			field = getField(target); field.setItems(zona); field.value = "";
+			if (zona.length >= 2) {toggleRW(target, [1, 1]);}
+			if (zona.length < 2)  {toggleRW(target, [0, 0]);}
+		}
+
+		value(call + "_fx", fx, 5); toggleRW(call + "_fx", rw, 5);
+		value(call + "_id", id, 9); toggleRW(call + "_id", rw, 9);
+		value(call + "_ac", ac, 9); toggleRW(call + "_ac", rw, 9);
+
+		oa_reset();
+
+	\stopJScode
+
+
+	\startJScode {fn_TX_clinic}  
+		if (event.target.value.toString().length > 700) {
+			event.target.textSize = 0;
+		} else {
+			event.target.textSize = 7;
+		}
+	\stopJScode
+
+	\startJScode {fn_TX_coment}  
+		if (event.target.value.toString().length > 300) {
+			event.target.textSize = 0;
+		} else {
+			event.target.textSize = 7;
+		}
+	\stopJScode
+
+	\startJScode {fn_OAR_list}  
+
+		var oar_list = [
+			[
+				["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], 
+				["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]
+			],
+			[
+				["CORAZ\u00D3N",              "V25 < 2\%",            "V15 < 10\% (15\%)",     "Dmean < 4 Gy (5,5 Gy)"], 
+				["PULM\u00D3N IPSILATERAL",   "v20 < 25\% (35\%)",    "V10 < 50\% (65\%)",     "V5 < 65\% (75\%)"], 
+				["PULM\u00D3N CONTRALATERAL", "V5 < 30\%",            "",                      ""], 	
+				["MAMA CONTRALATERAL",        "V5,5 < 10\% (15\%)",   "Dmean < 4 Gy (4,5 Gy)", ""], 
+				["TIROIDES", 						      "V40 < 50\%",           "DMax 0,03 cc < 25 Gy",  ""], 
+				["M\u00C9DULA", 							"",                     "",                      ""], 
+				["ES\u00D3FAGO", 						  "V35 < 50\% (60\%)",    "V50 < 2\% (5\%)",       ""], 
+				["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 33 Gy", "",                      ""], 
+				["H\u00CDGADO", 							"V15 < 3\%",            "",                      ""], 
+			], 
+			[
+				["CORAZ\u00D3N",            	"V20 < 5\%",            "V2 < 30\%",            "Dmean < 3,2 Gy (4 Gy)"], 
+				["PULM\u00D3N IPSILATERAL",  	"v12 < 15\% (20\%)",    "V8 < 30\% (35\%)",     "V4 < 40\%"], 
+				["PULM\u00D3N CONTRALATERAL", "V4 < 10\%",            "",                     ""], 
+				["MAMA CONTRALATERAL",   			"V2 < 5\% (V3 < 10\%)", "Dmean < 1 Gy (2 Gy)",  "Dmax 0,03 cc < 2,4 Gy"], 
+				["H\u00DAMERO IPSILATERAL",		"DMax 0,03 cc < 30 Gy", "",                     ""], 
+				["H\u00CDIGADO", 							"V13 < 3\%",            "Dmean < 4,4 Gy",       ""], 
+				["",                          "",                     "",                     ""],
+				["",                          "",                     "",                     ""],
+				["",                          "",                     "",                     ""],
+			],
+			[
+				["CORAZ\u00D3N",              "V25 < 5\%",            "V20 < 5\%",             "V10 < 30\% (35\%)"],
+				["",                          "Dmean < 4 Gy (5 Gy)",  "",                      ""],
+				["PULM\u00D3N IPSILATERAL",   "v20 < 15\% (20\%)",    "V10 < 35\% (40\%)",     "V5 < 50\% (55\%)"],
+				["PULM\u00D3N CONTRALATERAL", "V5 < 10\% (15\%)",     "",                      ""],
+				["MAMA CONTRALATERAL",        "V3 < 5\% (10\%)",      "Dmean < 1 Gy (2 Gy)",   ""],
+				["TIROIDES", 						      "V40 < 50\%",           "",                      ""],
+				["M\u00C9DULA", 							"Dmax 0,03 cc < 25 Gy", "",                      ""],
+				["ES\u00D3FAGO", 						  "V35 < 50\% (60\%)",    "V50 < 2\% (5\%)",       ""],
+				["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 33 Gy", "",                      ""],
+			]
+		];
+
+		var vers = 0;
+		var call = "";
+
+		if (value("df_Z1_tipo") == "Normo") { vers = 1; }	
+		if (value("df_Z1_tipo") == "Hipo") { vers = 2; }	
+		if (value("df_Z2_zona") == "PTV_LN" || value("df_Z2_zona") == "PTV_CMI") { vers = 3; }
+
+
+		switch (event.target.value) {
+			case "Estandar":
+				for (var i=1; i<=9; i++) {
+					call = "oa_z" + i;
+					value(call, oar_list[vers][i-1], 4);
+					toggleRW(call, [1, 0], 4); 	
+				}; break;
+
+			case "Modificado":
+				for (var i=1; i<=9; i++) {
+					call = "oa_z" + i;
+					value(call, oar_list[vers][i-1], 4);
+					toggleRW(call, [1, 1], 4); 	
+				}; break;
+
+			default:
+				for (var i=1; i<=9; i++) {
+					call = "oa_z" + i;
+					value(call, "", 4);
+					toggleRW(call, [0, 1], 4); 	
+				}; break;
+		}
+
+	\stopJScode
+
+\stopenvironment

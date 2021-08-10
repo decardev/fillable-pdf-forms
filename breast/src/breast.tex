@@ -1,25 +1,9 @@
 % !TeX root = ./breast.tex
+
 \startproject breast
 	\environment env_page
 	\environment env_fields
-
-
-	%\setupTABLE[r][20][height=5mm, offset=1mm]
-	
-	
-	
-	
-	% \setupTABLE[r][last][bottomframe=on, rulethickness=0.2mm]
-	
-
-
-
-
-
-%\setupTABLE[c][18][width=0mm, rightframe=on, rulethickness=0.8mm]
-% \setupTABLE[r][9, 17, 25, 31][height=5.5mm]
-%\setupTABLE[r][43][height=0mm, topframe=on, rulethickness=0.8mm]
-%\setupTABLE[r][47][height=0mm, topframe=off, frame=on, rulethickness=0.8mm]
+	% \environment env_script
 
 	\bTABLE[setups=maintable]
 
@@ -118,7 +102,7 @@
 			\bTD[nc=30] \field[df_derivacion] \eTD
 		\eTR
 
-		\bTR[topframe=on, rulethickness=0.2mm]
+		\bTR[topframe=on, rulethickness=0.2mm]	
 			\bTD[nc=4, nr=2] \eTD
 			\bTD[nc=6, nr=2, align=lohi] \tfb \bf MODALIDAD: \eTD 
 			\bTD[nc=4, nr=2, align=lohi] \field[df_tecnica]\eTD
@@ -138,166 +122,161 @@
 			\bTD[nc=3] \eTD
 		\eTR
 
-
-		%\definefield[df_PTV_VM_dose][line][sf_number_short]
-		%\definefield[df_PTV_VM_frac][line][sf_number_short]
-		%\definefield[df_PTV_VM_total][line][sf_number_short]
-
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z1_zona] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z1_tipo] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z1_id_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z1_id_2] \eTD
-			\bTD[nc=5, topframe=on]     \field[df_Z1_id_3] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z1_ac_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z1_ac_2] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z1_ac_3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z1_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z1_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z1_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z1_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_z1_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z1_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z1_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z1_ac_3] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_Z1_fx_1] \eTD
-			\bTD[nc=1] \field[df_Z1_fx_2] \eTD
-			\bTD[nc=3] \field[df_Z1_fx_3] \eTD
-			\bTD[nc=1] \field[df_Z1_fx_4] \eTD
-			\bTD[nc=4] \field[df_Z1_fx_5] \eTD
-			\bTD[nc=3] \field[df_Z1_id_4] \eTD
-			\bTD[nc=1] \field[df_Z1_id_5] \eTD
-			\bTD[nc=5] \field[df_Z1_id_6] \eTD
-			\bTD[nc=3] \field[df_Z1_ac_4] \eTD
-			\bTD[nc=1] \field[df_Z1_ac_5] \eTD
-			\bTD[nc=3] \field[df_Z1_ac_6] \eTD
+			\bTD[nc=3] \field[df_z1_fx_1] \eTD
+			\bTD[nc=1] \field[df_z1_fx_2] \eTD
+			\bTD[nc=3] \field[df_z1_fx_3] \eTD
+			\bTD[nc=1] \field[df_z1_fx_4] \eTD
+			\bTD[nc=4] \field[df_z1_fx_5] \eTD
+			\bTD[nc=3] \field[df_z1_id_4] \eTD
+			\bTD[nc=1] \field[df_z1_id_5] \eTD
+			\bTD[nc=5] \field[df_z1_id_6] \eTD
+			\bTD[nc=3] \field[df_z1_ac_4] \eTD
+			\bTD[nc=1] \field[df_z1_ac_5] \eTD
+			\bTD[nc=3] \field[df_z1_ac_6] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 		
 		\bTR 
 			\bTD[nc=15] \eTD
-			\bTD[nc=3] \field[df_Z1_id_7] \eTD
-			\bTD[nc=1] \field[df_Z1_id_8] \eTD
-			\bTD[nc=5] \field[df_Z1_id_9] \eTD
-			\bTD[nc=3] \field[df_Z1_ac_7] \eTD
-			\bTD[nc=1] \field[df_Z1_ac_8] \eTD
-			\bTD[nc=3] \field[df_Z1_ac_9] \eTD
+			\bTD[nc=3] \field[df_z1_id_7] \eTD
+			\bTD[nc=1] \field[df_z1_id_8] \eTD
+			\bTD[nc=5] \field[df_z1_id_9] \eTD
+			\bTD[nc=3] \field[df_z1_ac_7] \eTD
+			\bTD[nc=1] \field[df_z1_ac_8] \eTD
+			\bTD[nc=3] \field[df_z1_ac_9] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z2_zona] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z2_tipo] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z2_id_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z2_id_2] \eTD
-			\bTD[nc=5, topframe=on]     \field[df_Z2_id_3] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z2_ac_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z2_ac_2] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z2_ac_3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z2_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z2_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z2_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z2_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_z2_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z2_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z2_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z2_ac_3] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 
 		\bTR
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_Z2_fx_1] \eTD
-			\bTD[nc=1] \field[df_Z2_fx_2] \eTD
-			\bTD[nc=3] \field[df_Z2_fx_3] \eTD
-			\bTD[nc=1] \field[df_Z2_fx_4] \eTD
-			\bTD[nc=4] \field[df_Z2_fx_5] \eTD
-			\bTD[nc=3] \field[df_Z2_id_4] \eTD
-			\bTD[nc=1] \field[df_Z2_id_5] \eTD
-			\bTD[nc=5] \field[df_Z2_id_6] \eTD
-			\bTD[nc=3] \field[df_Z2_ac_4] \eTD
-			\bTD[nc=1] \field[df_Z2_ac_5] \eTD
-			\bTD[nc=3] \field[df_Z2_ac_6] \eTD
+			\bTD[nc=3] \field[df_z2_fx_1] \eTD
+			\bTD[nc=1] \field[df_z2_fx_2] \eTD
+			\bTD[nc=3] \field[df_z2_fx_3] \eTD
+			\bTD[nc=1] \field[df_z2_fx_4] \eTD
+			\bTD[nc=4] \field[df_z2_fx_5] \eTD
+			\bTD[nc=3] \field[df_z2_id_4] \eTD
+			\bTD[nc=1] \field[df_z2_id_5] \eTD
+			\bTD[nc=5] \field[df_z2_id_6] \eTD
+			\bTD[nc=3] \field[df_z2_ac_4] \eTD
+			\bTD[nc=1] \field[df_z2_ac_5] \eTD
+			\bTD[nc=3] \field[df_z2_ac_6] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 		
 		\bTR 
 			\bTD[nc=15] \eTD
-			\bTD[nc=3] \field[df_Z2_id_7] \eTD
-			\bTD[nc=1] \field[df_Z2_id_8] \eTD
-			\bTD[nc=5] \field[df_Z2_id_9] \eTD
-			\bTD[nc=3] \field[df_Z2_ac_7] \eTD
-			\bTD[nc=1] \field[df_Z2_ac_8] \eTD
-			\bTD[nc=3] \field[df_Z2_ac_9] \eTD
+			\bTD[nc=3] \field[df_z2_id_7] \eTD
+			\bTD[nc=1] \field[df_z2_id_8] \eTD
+			\bTD[nc=5] \field[df_z2_id_9] \eTD
+			\bTD[nc=3] \field[df_z2_ac_7] \eTD
+			\bTD[nc=1] \field[df_z2_ac_8] \eTD
+			\bTD[nc=3] \field[df_z2_ac_9] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z3_zona] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z3_tipo] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z3_id_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z3_id_2] \eTD
-			\bTD[nc=5, topframe=on]     \field[df_Z3_id_3] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z3_ac_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z3_ac_2] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z3_ac_3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z3_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z3_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z3_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z3_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_z3_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z3_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z3_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z3_ac_3] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_Z3_fx_1] \eTD
-			\bTD[nc=1] \field[df_Z3_fx_2] \eTD
-			\bTD[nc=3] \field[df_Z3_fx_3] \eTD
-			\bTD[nc=1] \field[df_Z3_fx_4] \eTD
-			\bTD[nc=4] \field[df_Z3_fx_5] \eTD
-			\bTD[nc=3] \field[df_Z3_id_4] \eTD
-			\bTD[nc=1] \field[df_Z3_id_5] \eTD
-			\bTD[nc=5] \field[df_Z3_id_6] \eTD
-			\bTD[nc=3] \field[df_Z3_ac_4] \eTD
-			\bTD[nc=1] \field[df_Z3_ac_5] \eTD
-			\bTD[nc=3] \field[df_Z3_ac_6] \eTD
+			\bTD[nc=3] \field[df_z3_fx_1] \eTD
+			\bTD[nc=1] \field[df_z3_fx_2] \eTD
+			\bTD[nc=3] \field[df_z3_fx_3] \eTD
+			\bTD[nc=1] \field[df_z3_fx_4] \eTD
+			\bTD[nc=4] \field[df_z3_fx_5] \eTD
+			\bTD[nc=3] \field[df_z3_id_4] \eTD
+			\bTD[nc=1] \field[df_z3_id_5] \eTD
+			\bTD[nc=5] \field[df_z3_id_6] \eTD
+			\bTD[nc=3] \field[df_z3_ac_4] \eTD
+			\bTD[nc=1] \field[df_z3_ac_5] \eTD
+			\bTD[nc=3] \field[df_z3_ac_6] \eTD
 			\bTD[nc=3] \eTD
-		\eTR
-
-		\bTR 
-			\bTD[nc=15] \eTD
-			\bTD[nc=3] \field[df_Z3_id_7] \eTD
-			\bTD[nc=1] \field[df_Z3_id_8] \eTD
-			\bTD[nc=5] \field[df_Z3_id_9] \eTD
-			\bTD[nc=3] \field[df_Z3_ac_7] \eTD
-			\bTD[nc=1] \field[df_Z3_ac_8] \eTD
-			\bTD[nc=3] \field[df_Z3_ac_9] \eTD
-			\bTD[nc=3] \eTD
-		\eTR
-
-		\bTR 
-			\bTD[nc=3] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z4_zona] \eTD
-			\bTD[nc=6, topframe=on] \bf \field[df_Z4_tipo] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z4_id_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z4_id_2] \eTD
-			\bTD[nc=5, topframe=on]     \field[df_Z4_id_3] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z4_ac_1] \eTD
-			\bTD[nc=1, topframe=on]     \field[df_Z4_ac_2] \eTD
-			\bTD[nc=3, topframe=on]     \field[df_Z4_ac_3] \eTD
-		\eTR
-
-		\bTR 
-			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_Z4_fx_1] \eTD
-			\bTD[nc=1] \field[df_Z4_fx_2] \eTD
-			\bTD[nc=3] \field[df_Z4_fx_3] \eTD
-			\bTD[nc=1] \field[df_Z4_fx_4] \eTD
-			\bTD[nc=4] \field[df_Z4_fx_5] \eTD
-			\bTD[nc=3] \field[df_Z4_id_4] \eTD
-			\bTD[nc=1] \field[df_Z4_id_5] \eTD
-			\bTD[nc=5] \field[df_Z4_id_6] \eTD
-			\bTD[nc=3] \field[df_Z4_ac_4] \eTD
-			\bTD[nc=1] \field[df_Z4_ac_5] \eTD
-			\bTD[nc=3] \field[df_Z4_ac_6] \eTD
 		\eTR
 
 		\bTR 
 			\bTD[nc=15] \eTD
-			\bTD[nc=3] \field[df_Z4_id_7] \eTD
-			\bTD[nc=1] \field[df_Z4_id_8] \eTD
-			\bTD[nc=5] \field[df_Z4_id_9] \eTD
-			\bTD[nc=3] \field[df_Z4_ac_7] \eTD
-			\bTD[nc=1] \field[df_Z4_ac_8] \eTD
-			\bTD[nc=3] \field[df_Z4_ac_9] \eTD
+			\bTD[nc=3] \field[df_z3_id_7] \eTD
+			\bTD[nc=1] \field[df_z3_id_8] \eTD
+			\bTD[nc=5] \field[df_z3_id_9] \eTD
+			\bTD[nc=3] \field[df_z3_ac_7] \eTD
+			\bTD[nc=1] \field[df_z3_ac_8] \eTD
+			\bTD[nc=3] \field[df_z3_ac_9] \eTD
+			\bTD[nc=3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z4_zona] \eTD
+			\bTD[nc=6, topframe=on] \bf \field[df_z4_tipo] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z4_id_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z4_id_2] \eTD
+			\bTD[nc=5, topframe=on]     \field[df_z4_id_3] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z4_ac_1] \eTD
+			\bTD[nc=1, topframe=on]     \field[df_z4_ac_2] \eTD
+			\bTD[nc=3, topframe=on]     \field[df_z4_ac_3] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=3] \eTD
+			\bTD[nc=3] \field[df_z4_fx_1] \eTD
+			\bTD[nc=1] \field[df_z4_fx_2] \eTD
+			\bTD[nc=3] \field[df_z4_fx_3] \eTD
+			\bTD[nc=1] \field[df_z4_fx_4] \eTD
+			\bTD[nc=4] \field[df_z4_fx_5] \eTD
+			\bTD[nc=3] \field[df_z4_id_4] \eTD
+			\bTD[nc=1] \field[df_z4_id_5] \eTD
+			\bTD[nc=5] \field[df_z4_id_6] \eTD
+			\bTD[nc=3] \field[df_z4_ac_4] \eTD
+			\bTD[nc=1] \field[df_z4_ac_5] \eTD
+			\bTD[nc=3] \field[df_z4_ac_6] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=15] \eTD
+			\bTD[nc=3] \field[df_z4_id_7] \eTD
+			\bTD[nc=1] \field[df_z4_id_8] \eTD
+			\bTD[nc=5] \field[df_z4_id_9] \eTD
+			\bTD[nc=3] \field[df_z4_ac_7] \eTD
+			\bTD[nc=1] \field[df_z4_ac_8] \eTD
+			\bTD[nc=3] \field[df_z4_ac_9] \eTD
 			\bTD[nc=3] \eTD
 		\eTR
 
