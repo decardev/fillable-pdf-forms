@@ -1,6 +1,8 @@
-\startenvironment env_breast
+% !TeX root = ./breast.tex
 
-  \mainlanguage[es]
+\startenvironment env_breast
+  \product breast
+
   \setuplayout[
     topspace=10mm, 
     header=30mm, 
@@ -10,16 +12,15 @@
     height=285mm, 
     footer=5mm
   ]
-  \setuppagenumbering[location=]
-  
+
   \setuppapersize[A4][A4]
   \definefontfamily[mainface][rm][Calibri]
   \definefontfamily[mainface][ss][Calibri]
   \definefontfamily[mainface][tt][Calibri]
   \definefontfamily[mainface][mm][Calibri]
   \setupbodyfont[mainface, ss, 9pt]
-  
-  %\showframe
+
+
   \setupinteraction[
     state=start,
     title={Prescripción Radioterapia MAMA - INTECNUS},
@@ -27,8 +28,6 @@
     keyword=Prescripción Mama Radioterapia Automatización Medicina INTECNUS @decardev,
     openaction=FitHeight
   ]
-  
-
 
   \setupheader[text][
     before={
@@ -54,5 +53,9 @@
     \setupTABLE[frame=off]
     \setupTABLE[c][1, 35][leftframe=on, rulethickness=0.2mm]
   \stopsetups
+
+
+  %\showframe
+
 
 \stopenvironment

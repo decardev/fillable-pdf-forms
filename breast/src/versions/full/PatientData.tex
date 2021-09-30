@@ -222,8 +222,8 @@ oa_reset();
 	var BT_id_normo = ["V15,52 Gy", "\u2265", "95\%", "D2\%", "\u2264", "17,62 Gy", "", "", ""];
 	var BT_ac_normo = ["V15,20 Gy", "\u2265", "90\%", "D2\%", "\u2264", "17,60 Gy", "", "", ""]; 	
 	var BT_fx_hipo  = ["1068 cGy", "=", "267 cGy", "\u00D7", "4"];
-	var BT_id_hipo  = ["", "\u2265", "", "D2\%", "\u2264", "", "", "", ""];
-	var BT_ac_hipo  = ["", "", "", "", "\u2265", "", "", "", ""]; 
+	var BT_id_hipo  = ["", "", "", "", "", "", "", "", ""];
+	var BT_ac_hipo  = ["", "", "", "", "", "", "", "", ""]; 
 
 	var zn_fx_otro  = ["", "=", "", "\u00D7", ""];
 	var zn_fx_deft  = ["", "", "", "", ""];
@@ -251,7 +251,7 @@ oa_reset();
 						case "PTV_VMD":     var fx = VM_fx_hipo; var id = VM_id_hipo;  var ac = VM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"]; break;
 						case "PTV_VMI_VMD": var fx = VM_fx_hipo; var id = VM_id_hipo;  var ac = VM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"]; break;
 					}; break;
-				case "Otro":            var fx = zn_fx_otro; var id = "";          var ac = "";          var rw = [1, 1]; zona = zn_zn_otro;    break;
+				case "Otro":            var fx = VM_fx_normo; var id = VM_id_normo; var ac = VM_ac_normo; var rw = [1, 1]; zona = [" ", "PTV_LN", "PTV_CMI", "BOOST"];    break;
 				default:                var fx = zn_fx_deft; var id = "";          var ac = "";          var rw = [0, 1]; zona = [" "];         break;
 			}
 			call = "df_Z1"; target = "df_Z2_zona"; res = 2; break;
@@ -270,7 +270,7 @@ oa_reset();
 						case "PTV_CMI": var fx = CM_fx_hipo; var id = CM_id_hipo;  var ac = CM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"];            break;
 						case "BOOST":   var fx = BT_fx_hipo; var id = BT_id_hipo;  var ac = BT_ac_hipo;  var rw = [1, 0]; zona = [" "];                     break;
 					}; break;
-				case "Otro":        var fx = zn_fx_otro; var id = "";          var ac = "";          var rw = [1, 1]; zona = zn_zn_otro;                break;
+				case "Otro":        var fx = LN_fx_normo; var id = LN_id_normo; var ac = LN_ac_normo; var rw = [1, 1]; zona = [" ", "PTV_CMI", "BOOST"]; break;
 				default:            var fx = zn_fx_deft; var id = "";          var ac = "";          var rw = [0, 1]; zona = [" "];                     break;
 			}
 			call = "df_Z2"; target = "df_Z3_zona"; res = 3; break;
@@ -287,7 +287,7 @@ oa_reset();
 						case "PTV_CMI": var fx = CM_fx_hipo; var id = CM_id_hipo;  var ac = CM_ac_hipo;  var rw = [1, 0]; zona = [" ", "BOOST"];            break;
 						case "BOOST":   var fx = BT_fx_hipo; var id = BT_id_hipo;  var ac = BT_ac_hipo;  var rw = [1, 0]; zona = [" "];                     break;
 					}; break;
-				case "Otro":        var fx = zn_fx_otro; var id = "";          var ac = "";          var rw = [1, 1]; zona = zn_zn_otro;                break;
+				case "Otro":        var fx = CM_fx_normo; var id = CM_id_normo; var ac = CM_ac_normo; var rw = [1, 1]; zona = [" ", "BOOST"];           break;
 				default:            var fx = zn_fx_deft; var id = "";          var ac = "";          var rw = [0, 1]; zona = [" "];                     break;
 			}
 			call = "df_Z3"; target = "df_Z4_zona"; res = 4; break;
@@ -296,7 +296,7 @@ oa_reset();
 			switch(event.target.value){
 				case "Normo":      var fx = BT_fx_normo;    var id = BT_id_normo; var ac = BT_ac_normo; var rw = [1, 0]; break;
 				case "Hipo":       var fx = BT_fx_hipo;     var id = BT_id_hipo;  var ac = BT_ac_hipo;  var rw = [1, 0]; break;
-				case "Otro":       var fx = zn_fx_otro;     var id = "";          var ac = "";          var rw = [1, 1]; break;
+				case "Otro":       var fx = BT_fx_normo;    var id = BT_id_normo; var ac = BT_ac_normo; var rw = [1, 1]; break;
 				default:           var fx = zn_fx_deft;     var id = "";          var ac = "";          var rw = [0, 1]; break;
 			}
 			call = "df_Z4"; break;
@@ -321,7 +321,7 @@ oa_reset();
 	\stopJScode
 
 
-\startJScode {fn_TX_clinic}  
+\startJScode {fn_TX_clinic}  	
 	if (event.target.value.toString().length > 700) {
 		event.target.textSize = 0;
 	} else {
@@ -428,12 +428,12 @@ oa_reset();
 		\setupTABLE[c][align={middle, lohi}]
 			\bTABLE
 				\bTR 
-					\bTD[nr=2, width=30mm, height=30mm, frame=on, rulethickness=1mm] \bf LOGO INTECNUS \eTD 
+					\bTD[nr=2, width=30mm, height=30mm, frame=on, rulethickness=1mm, align=center] \externalfigure[logo.jpg][height=27mm] \eTD 
 					\bTD[nc=1, width=110mm, topframe=on, rulethickness=1mm] \tfa \bf INSTITUTO DE TECNOLOGÍAS NUCLEARES PARA LA SALUD     \eTD 
 					\bTD[nr=2, width=30mm, frame=on, rulethickness=1mm] \bf Página 1 de 1\eTD 
 				\eTR
 				\bTR
-					\bTD[topframe=on, rulethickness=1mm] \tfb \bf PRESCRIPCIÓN MÉDICA\eTD 
+					\bTD[topframe=on, rulethickness=1mm] \tfb \bf PRESCRIPCIÓN MÉDICA \| MAMA\eTD 
 				\eTR
 		\eTABLE
 		},
@@ -490,7 +490,7 @@ oa_reset();
 \setupfield[sf_line_OAR_35][height=4.5mm, width=34mm, frame=off, offset=0mm, align=flushleft]
 
 
-\setupfield[sf_text_clinic][height=33.8mm, width=168.8mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_TX_clinic)]
+\setupfield[sf_text_clinic][height=33.8mm, width=168.8mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_TX_clinic) ]
 \setupfield[sf_text_coment][height=4.5mm, width=88.8mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_TX_coment)]
 
 \setupfield[sf_popup_OARs][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_OAR_list)]
@@ -518,17 +518,17 @@ oa_reset();
 
 
 \definefield[df_name][line][sf_text_long]
-\definefield[df_ID_tipo][combo][sf_popup_short][ , ID, PASS]			
+\definefield[df_ID_tipo][combo][sf_popup_short][ , DNI, ID, PASS]			
 \definefield[df_ID][line][sf_number_medium] 			
 \definefield[df_HC][line][sf_number_medium]
-\definefield[df_dates_birth][line][sf_dates_birth]
+\definefield[df_dates_birth][line][sf_dates_birth][dd/mm/aaaa]
 \definefield[df_age][line][sf_number_medium]
 \definefield[df_home][line][sf_text_medium]
 \definefield[df_region][combo][sf_text_medium][ , Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, Mendoza, Misiones, Neuquén, Río Negro, Salta, San Jua, San Luis, Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumá]
 \definefield[df_work][line][sf_text_medium]
 \definefield[df_phone][line][sf_text_medium]
 \definefield[df_social][combo][sf_text_medium][ , ACA SALUD, AMEPBA, CAJA FORENSE, DIBA, GALEANO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUSS, MEDIFE, OMINT, OSBA, OSDE, OSECAC, OSPAT, OSPE, OSPECON, OSPLAD, OSSEG ,OSUTHGRA, PAMI, POLICIA FEDERAL, SALUD PUBLICA, SANCOR SALUD, SERGOS, SMG, SOSUNC, SWISS MEDICAL, UP]
-\definefield[df_social_number][line][sf_number_medium]
+\definefield[df_social_number][line][sf_text_medium]
 \definefield[df_derivation][line][sf_text_medium]
 \definefield[df_derivation_center][line][sf_text_medium]
 
@@ -748,7 +748,7 @@ oa_reset();
 		\bTR 
 			\bTD[nc=6] \bf Ciudad: \eTD
 			\bTD[nc=8] \field[df_home] \eTD
-			\bTD[nc=4] \bf Región: \eTD
+			\bTD[nc=4] \bf Provincia: \eTD
 			\bTD[nc=7] \field[df_region] \eTD
 		\eTR
 
@@ -770,8 +770,8 @@ oa_reset();
 		\bTR 
 			\bTD[nc=6] \bf Derivante: \eTD
 			\bTD[nc=8] \field[df_derivation] \eTD
-			\bTD[nc=4] \bf Centro: \eTD
-			\bTD[nc=7] \field[df_derivation_center] \eTD
+			\bTD[nc=4] \eTD
+			\bTD[nc=7]  \eTD
 		\eTR
 
 		\bTR \bTD[nc=34, align=center] \tfc \bf CA DE MAMA\eTD \eTR
