@@ -1,0 +1,28 @@
+% !TeX root = ./prostate.tex
+
+\startenvironment env_page
+  \product prostate
+
+  \setupinteraction[
+    state=start,
+    title={Prescripción Radioterapia MAMA - INTECNUS},
+    author={Diego Carrasco (@decardev)},
+    keyword=Prescripción Mama Radioterapia Automatización Medicina INTECNUS @decardev,
+    openaction=FitHeight
+  ]
+
+
+  \startsetups [maintable]
+    \setupTABLE[r][each][height=5mm]
+    \setupTABLE[c][each][width=5mm]
+    \setupTABLE[frame=on]
+    \setupTABLE[c][1, 35][leftframe=on, rulethickness=0.2mm]
+  \stopsetups
+
+  \define[1]\sizefield{{\switchtobodyfont[9pt]\field[#1]}}
+
+
+  %\showframe
+
+
+\stopenvironment

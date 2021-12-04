@@ -121,18 +121,22 @@ toggleRW("oa_z5", [0, 1], 4); toggleRW("oa_z6", [0, 1], 4); toggleRW("oa_z7", [0
 
 
 \startJScode {fn_AGE_calc}
-	var d = value("df_dates_birth");	
+	var d = value("df_dates_birth_day");	
+	var m = value("df_dates_birth_month");
+	var y = value("df_dates_birth_year");
 	
-	var date = new Date(d.substr(6, 4), +d.substr(3, 2)-1, d.substr(0, 2));
+	var date = new Date(y, m-1, d);
 	var age =  ~~((Date.now() - date) / (31557600000));
-	var valid = (date.getDate() == d.substr(0, 2)) && 
-							(date.getMonth() == +d.substr(3, 2)-1) && 
-							(date.getFullYear() == d.substr(6, 4)) &&
-							d.length == 10 && Date.now() > date &&
-							d.substr(2, 1) == "/" && d.substr(5, 1) == "/";
+	var valid = (	(date.getDate()) == d && 
+								(date.getMonth() == m-1) && 
+								(date.getFullYear() == y) &&
+								(Date.now() > date));
+							
 
-	if (valid) { value("df_age", String(age)); }
-	else { value("df_dates_birth", ""); value("df_age", ""); }
+	if (valid) { value("df_age", String(age) + " a\u00f1os"); }
+	else {  
+		value("df_age", "Fecha Invalida"); 
+	}
 \stopJScode
 
 \startJScode {fn_TO_zone}  
@@ -155,7 +159,7 @@ switch(event.target.name){
 		case "df_Z2_zona":  
 			switch(event.target.value){
 				case "PTV_LN":  tipo = [" ", "Normo", "Otro"]; 				 break;
-				case "PTV_CMI": tipo = [" ", "Normo", "Otro"]; 				 break;
+				case "PTV_CMI": tipo = [" ", "Normo", "Normo 2", "Otro"]; 				 break;
 				case "BOOST":   tipo = [" ", "Normo", "Hipo", "Otro"]; break;
 				default: rw = [0, 1]; res = 3; break;
 			}
@@ -163,7 +167,7 @@ switch(event.target.name){
 		
 		case "df_Z3_zona":  
 			switch(event.target.value){
-				case "PTV_CMI": tipo = [" ", "Normo", "Otro"];         break;
+				case "PTV_CMI": tipo = [" ", "Normo", "Normo 2", "Otro"];         break;
 				case "BOOST":   tipo = [" ", "Normo", "Hipo", "Otro"]; break;
 				default: rw = [0, 1]; res = 4; break;
 			}
@@ -198,29 +202,34 @@ oa_reset();
 \startJScode {fn_ZN_data}
 
 	var VM_fx_normo = ["5000 cGy", "=", "200 cGy", "\u00D7", "25"];
-	var VM_id_normo = ["V48,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "47,50 Gy", "D2\%", "\u2264", "52,50 Gy"];
-	var VM_ac_normo = ["V47,50 cGy", "\u2265", "90\%", "D98\%", "\u2265", "45,00 Gy", "D2\%", "\u2264", "53,50 Gy"]; 
+	var VM_id_normo = ["V4850 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4750 cGy", "D2\%", "\u2264", "5250 cGy"];
+	var VM_ac_normo = ["V4750 cGy", "\u2265", "90\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5350 cGy"]; 
 	var VM_fx_hipo  = ["4005 cGy", "=", "267 cGy", "\u00D7", "15"];
-	var VM_id_hipo  = ["V38,85 Gy", "\u2265", "95\%", "D98\%", "\u2265", "38,00 Gy", "D2\%", "\u2264", "42,05 Gy"];
-	var VM_ac_hipo  = ["V38,05 Gy", "\u2265", "90\%", "D98\%", "\u2265", "36,00 Gy", "D2\%", "\u2264", "42,85 Gy"]; 
+	var VM_id_hipo  = ["V3885 cGy", "\u2265", "95\%", "D98\%", "\u2265", "3800 cGy", "D2\%", "\u2264", "4205 cGy"];
+	var VM_ac_hipo  = ["V3805 cGy", "\u2265", "90\%", "D98\%", "\u2265", "3600 cGy", "D2\%", "\u2264", "4285 cGy"]; 
 
 	var LN_fx_normo = ["5000 cGy", "=", "200 cGy", "\u00D7", "25"];
-	var LN_id_normo = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "D2", "\u2264", "52,50 Gy"];
+	var LN_id_normo = ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2", "\u2264", "5250 cGy"];
 	var LN_ac_normo = ["", "", "", "D98\%", "\u2265", "4275 cGy", "D2", "\u2264", "5350 cGy"]; 
 	var LN_fx_hipo  = ["4005 cGy", "=", "267 cGy", "\u00D7", "15"];
-	var LN_id_hipo  = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "", "", ""];
+	var LN_id_hipo  = ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "", "", ""];
 	var LN_ac_hipo  = ["", "", "", "D98\%", "\u2265", "4275 cGy", "", "", ""]; 
 
 	var CM_fx_normo = ["5000 cGy", "=", "200 cGy", "\u00D7", "25"];
-	var CM_id_normo = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "D2", "\u2264", "52,50 Gy"];
+	var CM_id_normo = ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2", "\u2264", "5250 cGy"];
 	var CM_ac_normo = ["",      "",       "",     "D98\%", "\u2265", "4275 cGy", "D2", "\u2264", "5350 cGy"]; 
+	var CM_fx_norm2 = ["4600 cGy", "=", "200 cGy", "\u00D7", "23"];
+	var CM_id_norm2 = ["V4370 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4140 cGy", "D2", "\u2264", "4830 cGy"];
+	var CM_ac_norm2 = ["",      "",       "",     "D98\%", "\u2265", "3933 cGy", "D2", "\u2264", "4922 cGy"]; 
+
+
 	var CM_fx_hipo  = ["4005 cGy", "=", "267 cGy", "\u00D7", "15"];
-	var CM_id_hipo  = ["V47,50 Gy", "\u2265", "95\%", "D98\%", "\u2265", "45,00 Gy", "", "", ""];
+	var CM_id_hipo  = ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "", "", ""];
 	var CM_ac_hipo  = ["", "", "", "D98\%", "\u2265", "4275 cGy", "", "", ""]; 
 
 	var BT_fx_normo = ["1600 cGy", "=", "200 cGy", "\u00D7", "8"];
-	var BT_id_normo = ["V15,52 Gy", "\u2265", "95\%", "D2\%", "\u2264", "17,62 Gy", "", "", ""];
-	var BT_ac_normo = ["V15,20 Gy", "\u2265", "90\%", "D2\%", "\u2264", "17,60 Gy", "", "", ""]; 	
+	var BT_id_normo = ["V1552 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1712 cGy", "", "", ""];
+	var BT_ac_normo = ["V1520 cGy", "\u2265", "90\%", "D5\%", "\u2264", "1760 cGy", "", "", ""]; 	
 	var BT_fx_hipo  = ["1068 cGy", "=", "267 cGy", "\u00D7", "4"];
 	var BT_id_hipo  = ["", "", "", "", "", "", "", "", ""];
 	var BT_ac_hipo  = ["", "", "", "", "", "", "", "", ""]; 
@@ -264,6 +273,8 @@ oa_reset();
 						case "PTV_CMI": var fx = CM_fx_normo; var id = CM_id_normo; var ac = CM_ac_normo; var rw = [1, 0]; zona = [" ", "BOOST"];            break;
 						case "BOOST":   var fx = BT_fx_normo; var id = BT_id_normo; var ac = BT_ac_normo; var rw = [1, 0]; zona = [" "];                     break;
 					}; break;
+				case "Normo 2": 
+					var fx = CM_fx_norm2; var id = CM_id_norm2; var ac = CM_ac_norm2; var rw = [1, 0]; zona = [" ", "BOOST"]; break;
 				case "Hipo":  
 					switch(value("df_Z2_zona")){
 						case "PTV_LN":  var fx = LN_fx_hipo; var id = LN_id_hipo;  var ac = LN_ac_hipo;  var rw = [1, 0]; zona = [" ", "PTV_CMI", "BOOST"]; break;
@@ -345,46 +356,61 @@ oa_reset();
 			["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]
 		],
 		[
-			["CORAZ\u00D3N",              "V25 < 2\%",            "V15 < 10\% (15\%)",     "Dmean < 4 Gy (5,5 Gy)"], 
-			["PULM\u00D3N IPSILATERAL",   "v20 < 25\% (35\%)",    "V10 < 50\% (65\%)",     "V5 < 65\% (75\%)"], 
-			["PULM\u00D3N CONTRALATERAL", "V5 < 30\%",            "",                      ""], 	
-			["MAMA CONTRALATERAL",        "V5,5 < 10\% (15\%)",   "Dmean < 4 Gy (4,5 Gy)", ""], 
-			["TIROIDES", 						      "V40 < 50\%",           "DMax 0,03 cc < 25 Gy",  ""], 
-			["M\u00C9DULA", 							"",                     "",                      ""], 
-			["ES\u00D3FAGO", 						  "V35 < 50\% (60\%)",    "V50 < 2\% (5\%)",       ""], 
-			["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 33 Gy", "",                      ""], 
-			["H\u00CDGADO", 							"V15 < 3\%",            "",                      ""], 
+			["CORAZ\u00D3N",              "V2500 cGy < 5\% (10\%)", "V1500 cGy < 30\% (35\%)", "DMean < 400 cGy (550 cGy)"], 
+			["PULM\u00D3N IPSILATERAL",   "V2000 cGy < 15\% (20\%)", "V1000 cGy < 35\% (40\%)", "V500 cGy < 50\% (55\%)"], 
+			["PULM\u00D3N CONTRALATERAL", "V500 cGy < 30\%", "", ""], 	
+			["MAMA CONTRALATERAL",        "V550 cGy < 10\% (15\%)", "DMean < 400 cGy (450 cGy)", ""], 
+			["TIROIDES", 						      "V4000 cGy < 50\%", "DMax 0,03 cc < 2500 cGy", ""], 
+			["M\u00C9DULA", 							"", "", ""], 
+			["ES\u00D3FAGO", 						  "V3500 cGy < 50\% (60\%)",  "V5000 cGy < 2\% (5\%)", ""], 
+			["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 4000 cGy", "", ""], 
+			["H\u00CDGADO", 							"V1500 cGy < 3\%", "", ""], 
 		], 
 		[
-			["CORAZ\u00D3N",            	"V20 < 5\%",            "V2 < 30\%",            "Dmean < 3,2 Gy (4 Gy)"], 
-			["PULM\u00D3N IPSILATERAL",  	"v12 < 15\% (20\%)",    "V8 < 30\% (35\%)",     "V4 < 40\%"], 
-			["PULM\u00D3N CONTRALATERAL", "V4 < 10\%",            "",                     ""], 
-			["MAMA CONTRALATERAL",   			"V2 < 5\% (V3 < 10\%)", "Dmean < 1 Gy (2 Gy)",  "Dmax 0,03 cc < 2,4 Gy"], 
-			["H\u00DAMERO IPSILATERAL",		"DMax 0,03 cc < 30 Gy", "",                     ""], 
-			["H\u00CDIGADO", 							"V13 < 3\%",            "Dmean < 4,4 Gy",       ""], 
-			["",                          "",                     "",                     ""],
-			["",                          "",                     "",                     ""],
-			["",                          "",                     "",                     ""],
+			["CORAZ\u00D3N",              "V2500 cGy < 0\% (2\%)", "V1500 cGy < 10\% (15\%)", "DMean < 400 cGy (550 cGy)"], 
+			["PULM\u00D3N IPSILATERAL",   "V2000 cGy < 15\% (20\%)", "V1000 cGy < 35\% (40\%)", "V500 cGy < 50\% (55\%)"], 
+			["PULM\u00D3N CONTRALATERAL", "V500 cGy < 30\%", "", ""], 	
+			["MAMA CONTRALATERAL",        "V550 cGy < 10\% (15\%)", "DMean < 400 cGy (450 cGy)", ""], 
+			["TIROIDES", 						      "V4000 cGy < 50\%", "DMax 0,03 cc < 2500 cGy", ""], 
+			["M\u00C9DULA", 							"", "", ""], 
+			["ES\u00D3FAGO", 						  "V3500 cGy < 50\% (60\%)",  "V5000 cGy < 2\% (5\%)", ""], 
+			["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 4000 cGy", "", ""], 
+			["H\u00CDGADO", 							"V1500 cGy < 3\%", "", ""], 
 		],
 		[
-			["CORAZ\u00D3N",              "V25 < 5\%",            "V20 < 5\%",             "V10 < 30\% (35\%)"],
-			["",                          "Dmean < 4 Gy (5 Gy)",  "",                      ""],
-			["PULM\u00D3N IPSILATERAL",   "v20 < 15\% (20\%)",    "V10 < 35\% (40\%)",     "V5 < 50\% (55\%)"],
-			["PULM\u00D3N CONTRALATERAL", "V5 < 10\% (15\%)",     "",                      ""],
-			["MAMA CONTRALATERAL",        "V3 < 5\% (10\%)",      "Dmean < 1 Gy (2 Gy)",   ""],
-			["TIROIDES", 						      "V40 < 50\%",           "",                      ""],
-			["M\u00C9DULA", 							"Dmax 0,03 cc < 25 Gy", "",                      ""],
-			["ES\u00D3FAGO", 						  "V35 < 50\% (60\%)",    "V50 < 2\% (5\%)",       ""],
-			["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 33 Gy", "",                      ""],
+			["CORAZ\u00D3N",            	"V2000 cGy < 5\%", "V200 cGy < 30\%", "DMean < 320 cGy (400 cGy)"], 
+			["PULM\u00D3N IPSILATERAL",  	"V1200 cGy < 15\% (20\%)", "V800 cGy < 30\% (35\%)", "V400 cGy < 40\%"], 
+			["PULM\u00D3N CONTRALATERAL", "V400 cGy < 10\%", "", ""], 
+			["MAMA CONTRALATERAL",   			"V200 cGy < 5\% (10\%)", "DMean < 100 cGy (200 cGy)", "Dmax 0,03 cc < 240 cGy"], 
+			["H\u00DAMERO IPSILATERAL",		"DMax 0,03 cc < 4000 cGy", "", ""], 
+			["H\u00CDGADO",               "V1500 cGy < 3\%", "DMean < 440 cGy", ""], 
+			["",                          "", "", ""],
+			["",                          "", "", ""],
+			["",                          "", "", ""],
+		],
+		[
+			["CORAZ\u00D3N",              "V2500 cGy < 5\%", "V2000 cGy < 5\%", "V1000 cGy < 30\% (35\%)"],
+			["",                          "DMean < 400 cGy (5 Gy)", "", ""],
+			["PULM\u00D3N IPSILATERAL",   "V2000 cGy < 25\% (35\%)", "V1000 cGy < 50\% (65\%)", "V500 cGy < 65\% (75\%)"],
+			["PULM\u00D3N CONTRALATERAL", "V500 cGy < 10\% (15\%)", "", ""],
+			["MAMA CONTRALATERAL",        "V300 cGy < 5\% (10\%)", "DMean < 100 cGy (200 cGy)", ""],
+			["TIROIDES", 						      "V4000 cGy < 50\%", "", ""],
+			["M\u00C9DULA", 							"Dmax 0,03 cc < 2500 cGy", "", ""],
+			["ES\u00D3FAGO", 						  "V3500 cGy < 50\% (60\%)", "V5000 cGy < 2\% (5\%)", ""],
+			["H\u00DAMERO IPSILATERAL",	  "DMax 0,03 cc < 4000 cGy", "", ""],
 		]
 	];
 
 	var vers = 0;
 	var call = "";
 
-	if (value("df_Z1_tipo") == "Normo") { vers = 1; }	
-	if (value("df_Z1_tipo") == "Hipo") { vers = 2; }	
-	if (value("df_Z2_zona") == "PTV_LN" || value("df_Z2_zona") == "PTV_CMI") { vers = 3; }
+	if (value("df_Z1_tipo") == "Normo") { 
+		if (value("df_Z1_zona") == "PTV_VMI") { vers = 1; } 
+		if (value("df_Z1_zona") == "PTV_VMD") { vers = 2; }
+		if (value("df_Z1_zona") == "PTV_VMI_VMD") { vers = 2; }
+	}	
+	if (value("df_Z1_tipo") == "Hipo") { vers = 3; }	
+	if (value("df_Z2_zona") == "PTV_LN" || value("df_Z2_zona") == "PTV_CMI") { vers = 4; }
 	
 
 	switch (event.target.value) {
@@ -466,8 +492,8 @@ oa_reset();
 
 % --------------------------- RENAMED ---------------------------------------------
 
-\setupfield[sf_dates_birth][height=4.5mm, width=19mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_AGE_calc)]
-
+\setupfield[sf_dates_birth_sm][height=4.5mm, width=4mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_AGE_calc)]
+\setupfield[sf_dates_birth_md][height=4.5mm, width=9mm, frame=off, offset=0mm, align=flushleft, focusout=JS(fn_AGE_calc)]
 
 \setupfield[sf_popup_modal][height=6.5mm, width=18mm, frame=off, toffset=0mm, align=flushleft]
 \setupfield[sf_dates_start][height=6.5mm, width=19mm, frame=off, toffset=0mm, align=flushleft]
@@ -518,13 +544,18 @@ oa_reset();
 
 
 \definefield[df_name][line][sf_text_long]
-\definefield[df_ID_tipo][combo][sf_popup_short][ , DNI, ID, PASS]			
+\definefield[df_ID_tipo][combo][sf_popup_short][DNI, ID, PASS]			
 \definefield[df_ID][line][sf_number_medium] 			
 \definefield[df_HC][line][sf_number_medium]
-\definefield[df_dates_birth][line][sf_dates_birth][dd/mm/aaaa]
+
+
+\definefield[df_dates_birth_day][line][sf_dates_birth_sm]
+\definefield[df_dates_birth_month][line][sf_dates_birth_sm]
+\definefield[df_dates_birth_year][line][sf_dates_birth_md]
+
 \definefield[df_age][line][sf_number_medium]
 \definefield[df_home][line][sf_text_medium]
-\definefield[df_region][combo][sf_text_medium][ , Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, Mendoza, Misiones, Neuquén, Río Negro, Salta, San Jua, San Luis, Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumá]
+\definefield[df_region][combo][sf_text_medium][ , Buenos Aires, CABA, Catamarca, Chaco, Chubut, Córdoba, Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, Mendoza, Misiones, Neuquén, Río Negro, Salta, San Juan, San Luis, Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumán]
 \definefield[df_work][line][sf_text_medium]
 \definefield[df_phone][line][sf_text_medium]
 \definefield[df_social][combo][sf_text_medium][ , ACA SALUD, AMEPBA, CAJA FORENSE, DIBA, GALEANO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUSS, MEDIFE, OMINT, OSBA, OSDE, OSECAC, OSPAT, OSPE, OSPECON, OSPLAD, OSSEG ,OSUTHGRA, PAMI, POLICIA FEDERAL, SALUD PUBLICA, SANCOR SALUD, SERGOS, SMG, SOSUNC, SWISS MEDICAL, UP]
@@ -695,7 +726,7 @@ oa_reset();
 \definefield[oa_z9_1][line][sf_line_OAR_45] \definefield[oa_z9_2][line][sf_line_OAR_35] \definefield[oa_z9_3][line][sf_line_OAR_35] \definefield[oa_z9_4][line][sf_line_OAR_35]
 \definefield[oa_z10_1][line][sf_line_OAR_45] \definefield[oa_z10_2][line][sf_line_OAR_35] \definefield[oa_z10_3][line][sf_line_OAR_35] \definefield[oa_z10_4][line][sf_line_OAR_35]
 
-\definefield[sf_coment][text][sf_text_coment]
+\definefield[sf_coment][text][sf_text_coment][Evitar hot spots fuera del PTV]
 
 
 
@@ -740,7 +771,12 @@ oa_reset();
 
 		\bTR 
 			\bTD[nc=6] \bf Nacimiento: \eTD
-			\bTD[nc=8] \field[df_dates_birth] \eTD
+			\bTD[nc=1] \field[df_dates_birth_day] \eTD
+			\bTD[nc=1, align=center] /\eTD
+			\bTD[nc=1] \field[df_dates_birth_month] \eTD
+			\bTD[nc=1, align=center] /\eTD
+			\bTD[nc=2] \field[df_dates_birth_year] \eTD
+			\bTD[nc=2] \eTD
 			\bTD[nc=4] \bf Edad: \eTD
 			\bTD[nc=7] \field[df_age] \eTD
 		\eTR

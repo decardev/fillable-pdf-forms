@@ -44,10 +44,9 @@
 		field.setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
 		field.setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
 	}
-	
+
 	setFontAndSize("df_os_name", 8);
 	makeDate("df_date");
-
 \stopJSpreamble
 
 
@@ -57,6 +56,7 @@
 
 \startJScode {fn_no_scroll}
 	event.target.doNotScroll = true;
+	event.target.richText = true;
 \stopJScode
 
 
@@ -69,7 +69,7 @@
 \setupfield[sf_os_name][height=5.5mm, width=60mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_os_name)]
 \setupfield[sf_date][height=6mm, width=30mm, frame=off, offset=0mm, align=flushleft]
 \setupfield[sf_rp][height=38mm, width=108mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_no_scroll)]
-\setupfield[sf_dx][height=38mm, width=108mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_no_scroll)]
+\setupfield[sf_dx][height=82mm, width=108mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_no_scroll)]
 
 \definefield[df_pt_name][line][sf_info]
 \definefield[df_os_name][combo][sf_os_name][, AESP , AMCI , AMEPBA, AVALIAN, BANCARIOS  (O.S.B.A.), CAJA FORENSE, CLINICA DEL VALLE, DAMSU, FATFA (OSPF), FEDERACION PATRONAL ART, FEDERADA SALUD, FUNDACION MEDICA DE RN Y NQN, GALENO ARGENTINA, GENERAR SALUD, HORIZONTE ART, HOSPITAL ALEMAN, HOSPITAL ITALIANO, INTEGRAL SALUD, IOSFA, IPROSS, ISSN (INST. SEG. SOCIAL NQN), JERARQUICOS SALUD, LA SEGUNDA ART, LUIS PASTEUR, MEDICUS, MEDIFE, OMINT, OS PASTELEROS, OSAPM, OSCTCP / UTA, OSDE, OSDEPYM, OSDIPP, OSDOP, OSECAC, OSFATLYF (OSPLYFRA), OSFATUN, OSMATA, OSPA (AERONÁUTICOS), OSPACARP, OSPAT (SANATORIO SAN CARLOS), OSPE, OSPECON, OSPEDYC (UTEDYC), OSPEPRI, OSPERSAAMS, OSPERYHRA, OSPES, OSPIL, OSPIM, OSPLAD, OSPM (P. MARITIMO), OSPOCE DKV, OSPSA, OSPSIP (PERSONAL DE SEGURIDAD), OSSEG, OSUTHGRA, PAMI (INSSJP), PARTICULAR, PODER JUDICIAL, POLICIA FEDERAL, PREVENCION ART, PREVENCION SALUD, SALUD PUBLICA RN, SALUD TOTAL, SANCOR SALUD, SATV, SCIS, SEROS (ISSYS), SERV. PENITENCIARIO FED., SOSUNC, SWISS MEDICAL, UP (UNION PERSONAL)]
@@ -135,17 +135,17 @@
 
 	\bTR[topframe=on, rulethickness=0.6mm] \bTD[nc=18] \eTD \eTR
 
-	\bTR 
-		\bTD[nc=1] \eTD
-		\bTD[nc=15] \bi Rp. \eTD
-	\eTR
+	% \bTR 
+	% 	\bTD[nc=1] \eTD
+	% 	\bTD[nc=15] \bi Rp. \eTD
+	% \eTR
 
-	\bTR\bTD[height=42mm] {\switchtobodyfont[10pt] \field[df_rp]} \eTD\eTR 
+	% \bTR\bTD[height=42mm] {\switchtobodyfont[10pt] \field[df_rp]} \eTD\eTR 
 
-	\bTR\bTD\eTD\bTD[nc=15] \bi Dx. \eTD\eTR
-	\bTR\bTD[height=42mm] {\switchtobodyfont[10pt] \field[df_dx]} \eTD\eTR 
+	\bTR\bTD\eTD\bTD[nc=15] \bi Rp. \eTD\eTR
+	\bTR\bTD[height=84mm] {\switchtobodyfont[10pt] \field[df_dx]} \eTD\eTR 
 		
-	\bTR[height=12mm] \eTR
+	\bTR[height=18mm] \eTR
 	
 	\bTR 
 		\bTD[nc=3] \bf FECHA:\eTD
