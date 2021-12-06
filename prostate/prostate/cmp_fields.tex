@@ -14,7 +14,7 @@
   
   \setupfield[sf_number_short][width=10mm]
   \setupfield[sf_popup_medium][width=30mm]
-  \setupfield[sf_popup_short][width=15mm]
+  \setupfield[sf_popup_short][width=15mm, clickin=JS(fHelv{9})]
   
   % --------------------------- RENAMED ---------------------------------------------
   
@@ -24,9 +24,10 @@
   
   \setupfield[sf_DEMOGRAPHIC_SMALL][width=20mm]
   \setupfield[sf_DEMOGRAPHIC_MEDIUM][width=35mm]
+  \setupfield[sf_DEMOGRAPHIC_POPUP][width=35mm, clickin=JS(fHelv{9})]
 
   \setupfield[sf_LATERAL][width=20mm]
-  \setupfield[sf_TNME][width=15mm]
+  \setupfield[sf_TNME][width=15mm, clickin=JS(fHelv{7})]
   \setupfield[sf_COMPLICATIONS][width=110mm]
   \setupfield[sf_HISTORY][height=34.5mm, width=170mm]
   \setupfield[sf_COMMENT][width=90mm]
@@ -36,10 +37,13 @@
   \setupfield[sf_DX_GLEASON_ENTRY][width=5mm, align=middle]
   \setupfield[sf_DX_GLEASON_OUTPUT][width=5mm, align=middle, option={readonly}]
 
-  \setupfield[sf_TECHNIQUE][height=6.5mm, width=20mm, toffset=0mm]
-  \setupfield[sf_START_DATE][height=6.5mm, width=20mm, toffset=0mm]
+  \setupfield[sf_TECHNIQUE][height=6.5mm, width=20mm, toffset=0mm, clickin=JS(fHelv{11})]
+  \setupfield[sf_START_DATE][height=6.5mm, width=20mm, toffset=0mm, clickin=JS(fMakeDate)]
   \setupfield[sf_RXNAME][height=6.5mm, width=34mm, toffset=0mm]
   
+  \setupfield[sf_RTP_TO_ZONE][width=30mm, clickin=JS(fHelv{9})]
+  \setupfield[sf_RTP_TO_TYPE][width=20mm, clickin=JS(fHelv{9})]
+
   \setupfield[sf_popup_TO_zona][width=30mm]
   \setupfield[sf_popup_VM_tipo][width=20mm]
   \setupfield[sf_popup_LN_tipo][width=20mm]
@@ -61,27 +65,6 @@
 
   
   % ============================================================================
-  
-  
-  
-  %\setupfield[PopupL]		[height=4.5mm, 	width=40mm, 	frame=off, 	offset=0mm, align=flushleft]
-  %\setupfield[PopupM]		[height=4.5mm, 	width=30mm, 	frame=off, 	offset=0mm, align=flushleft]
-  %\setupfield[PopupS]		[height=4.5mm, 	width=9mm, 		frame=off, 	offset=0mm, align=flushleft]
-  %\setupfield[NumberS]	[height=4.5mm, 	width=9mm,  	frame=off, 	offset=0mm, align=flushleft,  							  afterkey=JS(textOnlyNumbers)]
-  %\setupfield[NumberSH]	[height=4.5mm, 	width=9mm, 		frame=off, 	offset=0mm, align=flushleft,  option=hidden, 			  afterkey=JS(textOnlyNumbers)]
-  %\setupfield[LabelSR]    [height=4.5mm, 	width=20mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
-  %\setupfield[LabelSR2]   [height=4.5mm, 	width=15mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
-  %\setupfield[LabelSH]	[height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushright, option=hidden]
-  %\setupfield[LabelSHC]   [height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushleft,  option=hidden]	
-  %\setupfield[ImageBox]	[height=39.4mm, width=48.2mm, 	frame=on, 	offset=0mm, clickout=JS(importImage)]
-  
-  %\setupfield[PopupSOp1]	[height=4.5mm, 	width=10mm, 	frame=off, 	offset=0mm, align=flushleft, focusin=JS(initFrac), focusout=JS(selectFrac)]
-  %\setupfield[NumberSOp1]	[height=4.5mm, 	width=10mm,  	frame=off, 	offset=0mm, align=flushleft,                       focusout=JS(selectFrac), afterkey=JS(textOnlyNumbers)]
-  %\setupfield[PopupMOp1]	[height=4.5mm, 	width=30mm, 	frame=off, 	offset=0mm, align=flushleft, focusout=JS(controlPoints)]
-  
-  
-  
-  
   \definefield[df_NAME][line][sf_DEMOGRAPHIC_MEDIUM]
   \definefield[df_LAST_NAME][line][sf_DEMOGRAPHIC_MEDIUM]
 
@@ -92,7 +75,7 @@
   \definefield[df_AGE][line][sf_DEMOGRAPHIC_SMALL]
   \definefield[df_HOME][line][sf_DEMOGRAPHIC_MEDIUM]
   
-  \definefield[df_REGION][combo][sf_DEMOGRAPHIC_MEDIUM][
+  \definefield[df_REGION][combo][sf_DEMOGRAPHIC_POPUP][
     , Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, 
     Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, 
     Mendoza, Misiones, Neuquén, Río Negro, Salta, San Jua, San Luis, 
@@ -101,7 +84,7 @@
   \definefield[df_WORK][line][sf_DEMOGRAPHIC_MEDIUM]
   \definefield[df_PHONE][line][sf_DEMOGRAPHIC_MEDIUM]
 
-  \definefield[df_SOCIAL][combo][sf_DEMOGRAPHIC_MEDIUM][
+  \definefield[df_SOCIAL][combo][sf_DEMOGRAPHIC_POPUP][
     , ACA SALUD, AMEPBA, CAJA FORENSE, DIBA, 
     GALEANO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUSS, 
     MEDIFE, OMINT, OSBA, OSDE, OSECAC, OSPAT, OSPE, UP,
@@ -147,8 +130,8 @@
   
   
   % --------------------------- PTV VM ---------------------------------------------
-  \definefield[df_Z1_zona][combo][sf_popup_TO_zona][, PTV_VMI, PTV_VMD, PTV_VMI_VMD] 
-  \definefield[df_Z1_tipo][popup][sf_popup_VM_tipo][, Normo, Hipo, Otro]
+  \definefield[df_Z1_zona][combo][sf_RTP_TO_ZONE][, PTV_VMI, PTV_VMD, PTV_VMI_VMD] 
+  \definefield[df_Z1_tipo][popup][sf_RTP_TO_TYPE][, Normo, Hipo, Otro]
   \definefield[df_Z1_FX_1][line][sf_line_TTO_15]
   \definefield[df_Z1_FX_2][line][sf_line_TTO_05][=]
   \definefield[df_Z1_FX_3][line][sf_line_TTO_15]
@@ -177,8 +160,8 @@
   % ============================================================================
   
   % --------------------------- PTV LN ---------------------------------------------
-  \definefield[df_Z2_zona][combo][sf_popup_TO_zona]
-  \definefield[df_Z2_tipo][combo][sf_popup_LN_tipo][, Normo, Hipo, Otro]
+  \definefield[df_Z2_zona][combo][sf_RTP_TO_ZONE]
+  \definefield[df_Z2_tipo][combo][sf_RTP_TO_TYPE][, Normo, Hipo, Otro]
   \definefield[df_Z2_FX_1][line][sf_line_TTO_15]
   \definefield[df_Z2_FX_2][line][sf_line_TTO_05][=]
   \definefield[df_Z2_FX_3][line][sf_line_TTO_15]
@@ -207,8 +190,8 @@
   % ============================================================================
   
   % --------------------------- PTV CMI ---------------------------------------------
-  \definefield[df_Z3_zona][combo][sf_popup_TO_zona]
-  \definefield[df_Z3_tipo][combo][sf_popup_CM_tipo][, Normo, Hipo, Otro]
+  \definefield[df_Z3_zona][combo][sf_RTP_TO_ZONE]
+  \definefield[df_Z3_tipo][combo][sf_RTP_TO_TYPE][, Normo, Hipo, Otro]
   \definefield[df_Z3_FX_1][line][sf_line_TTO_15]
   \definefield[df_Z3_FX_2][line][sf_line_TTO_05][=]
   \definefield[df_Z3_FX_3][line][sf_line_TTO_15]
@@ -237,8 +220,8 @@
   % ============================================================================
   
   % --------------------------- PTV BOOST --------------------------------------
-  \definefield[df_Z4_zona][combo][sf_popup_TO_zona]
-  \definefield[df_Z4_tipo][combo][sf_popup_BT_tipo][, Normo, Hipo, Otro]
+  \definefield[df_Z4_zona][combo][sf_RTP_TO_ZONE]
+  \definefield[df_Z4_tipo][combo][sf_RTP_TO_TYPE][, Normo, Hipo, Otro]
   \definefield[df_Z4_FX_1][line][sf_line_TTO_15]
   \definefield[df_Z4_FX_2][line][sf_line_TTO_05][=]
   \definefield[df_Z4_FX_3][line][sf_line_TTO_15]
