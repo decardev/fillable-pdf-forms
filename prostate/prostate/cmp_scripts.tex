@@ -4,19 +4,149 @@
   \product prostate
 
 	\startJSpreamble {INITIAL} used now
-		function fHelv(num){
-			const field = this.event.target;
+		
+		const DATA = {
+			PTV: [
+				{
+					name: "PTV_PR",
+					mode: [
+						{
+							name: "Normo",
+							spec: { 
+								dose: 7440,
+								fxrt: 240, 
+								fxnm: 31, 
+							},
+							dvh: ["V7440 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+						}	
+					]
+				}, 
+				{
+					name: "PTV_VS",
+					mode: [
+						{
+							name: "Normo", 
+							spec: { 
+								dose: 5580, 
+								fxrt: 180, 
+								fxnm: 31
+							},
+							dvh: ["V5580 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+						} 
+					]
+				},  
+				{
+					name: "PTV_VS",
+					mode: [
+						{
+							name: "Normo",
+							spec: { 
+								dose: 5270,
+								fxrt: 170, 
+								fxnm: 31 
+							},
+							dvh: ["V5270 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+						}	
+					]
+				}, 
+				{
+					name: "PTV_LN+",
+					mode: [
+						{
+							name: "Normo", 
+							spec: {
+								dose: 5580,
+								fxrt: 180,
+								fxnm: 31,
+							},
+							dvh: ["V5580 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+						} 
+					]
+				}
+			],
+			OAR: {
+				mode: [
+					{
+						name: "Normo",
+						spec: [
+							{ 
+								name: "CABEZAS FEMORALES", 
+								dvh: ["V5000 cGy < 5\% (10\%)", "DMax < 5200 cGy", ""] 
+							},
+							{ 
+								name: "RECTO", 
+								dvh: ["V7000 cGy < 10\% (20\%)", "V4000 cGy < 45\%", "V5300 cGy < 35\%"]        
+							},
+							{	
+								name: "VEJIGA", 
+								dvh: ["V7000 cGy < 10\% (20\%)", "V6100 cGy < 53\%", "V5700 cGy < 50\%"]
+							}, 
+							{
+								name: "BULBO", 
+								dvh: ["V4400 cGy < 50\%", "DMean < 5000 cGy", ""]
+							},
+							{
+								name: "INTESTINO", 
+								dvh: ["V5000 cGy < 1 cc", "V3900 cGy < 195 cc", "V4500 cGy < 150 cc"]
+							},
+							{
+								name: "ANO", 
+								dvh: ["V3100 cGy < 60\%", "V3500 cGy < 40\%", ""]  
+							}, 
+							{
+								name: "PENE",
+								dvh: ["V3000 cGy < 1 cc", "", ""]
+							},
+							{
+								name: "TESTICULOS",
+								dvh: ["V300 cGy < 0.03 cc", "", ""]
+							}
+						]
+					}
+				]
+			}
+		}
+			
+		function fHelv(num, field = this.event.target){
 			field.textFont = font.Helv;
 			field.textSize = num;
-		}
+		}		
 		
+		function fPopupFocus(){
+			this.event.target.setFocus();
+		}
+
+
+		function fOARPopup(){
+			var field = getField("df_OAR_LIST");
+	
+			field.setItems([...DATA.OAR.mode.map(item => item.name), " "]);
+			field.value = " ";
+			fHelv(9, field);
+		}
+
+		function fRegOAR(){
+			for (var i=0; i <= 8; i++){
+				var name = "df_OAR" + i;
+				getField(name + "_NAME").value = DATA.OAR.mode[0].spec[i].name;
+				for (var j=0; j<=2; j++){
+					getField(name + "_DVH" + j).value = DATA.OAR.mode[0].spec[i].dvh[j];
+				}
+			}
+		}
+
+
 		function fMakeDate(name){
 			const field = getField(name);
 			const cFormat = "dd/mm/yyyy";
 			field.setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
 			field.setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
 		}
+		
 		fMakeDate("df_START_DATE");
+		fOARPopup();
+		fRegOAR();
+
 	\stopJSpreamble
 
 \stopcomponent
