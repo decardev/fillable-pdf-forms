@@ -37,30 +37,23 @@
   \setupfield[sf_DX_GLEASON_ENTRY][width=5mm, align=middle]
   \setupfield[sf_DX_GLEASON_OUTPUT][width=5mm, align=middle, option={readonly}]
 
-  \setupfield[sf_TECHNIQUE][width=20mm, toffset=0mm, clickin=JS(fHelv{11})]
-  \setupfield[sf_START_DATE][width=20mm, toffset=0mm, clickin=JS(fMakeDate)]
+  \setupfield[sf_TECHNIQUE][width=20mm, toffset=0mm, clickin=JS(fHelv{9})]
+  \setupfield[sf_START_DATE][width=20mm, toffset=0mm]
   \setupfield[sf_RTMODE][height=6.5mm, width=34mm, toffset=0mm]
   
-  \setupfield[sf_RTP_TO_ZONE][width=30mm, clickin=JS(fHelv{9})]
-  \setupfield[sf_RTP_TO_TYPE][width=20mm, clickin=JS(fHelv{9})]
-
-  \setupfield[sf_popup_TO_zona][width=30mm]
-  \setupfield[sf_popup_VM_tipo][width=20mm]
-  \setupfield[sf_popup_LN_tipo][width=20mm]
-  \setupfield[sf_popup_CM_tipo][width=20mm]
-  \setupfield[sf_popup_BT_tipo][width=20mm]
+  \setupfield[sf_PTV0_ZONE][width=50mm, focusin=JS(setPTVops{0}), focusout=JS(setPTVdvh{0})]
+  \setupfield[sf_PTV1_ZONE][width=50mm, focusin=JS(setPTVops{1}), focusout=JS(setPTVdvh{1})]
+  \setupfield[sf_PTV2_ZONE][width=50mm, focusin=JS(setPTVops{2}), focusout=JS(setPTVdvh{2})]
+  \setupfield[sf_PTV3_ZONE][width=50mm, focusin=JS(setPTVops{3}), focusout=JS(setPTVdvh{3})]
   
-
-
-
-  \setupfield[sf_line_TTO_05][width=5mm, align=middle] % option={hidden, readonly}]
-  \setupfield[sf_line_TTO_10][width=10mm] % option={hidden, readonly}]
-  \setupfield[sf_line_TTO_15][width=15mm] % option={hidden, readonly}]
+  \setupfield[sf_line_TTO_05][width=5mm, align=middle] 
+  \setupfield[sf_line_TTO_10][width=10mm] 
+  \setupfield[sf_line_TTO_15][width=15mm] 
   
-  \setupfield[sf_line_OAR_45][width=45mm] %option={readonly}]
-  \setupfield[sf_line_OAR_35][width=35mm] %option={readonly}]
+  \setupfield[sf_line_OAR_45][width=45mm] 
+  \setupfield[sf_line_OAR_35][width=35mm] 
   
-  \setupfield[sf_popup_OARs][width=20mm]
+  \setupfield[sf_popup_OARs][width=20mm, focusin=JS(setDVHops), focusout=JS(setOARdvh)]
 
 
   
@@ -130,8 +123,7 @@
   
   
   % ============================================================================
-  \definefield[df_PTV0_ZONE][combo][sf_RTP_TO_ZONE] 
-  \definefield[df_PTV0_MODE][popup][sf_RTP_TO_TYPE]
+  \definefield[df_PTV0_ZONE][combo][sf_PTV0_ZONE] 
   
   \definefield[df_PTV0_DOSE][line][sf_line_TTO_15]
   \definefield[df_PTV0_EQUS][line][sf_line_TTO_05][=]
@@ -153,8 +145,7 @@
   \definefield[df_PTV0_AC4][line][sf_line_TTO_05]
   \definefield[df_PTV0_AC5][line][sf_line_TTO_15]
   
-  \definefield[df_PTV1_ZONE][combo][sf_RTP_TO_ZONE] 
-  \definefield[df_PTV1_MODE][popup][sf_RTP_TO_TYPE]
+  \definefield[df_PTV1_ZONE][combo][sf_PTV1_ZONE] 
   \definefield[df_PTV1_DOSE][line][sf_line_TTO_15]
   \definefield[df_PTV1_FXRT][line][sf_line_TTO_15]
   \definefield[df_PTV1_FXNM][line][sf_line_TTO_15]
@@ -175,8 +166,7 @@
   \definefield[df_PTV1_AC4][line][sf_line_TTO_05]
   \definefield[df_PTV1_AC5][line][sf_line_TTO_15]
 
-  \definefield[df_PTV2_ZONE][combo][sf_RTP_TO_ZONE] 
-  \definefield[df_PTV2_MODE][popup][sf_RTP_TO_TYPE]
+  \definefield[df_PTV2_ZONE][combo][sf_PTV2_ZONE] 
   \definefield[df_PTV2_DOSE][line][sf_line_TTO_15]
   \definefield[df_PTV2_FXRT][line][sf_line_TTO_15]
   \definefield[df_PTV2_FXNM][line][sf_line_TTO_15]
@@ -197,8 +187,7 @@
   \definefield[df_PTV2_AC4][line][sf_line_TTO_05]
   \definefield[df_PTV2_AC5][line][sf_line_TTO_15]
   
-  \definefield[df_PTV3_ZONE][combo][sf_RTP_TO_ZONE] 
-  \definefield[df_PTV3_MODE][popup][sf_RTP_TO_TYPE]
+  \definefield[df_PTV3_ZONE][combo][sf_PTV3_ZONE] 
   \definefield[df_PTV3_DOSE][line][sf_line_TTO_15]
   \definefield[df_PTV3_FXRT][line][sf_line_TTO_15]
   \definefield[df_PTV3_FXNM][line][sf_line_TTO_15]
