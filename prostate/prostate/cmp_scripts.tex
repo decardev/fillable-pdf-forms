@@ -10,29 +10,33 @@
 			[
 				{
 					name: "PTV_PR 31x240",
-					spec: { dose: 7440,fxrt: 240, fxnm: 31 },
-					dvh: ["V7440 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+					fract: ["7440 cGy", "=", "240 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V7440 cGy", "\u2265", "95\%"],
+					acept: []
 				}
 			],
 			[
 				{
-					name: "PTV_VS 31x180",
-					spec: { dose: 5580, fxrt: 180, fxnm: 31 },
-					dvh: ["V5580 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+					name: "PTV_LN 31x180",
+					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5580 cGy", "\u2265", "95\%"],
+					acept: []
 				}
 			],
 			[
 				{
 					name: "PTV_VS 31x170",
-					spec: { dose: 5270,fxrt: 170, fxnm: 31 },
-					dvh: ["V5270 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+					fract: ["5270 cGy", "=", "170 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5270 cGy", "\u2265", "95\%"],
+					acept: []
 				}
 			],
 			[
 				{
 					name: "PTV_LN+ 31x180",
-					spec: { dose: 5580, fxrt: 180, fxnm: 31 },
-					dvh: ["V5580 cGy", "\u2265", "95\%", "", "", "", "", "", ""],
+					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5580 cGy", "\u2265", "95\%"],
+					acept: []
 				}
 			]
 		]	
@@ -40,35 +44,35 @@
 		const OAR = [
 			{ 
 				name: "CABEZAS FEMORALES", 
-				dvh: [" ", "V5000 cGy < 5\% (10\%)", "DMax < 5200 cGy"] 
+				dvh: ["V5000 cGy < 5\% (10\%)", "DMax < 5200 cGy"] 
 			},
 			{ 
 				name: "RECTO", 
-				dvh: [" ", "V7000 cGy < 10\% (20\%)", "V4000 cGy < 45\%", "V5300 cGy < 35\%"]        
+				dvh: ["V7000 cGy < 10\% (20\%)", "V4000 cGy < 45\%", "V5300 cGy < 35\%"]        
 			},
 			{	
 				name: "VEJIGA", 
-				dvh: [" ", "V7000 cGy < 10\% (20\%)", "V6100 cGy < 53\%", "V5700 cGy < 50\%"]
+				dvh: ["V7000 cGy < 10\% (20\%)", "V6100 cGy < 53\%", "V5700 cGy < 50\%"]
 			}, 
 			{
 				name: "BULBO", 
-				dvh: [" ", "V4400 cGy < 50\%", "DMean < 5000 cGy"]
+				dvh: ["V4400 cGy < 50\%", "DMean < 5000 cGy"]
 			},
 			{
 				name: "INTESTINO", 
-				dvh: [" ", "V5000 cGy < 1 cc", "V3900 cGy < 195 cc", "V4500 cGy < 150 cc"]
+				dvh: ["V5000 cGy < 1 cc", "V3900 cGy < 195 cc", "V4500 cGy < 150 cc"]
 			},
 			{
 				name: "ANO", 
-				dvh: [" ", "V3100 cGy < 60\%", "V3500 cGy < 40\%"]  
+				dvh: ["V3100 cGy < 60\%", "V3500 cGy < 40\%"]  
 			}, 
 			{
 				name: "PENE",
-				dvh: [" ", "V3000 cGy < 1 cc"]
+				dvh: ["V3000 cGy < 1 cc"]
 			},
 			{
 				name: "TESTICULOS",
-				dvh: [" ", "V300 cGy < 0.03 cc"]
+				dvh: ["V300 cGy < 0.03 cc"]
 			}
 		]
 
@@ -76,101 +80,192 @@
 			{
 				name: "Normo",
 				orgs: [
-					{ oar: 0, ops: [1, 2] },
-					{ oar: 1, ops: [1] },
-					{ oar: 2, ops: [1] },
-					{ oar: 3, ops: [1] },
-					{ oar: 4, ops: [1] },
-					{ oar: 5, ops: [1] },
-					{ oar: 6, ops: [1] },
-					{ oar: 7, ops: [1] },
-					{ oar: 8, ops: [1] }
+					{ oar: 0, ops: [0, 1] },
+					{ oar: 1, ops: [0] },
+					{ oar: 2, ops: [0] },
+					{ oar: 3, ops: [0] },
+					{ oar: 4, ops: [0] },
+					{ oar: 5, ops: [0] },
+					{ oar: 6, ops: [0] },
+					{ oar: 7, ops: [0] },
+					{ oar: 8, ops: [0] }
 				]
 			}
 		]
+
+		const RTX = [
+			{
+				name: "NORMO: PTV",
+				ptv: [0],
+				dvh: 0
+			},
+			{
+				name: "NORMO: PTV + VS",
+				ptv: [0, 0],
+				dvh: 0
+			},
+			{
+				name: "NORMO: PTV + VS + LN",
+				ptv: [0, 0, 0],
+				dvh: 0
+			},
+			{
+				name: "NORMO: PTV + VS + LN + LN+",
+				ptv: [0, 0, 0, 0],
+				dvh: 0
+			},
+		]
 			
-		function fHelv(num, field = this.event.target){
+		//==================================================================================================================
+		function setFont(size, field = this.event.target){
 			field.textFont = font.Helv;
-			field.textSize = num;
-		}
-
-		function setDVHops(){
-			const field = this.event.target;
-			field.setItems(DVH.map(item => item.name));
-			field.value = " ";
-			fHelv(9, field);
-		}
-
-		function resetOARdvh(){
-			for (var i=0; i <= 8; i++){
-				getField("df_OAR" + i + "_NAME").value = "";
-				for (var j=0; j <= 2; j++){
-					var field = getField("df_OAR" + i + "_DVH" + j)
-					field.value = "";
-					field.clearItems();
-				}
-			}
-		}
-
-		function resetPTVdvh(index){
-			var name = "df_PTV" + index;
-			getField(name + "_FXRT" ).value = "";
-			getField(name + "_EQUS" ).value = "";
-			getField(name + "_PROD" ).value = "";
-			for (var i=0; i <= 5; i++){
-				getField(name + "_ID" + i).value = "";
-				getField(name + "_AC" + i).value = "";
-			}
-		}
-
-		function setOARdvh(){
-			resetOARdvh();
-			const sField = this.event.target;
-			const mode = sField.currentValueIndices;
-			
-			DVH[mode].orgs.forEach( (org, i) => {
-				getField("df_OAR" + i + "_NAME").value = OAR[org.oar].name;
-				
-				for (var j=0; j <= 2; j++){
-					var tField = getField("df_OAR" + i + "_DVH" + j);
-					tField.setItems(OAR[org.oar].dvh);
-					fHelv(7, tField);
-				}				
-
-				org.ops.forEach( (op, j) => {
-					var tField = getField("df_OAR" + i + "_DVH" + j);
-					tField.currentValueIndices = op;
-				})
-			})
+			field.textSize = size;
 		}
 		
-
-		function setPTVdvh(index){
-			resetPTVdvh(index);
-
-			// const field = getField(name + "_ZONE" + index);
-			// field.setItems(PTV[index].map(item => item.name));
-			// fHelv(9, field);
+		function setField({name = this.event.target, value = "", size = 9, currentValueIndices = null, clear = false}){
+			
+			const field = (typeof name === "string")? getField(name): name;
+			if (Array.isArray(value)) { 
+				field.setItems(value);
+				field.value = "";
+			} else { field.value = value}
+			
+			setFont(size, field);
+			
+			if (currentValueIndices != null) {field.currentValueIndices = currentValueIndices}
+			if (clear) { field.clearItems() }
+		}
+		
+		function setAge(){
+			const d = getField("df_BIRTH_D").value;
+			const m = getField("df_BIRTH_M").value;
+			const y = getField("df_BIRTH_Y").value;
+			
+			const date = new Date(y, m-1, d);
+			const age = ~~((Date.now() - date) / (31557600000));
+			
+			const vd = (date.getDate() == d) && (Date.now() > d);
+			const vm = date.getMonth() == m-1;
+			const vy = date.getFullYear() == y;			
+			
+			const value = (vd && vm && vy)? String(age) + " a\u00f1os" : "Fecha Invalida";
+			
+			setField({name:"df_AGE", value:value, size:9});
 		}
 
-		function setPTVops(index){
-			const field = this.event.target;
-			field.setItems(PTV[index].map(item => item.name));
-			field.value = " ";
-			fHelv(9, field);
-		}
-
-
-		function fMakeDate(name){
-			const field = getField(name);
+		function setDateFormat(){
+			const field  = this.event.target
 			const cFormat = "dd/mm/yyyy";
 			field.setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
 			field.setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
 		}
+		//==================================================================================================================
+
+		//==================================================================================================================
 		
-		fMakeDate("df_START_DATE");
+		function setGleason(){
+			const value = getField("df_DX_GLEASON_1").value + getField("df_DX_GLEASON_2").value;
+			setField({name:"df_DX_GLEASON_OUTPUT", value:value, size:9});
+		}
+
+
+
+		//==================================================================================================================
+
+		//==================================================================================================================
+		function resetRTX(){
+			[0, 1, 2, 3].forEach( el => {
+				resetPTVdvh(el);
+				setField({name:"df_PTV" + el + "_ZONE", value:"", size:9, clear:true});
+			});
+			resetOARdvh();
+		}
+
+		function setRTXops(){
+			setField({name:this.event.target, value:RTX.map(item => item.name), size:7});
+		}
+
+		function setRTXdvh(){
+			resetRTX();
+
+			const mode = this.event.target.currentValueIndices;
+			RTX[mode].ptv.forEach( (el, ind) => {
+				setField({name:"df_PTV" + ind + "_ZONE", value:PTV[ind][el].name, size:9});
+				setPTVdvh(ind, el);
+			});
+			setField({name:"df_OAR_OPS", value:DVH[RTX[mode].dvh].name, size:9});
+			setOARdvh(RTX[mode].dvh);
+		}
+		//==================================================================================================================
+
+		//==================================================================================================================
+		function resetPTVdvh(num){
+			var name = "df_PTV" + num;
+			[0, 1, 2, 3, 4].forEach(el => setField({name:name + "_FX" + el, value:""}));
+			[0, 1, 2, 3, 4, 5].forEach(el => { 
+				setField({name:name + "_ID" + el, value:"", size:7});
+				setField({name:name + "_AC" + el, value:"", size:7});
+			});
+		}
+
+		function setPTVops(num){
+			setField({name:this.event.target, value:PTV[num].map(item => item.name), size:9});
+		}
+
+		function setPTVdvh(num, mode = this.event.target.currentValueIndices){
+			resetPTVdvh(num);
+			
+			const name = "df_PTV" + num;
+
+			PTV[num][mode].fract.forEach((val, ind) => setField({name:name + "_FX" + ind, value:val, size:7}));
+			PTV[num][mode].ideal.forEach((val, ind) => setField({name:name + "_ID" + ind, value:val, size:7}));
+			PTV[num][mode].acept.forEach((val, ind) => setField({name:name + "_AC" + ind, value:val, size:7}));
+		}
+		//==================================================================================================================
+
+		//==================================================================================================================
+		function resetOARdvh(){
+			for (var i=0; i <= 8; i++){
+				setField({name:"df_OAR" + i + "_NAME", value:"", size:7, clear:true});
+				[0, 1, 2].forEach( el => setField({name:"df_OAR" + i + "_DVH" + el, value:"", size:7, clear:true}) );
+			}
+		}
+
+		function setOARops(){
+			const field = this.event.target;
+			field.setItems(DVH.map(item => item.name));
+			field.value = "";
+			setFont(9, field);
+		}
+
+		function setOARdvh(mode = this.event.target.currentValueIndices){
+			resetOARdvh();
+			
+			DVH[mode].orgs.forEach( (org, i) => {
+				setField({name: "df_OAR" + i + "_NAME", value: OAR.map(el => el.name), size: 9, currentValueIndices: org.oar});
+				[0, 1, 2].forEach(el => {
+					var op = (el < org.ops.length)? org.ops[el] : null; 
+					setField({name:"df_OAR" + i + "_DVH" + el, value:OAR[org.oar].dvh, size:7, currentValueIndices:op});
+				})
+			})
+		}
+		//==================================================================================================================
+
+		//==================================================================================================================
+		function resetORGdvh(num){
+			[0, 1, 2].forEach( el => setField({name:"df_OAR" + num + "_DVH" + el, value:"", size:7, clear:true}) );
+		}
 		
-		// fRegOAR();
+		function setORGops(){
+			setField({name:this.event.target, value:OAR.map(el => el.name), size:9});
+		}
+
+		function setORGdvh(num, org = this.event.target.currentValueIndices){
+			resetORGdvh(num);
+		
+			[0, 1, 2].forEach( el => setField({name:"df_OAR" + num + "_DVH" + el, value:OAR[org].dvh, size:7}) );
+		}
+		//==================================================================================================================
 
 	\stopJSpreamble
 

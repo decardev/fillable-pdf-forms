@@ -31,8 +31,12 @@
 		\bTR 
 		% {\tf\switchtobodyfont[5pt] (dd/mm/yyyy)} 
 			\bTD[nc=6] \bf Nacimiento:\eTD
-			\bTD[nc=7] \field[df_BIRTH] \eTD
-			\bTD[nc=1] \eTD
+			\bTD[nc=1] \field[df_BIRTH_D] \eTD
+			\bTD[nc=1, align=center] /\eTD
+			\bTD[nc=1] \field[df_BIRTH_M] \eTD
+			\bTD[nc=1, align=center] /\eTD
+			\bTD[nc=2] \field[df_BIRTH_Y] \eTD
+			\bTD[nc=2] \eTD
 			\bTD[nc=4] \bf Edad: \eTD
 			\bTD[nc=7] \field[df_AGE] \eTD
 		\eTR
@@ -85,19 +89,18 @@
 			\bTD[nc=1] \field[df_DX_GLEASON_2] \eTD
 			\bTD[nc=1, align=middle] = \eTD
 			\bTD[nc=1] \field[df_DX_GLEASON_OUTPUT] \eTD
-			\bTD[nc=3] \eTD
+			\bTD[nc=4] \eTD
 			\bTD[nc=2] \bf TNM: \eTD
 			\bTD[nc=3] \field[df_TNM_T] \eTD
 			\bTD[nc=3] \field[df_TNM_N] \eTD
 			\bTD[nc=3] \field[df_TNM_M] \eTD
-			\bTD[nc=1] \eTD
 			\bTD[nc=1] \bf E: \eTD
 			\bTD[nc=3] \field[df_TNM_E] \eTD
 		\eTR
 
 		\bTR 
 			\bTD[nc=4] \bf Karnofsky: \eTD
-			\bTD[nc=2] \field[df_KARNOFSKY] \eTD				
+			\bTD[nc=2] \field[df_DX_KARNOFSKY] \eTD				
 			\bTD[nc=1] \eTD
 			\bTD[nc=5] \bf Comorbilidades: \eTD
 			\bTD[nc=22] \field[df_COMPLICATIONS] \eTD
@@ -120,21 +123,12 @@
 			\bTD[nc=4] \field[df_START_DATE]\eTD
 		\eTR
 
-		% % \bTR[topframe=on, rulethickness=0.2mm]	
-		% % 	\bTD[nc=4, nr=2] \eTD
-		% % 	\bTD[nc=2, nr=2, align=lohi] \tfb \bf RT: \eTD 
-		% % 	\bTD[nc=4, nr=2, align=lohi] \field[df_TECHNIQUE]\eTD
-		% % 	\bTD[nc=3, nr=2, align=lohi] \tfb \bf FECHA: \eTD
-		% % 	\bTD[nc=4, nr=2, align=lohi] \field[df_START_DATE]\eTD
-		% % 	\bTD[nc=4, nr=2, align=lohi] \tfb \bf DVH: \eTD
-		% % 	\bTD[nc=7, nr=2, align=lohi] \field[df_RTMODE]\eTD
-		% % 	\bTD[nc=4, nr=2, align=lohi] \eTD
-		% % \eTR
-
 		\bTR \eTR 
 
 		\bTR 
-			\bTD[nc=15] \eTD
+			\bTD[nc=3] \eTD	
+			\bTD[nc=10] \field[df_RTX_OPS] \eTD
+			\bTD[nc=2] \eTD
 			\bTD[nc=7, align=middle] \bf IDEAL \eTD
 			\bTD[nc=2] \eTD
 			\bTD[nc=7, align=middle] \bf ACEPTABLE \eTD
@@ -157,11 +151,11 @@
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_PTV0_DOSE] \eTD
-			\bTD[nc=1] \field[df_PTV0_EQUS] \eTD
-			\bTD[nc=3] \field[df_PTV0_FXRT] \eTD
-			\bTD[nc=1] \field[df_PTV0_PROD] \eTD
-			\bTD[nc=2] \field[df_PTV0_FXNM] \eTD
+			\bTD[nc=3] \field[df_PTV0_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV0_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV0_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV0_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV0_FX4] \eTD
 			\bTD[nc=2] \eTD
 			\bTD[nc=3] \field[df_PTV0_ID3] \eTD
 			\bTD[nc=1] \field[df_PTV0_ID4] \eTD
@@ -191,11 +185,11 @@
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_PTV1_DOSE] \eTD
-			\bTD[nc=1] \field[df_PTV1_EQUS] \eTD
-			\bTD[nc=3] \field[df_PTV1_FXRT] \eTD
-			\bTD[nc=1] \field[df_PTV1_PROD] \eTD
-			\bTD[nc=2] \field[df_PTV1_FXNM] \eTD
+			\bTD[nc=3] \field[df_PTV1_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV1_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV1_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV1_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV1_FX4] \eTD
 			\bTD[nc=2] \eTD
 			\bTD[nc=3] \field[df_PTV1_ID3] \eTD
 			\bTD[nc=1] \field[df_PTV1_ID4] \eTD
@@ -225,11 +219,11 @@
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_PTV2_DOSE] \eTD
-			\bTD[nc=1] \field[df_PTV2_EQUS] \eTD
-			\bTD[nc=3] \field[df_PTV2_FXRT] \eTD
-			\bTD[nc=1] \field[df_PTV2_PROD] \eTD
-			\bTD[nc=2] \field[df_PTV2_FXNM] \eTD
+			\bTD[nc=3] \field[df_PTV2_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV2_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV2_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV2_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV2_FX4] \eTD
 			\bTD[nc=2] \eTD
 			\bTD[nc=3] \field[df_PTV2_ID3] \eTD
 			\bTD[nc=1] \field[df_PTV2_ID4] \eTD
@@ -259,11 +253,11 @@
 
 		\bTR 
 			\bTD[nc=3] \eTD
-			\bTD[nc=3] \field[df_PTV3_DOSE] \eTD
-			\bTD[nc=1] \field[df_PTV3_EQUS] \eTD
-			\bTD[nc=3] \field[df_PTV3_FXRT] \eTD
-			\bTD[nc=1] \field[df_PTV3_PROD] \eTD
-			\bTD[nc=2] \field[df_PTV3_FXNM] \eTD
+			\bTD[nc=3] \field[df_PTV3_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV3_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV3_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV3_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV3_FX4] \eTD
 			\bTD[nc=2] \eTD
 			\bTD[nc=3] \field[df_PTV3_ID3] \eTD
 			\bTD[nc=1] \field[df_PTV3_ID4] \eTD
@@ -285,8 +279,8 @@
 
 		\bTR 
 			\bTD[nc=7] \eTD
-			\bTD[nc=19, align=middle] \bf Restricciones a Órganos Recomendadas (NSABP B-51 / RTOG: 1304 ): \eTD
-			\bTD[nc=7] \field[df_OAR_LIST] \eTD
+			\bTD[nc=19, align=middle] \bf Restricciones a Órganos Recomendadas (NSABP B-51 / RTOG: 1304 ) \eTD
+			\bTD[nc=7] \field[df_OAR_OPS] \eTD
 		\eTR
 		
 		\bTR 
