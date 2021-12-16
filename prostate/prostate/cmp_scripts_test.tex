@@ -1,11 +1,10 @@
 % !TeX root = ./prostate.tex
 
-\startcomponent cmp_scripts
+\startcomponent cmp_scripts_test
   \product prostate
 
 	\startJSpreamble {INITIAL} used now
 		
-
 		const PTV = [
 			[
 				{
@@ -126,9 +125,20 @@
 			field.textSize = size;
 		}
 		
-		function setField({name = this.event.target, value = "", size = 9, currentValueIndices = null, clear = false}){
+		function setField(name = this.event.target, value = "", size = 9, currentValueIndices = null){
 			
+
+
+
 			const field = (typeof name === "string")? getField(name): name;
+			const fName = (typeof name === "string")? name: name.name;
+
+			console.println("Setting field: " + fName);
+			console.println("With value: " + value); + 
+			console.println("With size: " + size);
+			console.println("In CVI: " + currentValueIndices);
+			
+			
 			if (Array.isArray(value)) { 
 				field.setItems(value);
 				field.value = "";
@@ -136,8 +146,15 @@
 			
 			setFont(size, field);
 			
-			if (currentValueIndices != null) {field.currentValueIndices = currentValueIndices}
-			if (clear) { field.clearItems() }
+
+			if (currentValueIndices != null) {
+				if (currentValueIndices == "clear") { field.clearItems() }
+				else { field.currentValueIndices = currentValueIndices }
+			}
+		}
+
+		function setFocus(){
+			this.event.target.setFocus();
 		}
 		
 		function setAge(){
@@ -154,7 +171,7 @@
 			
 			const value = (vd && vm && vy)? String(age) + " a\u00f1os" : "Fecha Invalida";
 			
-			setField({name:"df_AGE", value:value, size:9});
+			setField("df_AGE", value, 9);
 		}
 
 		function setDateFormat(){
@@ -169,24 +186,21 @@
 		
 		function setGleason(){
 			const value = getField("df_DX_GLEASON_1").value + getField("df_DX_GLEASON_2").value;
-			setField({name:"df_DX_GLEASON_OUTPUT", value:value, size:9});
+			setField("df_DX_GLEASON_OUTPUT", value, 9);
 		}
-
-
-
 		//==================================================================================================================
 
 		//==================================================================================================================
 		function resetRTX(){
 			[0, 1, 2, 3].forEach( el => {
 				resetPTVdvh(el);
-				setField({name:"df_PTV" + el + "_ZONE", value:"", size:9, clear:true});
+				setField("df_PTV" + el + "_ZONE", "", 9, "clear");
 			});
 			resetOARdvh();
 		}
 
 		function setRTXops(){
-			setField({name:this.event.target, value:RTX.map(item => item.name), size:7});
+			setField(this.event.target, RTX.map(item => item.name), 7);
 		}
 
 		function setRTXdvh(){
@@ -194,10 +208,10 @@
 
 			const mode = this.event.target.currentValueIndices;
 			RTX[mode].ptv.forEach( (el, ind) => {
-				setField({name:"df_PTV" + ind + "_ZONE", value:PTV[ind][el].name, size:7});
+				setField("df_PTV" + ind + "_ZONE", PTV[ind][el].name, 7);
 				setPTVdvh(ind, el);
 			});
-			setField({name:"df_OAR_OPS", value:DVH[RTX[mode].dvh].name, size:7});
+			setField("df_OAR_OPS", DVH[RTX[mode].dvh].name, 7);
 			setOARdvh(RTX[mode].dvh);
 		}
 		//==================================================================================================================
@@ -205,15 +219,15 @@
 		//==================================================================================================================
 		function resetPTVdvh(num){
 			var name = "df_PTV" + num;
-			[0, 1, 2, 3, 4].forEach(el => setField({name:name + "_FX" + el, value:""}));
+			[0, 1, 2, 3, 4].forEach(el => setField(name + "_FX" + el, ""));
 			[0, 1, 2, 3, 4, 5].forEach(el => { 
-				setField({name:name + "_ID" + el, value:"", size:7});
-				setField({name:name + "_AC" + el, value:"", size:7});
+				setField(name + "_ID" + el, "", 7);
+				setField(name + "_AC" + el, "", 7);
 			});
 		}
 
 		function setPTVops(num){
-			setField({name:this.event.target, value:PTV[num].map(item => item.name), size:9});
+			setField(this.event.target, PTV[num].map(item => item.name), 9);
 		}
 
 		function setPTVdvh(num, mode = this.event.target.currentValueIndices){
@@ -221,24 +235,24 @@
 			
 			const name = "df_PTV" + num;
 
-			PTV[num][mode].fract.forEach((val, ind) => setField({name:name + "_FX" + ind, value:val, size:7}));
-			PTV[num][mode].ideal.forEach((val, ind) => setField({name:name + "_ID" + ind, value:val, size:7}));
-			PTV[num][mode].acept.forEach((val, ind) => setField({name:name + "_AC" + ind, value:val, size:7}));
+			PTV[num][mode].fract.forEach((val, ind) => setField(name + "_FX" + ind, val, 7));
+			PTV[num][mode].ideal.forEach((val, ind) => setField(name + "_ID" + ind, val, 7));
+			PTV[num][mode].acept.forEach((val, ind) => setField(name + "_AC" + ind, val, 7));
 		}
 		//==================================================================================================================
 
 		//==================================================================================================================
 		function resetOARdvh(){
 			for (var i=0; i <= 8; i++){
-				setField({name:"df_OAR" + i + "_NAME", value:"", size:7, clear:true});
-				[0, 1, 2].forEach( el => setField({name:"df_OAR" + i + "_DVH" + el, value:"", size:7, clear:true}) );
+				setField("df_OAR" + i + "_NAME", "", 7, 0, true);
+				[0, 1, 2].forEach( el => setField("df_OAR" + i + "_DVH" + el, "", 7, "clear") );
 			}
 		}
 
 		function setOARops(){
-			const field = this.event.target;
+			var field = this.event.target;
 			field.setItems(DVH.map(item => item.name));
-			field.value = "";
+			// field.value = " ";
 			setFont(9, field);
 		}
 
@@ -246,10 +260,10 @@
 			resetOARdvh();
 			
 			DVH[mode].orgs.forEach( (org, i) => {
-				setField({name: "df_OAR" + i + "_NAME", value: OAR.map(el => el.name), size: 7, currentValueIndices: org.oar});
+				setField("df_OAR" + i + "_NAME", OAR.map(el => el.name), 7, org.oar);
 				[0, 1, 2].forEach(el => {
 					var op = (el < org.ops.length)? org.ops[el] : null; 
-					setField({name:"df_OAR" + i + "_DVH" + el, value:OAR[org.oar].dvh, size:7, currentValueIndices:op});
+					setField("df_OAR" + i + "_DVH" + el, OAR[org.oar].dvh, 7, op);
 				})
 			})
 		}
@@ -257,17 +271,17 @@
 
 		//==================================================================================================================
 		function resetORGdvh(num){
-			[0, 1, 2].forEach( el => setField({name:"df_OAR" + num + "_DVH" + el, value:"", size:7, clear:true}) );
+			[0, 1, 2].forEach( el => setField("df_OAR" + num + "_DVH" + el, "", 7, "clear") );
 		}
 		
 		function setORGops(){
-			setField({name:this.event.target, value:OAR.map(el => el.name), size:9});
+			setField(this.event.target, OAR.map(el => el.name), 9);
 		}
 
 		function setORGdvh(num, org = this.event.target.currentValueIndices){
 			resetORGdvh(num);
 		
-			[0, 1, 2].forEach( el => setField({name:"df_OAR" + num + "_DVH" + el, value:OAR[org].dvh, size:7}) );
+			[0, 1, 2].forEach( el => setField("df_OAR" + num + "_DVH" + el, OAR[org].dvh, 7) );
 		}
 		//==================================================================================================================
 
