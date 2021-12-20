@@ -10,18 +10,18 @@
   \setupfield[sf_text_xlong][width=90mm]
   \setupfield[sf_text_long][width=95mm]
   \setupfield[sf_popup_medium][width=30mm]
-  \setupfield[sf_popup_short][width=15mm, regionin=JS(setFocus), focusin=JS(setFont{9})]
+  \setupfield[sf_popup_short][width=15mm, focusin=JS(setFont{9})]
   
   \setupfield[sf_DEMOGRAPHIC_20][width=20mm]
   \setupfield[sf_DEMOGRAPHIC_35][width=35mm]
-  \setupfield[sf_DEMOGRAPHIC_POPUP][width=35mm, regionin=JS(setFocus), focusin=JS(setFont{9})]
+  \setupfield[sf_DEMOGRAPHIC_POPUP][width=35mm, focusin=JS(setFont{9})]
   
   \setupfield[sf_BIRTH_5][width=5mm, focusout=JS(setAge)]
   \setupfield[sf_BIRTH_10][width=10mm, focusout=JS(setAge)]
   
   \setupfield[sf_TNME][width=15mm, focusin=JS(setFont{7})]
   \setupfield[sf_COMPLICATIONS][width=110mm]
-  \setupfield[sf_HISTORY][height=34.5mm, width=170mm, focusin=JS(setFont{7})]
+  \setupfield[sf_HISTORY][height=34.5mm, width=170mm, focusin=JS(setTextArea{7})]
   \setupfield[sf_COMMENT][width=90mm]
   
   
@@ -217,8 +217,8 @@
   \definefield[df_PTV3_AC5][line][sf_line_TTO_15]
 
   % ============================================================================
-  \definefield[df_OAR_OPS][popup][sf_OAR_OPS]
-  \definefield[df_RTX_OPS][popup][sf_RTX_OPS]
+  \definefield[df_RTX_OPS][combo][sf_RTX_OPS]
+  \definefield[df_OAR_OPS][combo][sf_OAR_OPS]
   
   
   \definefield[df_OAR0_NAME][combo][sf_OAR0_NAME]  
