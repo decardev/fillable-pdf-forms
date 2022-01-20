@@ -1,0 +1,161 @@
+% !TeX root = ./intecnus-prescription.tex
+\mainlanguage[es]
+\setuplayout[topspace=5mm, header=20mm, headerdistance=5mm, backspace=20mm, width=108mm, height=210mm, footer=5mm]
+\setuppagenumbering[location=]
+
+\setuppapersize[A5][A5]
+\definefontfamily[mainface][rm][Calibri]
+\definefontfamily[mainface][ss][Calibri]
+\definefontfamily[mainface][tt][Calibri]
+\definefontfamily[mainface][mm][Calibri]
+\setupbodyfont[mainface, ss, 14pt]
+
+
+\setupinteraction[ 
+	state=start,
+	title={Prescripción Médica INTECNUS},
+  author={Diego Carrasco (@decardev)},
+  keyword=Prescripción Automatización Medicina INTECNUS @decardev,
+	openaction=FitHeight
+]
+
+% \showframe
+
+
+\startJSpreamble {INITIAL} used now
+	
+	function setFontAndSize(name, num){
+		var field = getField(name);
+		field.textFont = font.Helv;
+		field.textSize = num;
+	}
+	
+	function setFieldTextLimit(field, lineLength, minSize, maxSize){
+		if (field.value.toString().length > lineLength) {
+			field.textSize = minSize;
+		} else {
+			field.textSize = maxSize;
+		}
+	}
+	
+	function makeDate(name){
+		var cFormat = "dd/mm/yyyy";
+		field = getField(name);
+		field.setAction("Format", "AFDate_FormatEx(\""+cFormat+"\")");
+		field.setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
+	}
+
+	setFontAndSize("df_os_name", 8);
+	makeDate("df_date");
+\stopJSpreamble
+
+
+\startJScode {fn_os_name}
+	setFieldTextLimit(event.target, 20, 8, 10);
+\stopJScode
+
+\startJScode {fn_no_scroll}
+	event.target.doNotScroll = true;
+	event.target.richText = true;
+\stopJScode
+
+
+
+
+
+
+
+\setupfield[sf_info][height=5.5mm, width=60mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_os_name][height=5.5mm, width=60mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_os_name)]
+\setupfield[sf_date][height=6mm, width=30mm, frame=off, offset=0mm, align=flushleft]
+\setupfield[sf_rp][height=38mm, width=108mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_no_scroll)]
+\setupfield[sf_dx][height=82mm, width=108mm, frame=off, offset=0mm, align=flushleft, format=JS(fn_no_scroll)]
+
+\definefield[df_pt_name][line][sf_info]
+\definefield[df_os_name][combo][sf_os_name][, AESP , AMCI , AMEPBA, AVALIAN, BANCARIOS  (O.S.B.A.), CAJA FORENSE, CLINICA DEL VALLE, DAMSU, FATFA (OSPF), FEDERACION PATRONAL ART, FEDERADA SALUD, FUNDACION MEDICA DE RN Y NQN, GALENO ARGENTINA, GENERAR SALUD, HORIZONTE ART, HOSPITAL ALEMAN, HOSPITAL ITALIANO, INTEGRAL SALUD, IOSFA, IPROSS, ISSN (INST. SEG. SOCIAL NQN), JERARQUICOS SALUD, LA SEGUNDA ART, LUIS PASTEUR, MEDICUS, MEDIFE, OMINT, OS PASTELEROS, OSAPM, OSCTCP / UTA, OSDE, OSDEPYM, OSDIPP, OSDOP, OSECAC, OSFATLYF (OSPLYFRA), OSFATUN, OSMATA, OSPA (AERONÁUTICOS), OSPACARP, OSPAT (SANATORIO SAN CARLOS), OSPE, OSPECON, OSPEDYC (UTEDYC), OSPEPRI, OSPERSAAMS, OSPERYHRA, OSPES, OSPIL, OSPIM, OSPLAD, OSPM (P. MARITIMO), OSPOCE DKV, OSPSA, OSPSIP (PERSONAL DE SEGURIDAD), OSSEG, OSUTHGRA, PAMI (INSSJP), PARTICULAR, PODER JUDICIAL, POLICIA FEDERAL, PREVENCION ART, PREVENCION SALUD, SALUD PUBLICA RN, SALUD TOTAL, SANCOR SALUD, SATV, SCIS, SEROS (ISSYS), SERV. PENITENCIARIO FED., SOSUNC, SWISS MEDICAL, UP (UNION PERSONAL)]
+\definefield[df_os_numb][line][sf_info]
+\definefield[df_pt_iden][line][sf_info]
+\definefield[df_rp][text][sf_rp]
+\definefield[df_dx][text][sf_dx]
+\definefield[df_date][line][sf_date]
+
+
+\defineoverlay[WatermarkOverlay][{
+	\framed[frame=off,foregroundcolor=gray]{
+		\externalfigure[images\\background.png][height=140mm]
+	}
+}]
+\setupbackgrounds[page][background=WatermarkOverlay]
+
+\setupheader[text][
+	before={
+		\setupTABLE		
+		\bTABLE
+			\bTR 
+				\bTD[width=108mm, height=20mm, align=center] \ \externalfigure[images\\header.jpg][height=18mm]\eTD 
+			\eTR
+		\eTABLE
+		},
+  after={},
+]
+
+\setupTABLE[frame=off]
+\setupTABLE[r][each][height=6mm]
+\setupTABLE[c][each][width=6mm]
+
+\bTABLE
+
+	\bTR \bTD[nc=18, topframe=on, rulethickness=0.6mm] \eTD\eTR
+	
+	\bTR 
+		\bTD[nc=1]\eTD
+		\bTD[nc=6] NOMBRE: \eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_pt_name]} \eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=6] OBRA SOCIAL:\eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_os_name]}\eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=6] Nro AFILIADO/A: \eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_os_numb]}\eTD
+	\eTR
+	
+	\bTR 
+		\bTD[nc=1] \eTD
+		\bTD[nc=6] DNI: \eTD
+		\bTD[nc=1] {\switchtobodyfont[10pt]\field[df_pt_iden]}\eTD
+	\eTR
+
+	\bTR\bTD[m=18]\eTD\eTR 
+
+	\bTR[topframe=on, rulethickness=0.6mm] \bTD[nc=18] \eTD \eTR
+
+	% \bTR 
+	% 	\bTD[nc=1] \eTD
+	% 	\bTD[nc=15] \bi Rp. \eTD
+	% \eTR
+
+	% \bTR\bTD[height=42mm] {\switchtobodyfont[10pt] \field[df_rp]} \eTD\eTR 
+
+	\bTR\bTD\eTD\bTD[nc=15] \bi Rp. \eTD\eTR
+	\bTR\bTD[height=84mm] {\switchtobodyfont[10pt] \field[df_dx]} \eTD\eTR 
+		
+	\bTR[height=18mm] \eTR
+	
+	\bTR 
+		\bTD[nc=3] \bf FECHA:\eTD
+		\bTD[nc=9] {\switchtobodyfont[12pt]\field[df_date]} \eTD
+		\bTD[nc=6, topframe=on, align=center] \bf FIRMA Y SELLO \eTD
+	\eTR
+	
+	\bTR\bTD[m=18]\eTD\eTR 
+	
+	\bTR\bTD [nc=18, topframe=on, align=center, height=4mm] \bfxx Ruta Provincial 82 s/n · C P 8400 · S. C. de Bariloche · Río Negro · Argentina \eTD\eTR
+	\bTR\bTD [nc=18, align=center] \bfxx TE: +54 294 474 6050 · turnos@intecnus.org.ar · www.intecnus.org.ar \eTD\eTR
+
+\eTABLE
