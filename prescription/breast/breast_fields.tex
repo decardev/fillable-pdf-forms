@@ -1,0 +1,40 @@
+% !TeX root = ./breast.tex
+
+\startenvironment breast_fields
+  \product breast
+  
+  \setupfields[][height=4.5mm,frame=off, offset=0mm, boffset=0.2mm, toffset=-0.3mm, loffset=-0.2mm, roffset=0.8mm]
+
+  \setupfield[sf_DX_PS][width=10mm, focusin=JS(setFont{7})]
+  
+  \setupfield[sf_DX_LATERALIDAD][width=50mm, focusin=JS(setFont{7})]
+
+  \definefield[df_DX_PS][line][sf_DX_PS]
+  \definefield[df_DX_LATERALIDAD][popup][sf_DX_LATERALIDAD][
+    Mama Izquierda: Superior Izquierdo, 
+    Mama Izquierda: Superior Derecho, 
+    Mama Izquierda: Inferior Izquierdo, 
+    Mama Izquierda: Inferior Derecho, 
+    Mama Izquierda: Central, 
+    Mama Izquierda: NOS,
+    Mama Derecha: Superior Izquierdo, 
+    Mama Derecha: Superior Derecho, 
+    Mama Derecha: Inferior Izquierdo, 
+    Mama Derecha: Inferior Derecho, 
+    Mama Derecha: Central, 
+    Mama Derecha: NOS, 
+    Mama Bilateral: Superior Izquierdo, 
+    Mama Bilateral: Superior Derecho, 
+    Mama Bilateral: Inferior Izquierdo, 
+    Mama Bilateral: Inferior Derecho, 
+    Mama Bilateral: Central, 
+    Mama Bilateral: NOS
+  ]
+
+  \definefield[df_TNM_T][popup][sf_TNME][, T0, T1a, T1b, T1c, T1mi, T1NOS, T2, T3, T4a, T4b, T4c, T4c, T4d, T4NOS, Tis, TX]
+  \definefield[df_TNM_N][popup][sf_TNME][, N0, N1, N1NOS, N2a, N2b, N2NOS, N3a, N3b, N3c, N3NOS, NX]
+  \definefield[df_TNM_M][popup][sf_TNME][, M0, M0(i+), M1]
+  \definefield[df_TNM_E][popup][sf_TNME][, E0, EIA, EIB, EIIA, EIIB, EIIIA, EIIIB, EIIIC, EIIINOS, EIV, EUNK]
+
+
+\stopenvironment
