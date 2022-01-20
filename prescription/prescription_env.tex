@@ -1,0 +1,23 @@
+\startenvironment prescription_env
+  \project prescription
+  
+  \usepath[{
+    prostate, 
+    breast, 
+    cervix, 
+    cyc
+  }]
+  
+  \mainlanguage[es]
+  \setuppagenumbering[location=]
+
+  \setuplayout[topspace=11.5mm, header=33.5mm, headerdistance=5mm, backspace=20mm, width=170mm, height=270mm, footer=0mm]
+
+  \setuppapersize[A4][A4]
+  \definefontfamily[mainface][rm][Calibri]
+  \definefontfamily[mainface][ss][Calibri]
+  \definefontfamily[mainface][tt][Calibri]
+  \definefontfamily[mainface][mm][Calibri]
+  \setupbodyfont[mainface, ss, 9pt]
+  
+\stopenvironment

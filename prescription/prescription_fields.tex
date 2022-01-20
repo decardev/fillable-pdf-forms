@@ -1,0 +1,289 @@
+\startenvironment prescription_fields
+  
+  \setupfields[][height=4.5mm,frame=off, offset=0mm, boffset=0.2mm, toffset=-0.3mm, loffset=-0.2mm, roffset=0.8mm]
+
+  \setupfield[sf_DEMOGRAPHIC_20][width=20mm]
+  \setupfield[sf_DEMOGRAPHIC_35][width=35mm]
+  \setupfield[sf_DEMOGRAPHIC_POPUP_35][width=35mm, focusin=JS(setFont{9})]
+  \setupfield[sf_DEMOGRAPHIC_POPUP_15][width=15mm, focusin=JS(setFont{9})]
+
+  \setupfield[sf_BIRTH_5][width=5mm, focusout=JS(setAge)]
+  \setupfield[sf_BIRTH_10][width=10mm, focusout=JS(setAge)]
+  
+  \setupfield[sf_TNME][width=15mm, focusin=JS(setFont{7})]
+  \setupfield[sf_COMPLICATIONS][width=110mm, focusin=JS(setFont{7})]
+  \setupfield[sf_HISTORY][height=49.5mm, width=170mm, focusin=JS(setTextAreaProps{8, 2048}), focusout=JS(setTextAreaFormat{8, 100, 1000})]
+  \setupfield[sf_COMMENT][width=105mm, focusin=JS(setFont{7}), focusin=JS(setCMTops)]
+  
+  \setupfield[sf_DX_10][width=10mm, focusin=JS(setFont{7})]
+  \setupfield[sf_DX_90][width=90mm]
+
+  \setupfield[sf_TECHNIQUE][width=15mm, toffset=0mm, focusin=JS(setFont{7})]
+  \setupfield[sf_START_DATE][width=20mm, toffset=0mm, focusin=JS(setDateFormat)]
+  \setupfield[sf_RTMODE][height=6.5mm, width=34mm, toffset=0mm]
+  
+  \setupfield[sf_PTV0_ZONE][width=25mm, focusin=JS(setPTVops{0}), focusout=JS(setPTVdvh{0})]
+  \setupfield[sf_PTV1_ZONE][width=25mm, focusin=JS(setPTVops{1}), focusout=JS(setPTVdvh{1})]
+  \setupfield[sf_PTV2_ZONE][width=25mm, focusin=JS(setPTVops{2}), focusout=JS(setPTVdvh{2})]
+  \setupfield[sf_PTV3_ZONE][width=25mm, focusin=JS(setPTVops{3}), focusout=JS(setPTVdvh{3})]
+  
+  \setupfield[sf_PTV_10][width=10mm] 
+  \setupfield[sf_PTV_15][width=15mm] 
+  
+  \setupfield[sf_PTV_05][width=5mm, align=middle] 
+  \setupfield[sf_PTV_10][width=10mm] 
+  \setupfield[sf_PTV_15][width=15mm] 
+
+  \setupfield[sf_OAR0_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{0})] 
+  \setupfield[sf_OAR1_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{1})] 
+  \setupfield[sf_OAR2_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{2})] 
+  \setupfield[sf_OAR3_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{3})] 
+  \setupfield[sf_OAR4_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{4})] 
+  \setupfield[sf_OAR5_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{5})] 
+  \setupfield[sf_OAR6_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{6})] 
+  \setupfield[sf_OAR7_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{7})] 
+  \setupfield[sf_OAR8_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{8})] 
+  \setupfield[sf_OAR9_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{9})] 
+  \setupfield[sf_OAR10_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{10})] 
+  \setupfield[sf_OAR11_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{11})] 
+  \setupfield[sf_OAR12_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{12})] 
+  \setupfield[sf_OAR13_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{13})] 
+  \setupfield[sf_OAR14_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{14})] 
+  \setupfield[sf_OAR15_NAME][width=45mm, focusin=JS(setORGops), focusout=JS(setORGdvh{15})] 
+
+  \setupfield[sf_OAR_DVHN][width=35mm] 
+
+  \setupfield[sf_OAR_OPS][width=30mm, option=protected, focusin=JS(setOARops), focusout=JS(setOARdvh)]
+  \setupfield[sf_RTX_OPS][width=50mm, option=protected, focusin=JS(setRTXops), focusout=JS(setRTXdvh)]
+
+  
+  % ============================================================================
+  \definefield[df_NAME][line][sf_DEMOGRAPHIC_35]
+  \definefield[df_LAST_NAME][line][sf_DEMOGRAPHIC_35]
+
+  \definefield[df_ID_TYPE][popup][sf_DEMOGRAPHIC_POPUP_15][DNI, ID, PASS][DNI]	
+  \definefield[df_ID][line][sf_DEMOGRAPHIC_35] 			
+  \definefield[df_HC][line][sf_DEMOGRAPHIC_35]
+  
+  \definefield[df_BIRTH_D][line][sf_BIRTH_5]
+  \definefield[df_BIRTH_M][line][sf_BIRTH_5]
+  \definefield[df_BIRTH_Y][line][sf_BIRTH_10]
+  
+  \definefield[df_AGE][line][sf_DEMOGRAPHIC_35]
+  \definefield[df_HOME][line][sf_DEMOGRAPHIC_35]
+  
+  \definefield[df_REGION][popup][sf_DEMOGRAPHIC_POPUP_35][
+    , Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, 
+    Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, 
+    Mendoza, Misiones, Neuquén, Río Negro, Salta, San Jua, San Luis, 
+    Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumá
+  ]
+  \definefield[df_WORK][line][sf_DEMOGRAPHIC_35]
+  \definefield[df_PHONE][line][sf_DEMOGRAPHIC_35]
+
+  \definefield[df_SOCIAL][combo][sf_DEMOGRAPHIC_POPUP_35][
+    ACA SALUD, AMEPBA, CAJA FORENSE, DIBA, 
+    GALEANO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUSS, 
+    MEDIFE, OMINT, OSBA, OSDE, OSECAC, OSPAT, OSPE, UP,
+    OSPECON, OSPLAD, OSSEG, OSUTHGRA, PAMI, POLICIA FEDERAL, 
+    SALUD PUBLICA, SANCOR SALUD, SERGOS, SMG, SOSUNC, SWISS MEDICAL
+  ]
+  \definefield[df_SOCIAL_NUMBER][line][sf_DEMOGRAPHIC_35]
+  \definefield[df_DERIVATION_DOCTOR][line][sf_DEMOGRAPHIC_35]
+  \definefield[df_DERIVATION_CENTER][line][sf_DEMOGRAPHIC_35]
+  
+  \definefield[df_DX_KARNOFSKY][line][sf_DX_10]
+  \definefield[df_COMPLICATIONS][line][sf_COMPLICATIONS]
+  \definefield[df_HISTORY][text][sf_HISTORY]
+  
+  \definefield[df_DERIVATION_INDICATIONS][line][sf_DX_90]
+  
+  \definefield[df_TECHNIQUE][popup][sf_TECHNIQUE][, 3D, IMRT, VMAT]
+  \definefield[df_START_DATE][line][sf_START_DATE]
+  \definefield[df_RTMODE][popup][sf_RTMODE]
+  % ============================================================================
+  
+
+  % ============================================================================
+  \definefield[df_PTV0_ZONE][combo][sf_PTV0_ZONE] 
+  \definefield[df_PTV0_FX0][line][sf_PTV_15]
+  \definefield[df_PTV0_FX1][line][sf_PTV_05]
+  \definefield[df_PTV0_FX2][line][sf_PTV_15]
+  \definefield[df_PTV0_FX3][line][sf_PTV_05]
+  \definefield[df_PTV0_FX4][line][sf_PTV_10]
+  
+  \definefield[df_PTV0_ID0][line][sf_PTV_15]
+  \definefield[df_PTV0_ID1][line][sf_PTV_05]
+  \definefield[df_PTV0_ID2][line][sf_PTV_15]
+  \definefield[df_PTV0_ID3][line][sf_PTV_15]
+  \definefield[df_PTV0_ID4][line][sf_PTV_05]
+  \definefield[df_PTV0_ID5][line][sf_PTV_15]
+  \definefield[df_PTV0_ID6][line][sf_PTV_15]
+  \definefield[df_PTV0_ID7][line][sf_PTV_05]
+  \definefield[df_PTV0_ID8][line][sf_PTV_15]
+
+  \definefield[df_PTV0_AC0][line][sf_PTV_15]
+  \definefield[df_PTV0_AC1][line][sf_PTV_05]
+  \definefield[df_PTV0_AC2][line][sf_PTV_15]
+  \definefield[df_PTV0_AC3][line][sf_PTV_15]
+  \definefield[df_PTV0_AC4][line][sf_PTV_05]
+  \definefield[df_PTV0_AC5][line][sf_PTV_15]
+  \definefield[df_PTV0_AC6][line][sf_PTV_15]
+  \definefield[df_PTV0_AC7][line][sf_PTV_05]
+  \definefield[df_PTV0_AC8][line][sf_PTV_15]
+
+  \definefield[df_PTV1_ZONE][combo][sf_PTV1_ZONE] 
+  \definefield[df_PTV1_FX0][line][sf_PTV_15]
+  \definefield[df_PTV1_FX1][line][sf_PTV_05]
+  \definefield[df_PTV1_FX2][line][sf_PTV_15]
+  \definefield[df_PTV1_FX3][line][sf_PTV_05]
+  \definefield[df_PTV1_FX4][line][sf_PTV_10]
+  
+  \definefield[df_PTV1_ID0][line][sf_PTV_15]
+  \definefield[df_PTV1_ID1][line][sf_PTV_05]
+  \definefield[df_PTV1_ID2][line][sf_PTV_15]
+  \definefield[df_PTV1_ID3][line][sf_PTV_15]
+  \definefield[df_PTV1_ID4][line][sf_PTV_05]
+  \definefield[df_PTV1_ID5][line][sf_PTV_15]
+  \definefield[df_PTV1_ID6][line][sf_PTV_15]
+  \definefield[df_PTV1_ID7][line][sf_PTV_05]
+  \definefield[df_PTV1_ID8][line][sf_PTV_15]
+  
+  \definefield[df_PTV1_AC0][line][sf_PTV_15]
+  \definefield[df_PTV1_AC1][line][sf_PTV_05]
+  \definefield[df_PTV1_AC2][line][sf_PTV_15]
+  \definefield[df_PTV1_AC3][line][sf_PTV_15]
+  \definefield[df_PTV1_AC4][line][sf_PTV_05]
+  \definefield[df_PTV1_AC5][line][sf_PTV_15]
+  \definefield[df_PTV1_AC6][line][sf_PTV_15]
+  \definefield[df_PTV1_AC7][line][sf_PTV_05]
+  \definefield[df_PTV1_AC8][line][sf_PTV_15]
+
+  \definefield[df_PTV2_ZONE][combo][sf_PTV2_ZONE] 
+  \definefield[df_PTV2_FX0][line][sf_PTV_15]
+  \definefield[df_PTV2_FX1][line][sf_PTV_05]
+  \definefield[df_PTV2_FX2][line][sf_PTV_15]
+  \definefield[df_PTV2_FX3][line][sf_PTV_05]
+  \definefield[df_PTV2_FX4][line][sf_PTV_10]
+  
+  \definefield[df_PTV2_ID0][line][sf_PTV_15]
+  \definefield[df_PTV2_ID1][line][sf_PTV_05]
+  \definefield[df_PTV2_ID2][line][sf_PTV_15]
+  \definefield[df_PTV2_ID3][line][sf_PTV_15]
+  \definefield[df_PTV2_ID4][line][sf_PTV_05]
+  \definefield[df_PTV2_ID5][line][sf_PTV_15]
+  \definefield[df_PTV2_ID6][line][sf_PTV_15]
+  \definefield[df_PTV2_ID7][line][sf_PTV_05]
+  \definefield[df_PTV2_ID8][line][sf_PTV_15]
+  
+  \definefield[df_PTV2_AC0][line][sf_PTV_15]
+  \definefield[df_PTV2_AC1][line][sf_PTV_05]
+  \definefield[df_PTV2_AC2][line][sf_PTV_15]
+  \definefield[df_PTV2_AC3][line][sf_PTV_15]
+  \definefield[df_PTV2_AC4][line][sf_PTV_05]
+  \definefield[df_PTV2_AC5][line][sf_PTV_15]
+  \definefield[df_PTV2_AC6][line][sf_PTV_15]
+  \definefield[df_PTV2_AC7][line][sf_PTV_05]
+  \definefield[df_PTV2_AC8][line][sf_PTV_15]
+
+  \definefield[df_PTV3_ZONE][combo][sf_PTV3_ZONE] 
+  \definefield[df_PTV3_FX0][line][sf_PTV_15]
+  \definefield[df_PTV3_FX1][line][sf_PTV_05]
+  \definefield[df_PTV3_FX2][line][sf_PTV_15]
+  \definefield[df_PTV3_FX3][line][sf_PTV_05]
+  \definefield[df_PTV3_FX4][line][sf_PTV_10]
+  
+  \definefield[df_PTV3_ID0][line][sf_PTV_15]
+  \definefield[df_PTV3_ID1][line][sf_PTV_05]
+  \definefield[df_PTV3_ID2][line][sf_PTV_15]
+  \definefield[df_PTV3_ID3][line][sf_PTV_15]
+  \definefield[df_PTV3_ID4][line][sf_PTV_05]
+  \definefield[df_PTV3_ID5][line][sf_PTV_15]
+  \definefield[df_PTV3_ID6][line][sf_PTV_15]
+  \definefield[df_PTV3_ID7][line][sf_PTV_05]
+  \definefield[df_PTV3_ID8][line][sf_PTV_15]
+  
+  \definefield[df_PTV3_AC0][line][sf_PTV_15]
+  \definefield[df_PTV3_AC1][line][sf_PTV_05]
+  \definefield[df_PTV3_AC2][line][sf_PTV_15]
+  \definefield[df_PTV3_AC3][line][sf_PTV_15]
+  \definefield[df_PTV3_AC4][line][sf_PTV_05]
+  \definefield[df_PTV3_AC5][line][sf_PTV_15]
+  \definefield[df_PTV3_AC6][line][sf_PTV_15]
+  \definefield[df_PTV3_AC7][line][sf_PTV_05]
+  \definefield[df_PTV3_AC8][line][sf_PTV_15]
+
+  % ============================================================================
+  \definefield[df_RTX_OPS][combo][sf_RTX_OPS]
+  \definefield[df_OAR_OPS][combo][sf_OAR_OPS]
+  
+  
+  \definefield[df_OAR0_NAME][combo][sf_OAR0_NAME]  
+  \definefield[df_OAR0_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR0_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR0_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR1_NAME][combo][sf_OAR1_NAME]  
+  \definefield[df_OAR1_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR1_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR1_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR2_NAME][combo][sf_OAR2_NAME]  
+  \definefield[df_OAR2_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR2_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR2_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR3_NAME][combo][sf_OAR3_NAME]  
+  \definefield[df_OAR3_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR3_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR3_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR4_NAME][combo][sf_OAR4_NAME]  
+  \definefield[df_OAR4_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR4_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR4_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR5_NAME][combo][sf_OAR5_NAME]  
+  \definefield[df_OAR5_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR5_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR5_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR6_NAME][combo][sf_OAR6_NAME]  
+  \definefield[df_OAR6_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR6_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR6_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR7_NAME][combo][sf_OAR7_NAME]  
+  \definefield[df_OAR7_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR7_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR7_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR8_NAME][combo][sf_OAR8_NAME]  
+  \definefield[df_OAR8_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR8_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR8_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR9_NAME][combo][sf_OAR9_NAME]  
+  \definefield[df_OAR9_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR9_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR9_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR10_NAME][combo][sf_OAR10_NAME]  
+  \definefield[df_OAR10_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR10_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR10_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR11_NAME][combo][sf_OAR11_NAME]  
+  \definefield[df_OAR11_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR11_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR11_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR12_NAME][combo][sf_OAR12_NAME]  
+  \definefield[df_OAR12_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR12_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR12_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR13_NAME][combo][sf_OAR13_NAME]  
+  \definefield[df_OAR13_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR13_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR13_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR14_NAME][combo][sf_OAR14_NAME]  
+  \definefield[df_OAR14_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR14_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR14_DVH2][combo][sf_OAR_DVHN]
+  \definefield[df_OAR15_NAME][combo][sf_OAR15_NAME]  
+  \definefield[df_OAR15_DVH0][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR15_DVH1][combo][sf_OAR_DVHN]  
+  \definefield[df_OAR15_DVH2][combo][sf_OAR_DVHN]
+
+  \definefield[df_COMMENT0][combo][sf_COMMENT]
+  \definefield[df_COMMENT1][combo][sf_COMMENT]
+
+\stopenvironment
