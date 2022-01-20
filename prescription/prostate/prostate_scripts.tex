@@ -1,0 +1,134 @@
+\startcomponent prostate_scripts
+  \product prostate
+
+	\startJSpreamble {PROSTATE} used now
+		
+		const RTX = [
+		{
+			name: "HIPO SIB 31: PTV",
+			ptv: [0],
+			dvh: 0, 
+			cmt: [0, 1]
+		},
+		{
+			name: "HIPO SIB 31: PTV + VS",
+			ptv: [0, 0],
+			dvh: 0, 
+			cmt: [0, 1]
+		},
+		{
+			name: "HIPO SIB 31: PTV + VS + LN",
+			ptv: [0, 0, 0],
+			dvh: 0, 
+			cmt: [0, 1]
+		},
+		{
+			name: "HIPO SIB 31: PTV + VS + LN + LN(+)",
+			ptv: [0, 0, 0, 0],
+			dvh: 0, 
+			cmt: [0, 1]
+		},
+		]
+	
+		const PTV = [
+			[
+				{
+					name: "PTV_PR",
+					fract: ["7440 cGy", "=", "240 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V7440 cGy", "\u2265", "95\%"],
+				}
+			],
+			[
+				{
+					name: "PTV_VS",
+					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5580 cGy", "\u2265", "95\%"],
+				}
+			],
+			[
+				{
+					name: "PTV_LN",
+					fract: ["5270 cGy", "=", "170 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5270 cGy", "\u2265", "95\%"],
+				}
+			],
+			[
+				{
+					name: "PTV_LN+",
+					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5580 cGy", "\u2265", "95\%"],
+				}
+			]
+		]	
+
+		const OAR = [
+			{	
+				name: "VEJIGA", 
+				dvh: ["V7000 cGy < 10\% (20\%)", "V6100 cGy < 53\%", "V5700 cGy < 50\%"]
+			},
+			{ 
+				name: "RECTO", 
+				dvh: ["V7000 cGy < 10\% (20\%)", "V4000 cGy < 45\%", "V5300 cGy < 35\%"]        
+			},
+			{
+				name: "ANO", 
+				dvh: ["V3100 cGy < 60\%", "V3500 cGy < 40\%"]  
+			}, 
+			{ 
+				name: "CABEZAS FEMORALES", 
+				dvh: ["V5000 cGy < 5\% (10\%)", "DMax < 5200 cGy"] 
+			},
+			{
+				name: "INTESTINO", 
+				dvh: ["V5000 cGy < 1 cc", "V3900 cGy < 195 cc", "V4500 cGy < 150 cc"]
+			},
+			{
+				name: "CANAL MEDULAR", 
+				dvh: ["5000 cGy < 0.03 cc"]
+			},  
+			{
+				name: "BULBO", 
+				dvh: ["V4400 cGy < 50\%", "DMean < 5000 cGy"]
+			},
+			{
+				name: "PENE",
+				dvh: ["V3000 cGy < 1 cc"]
+			},
+			{
+				name: "TESTICULOS",
+				dvh: ["V300 cGy < 0.03 cc"]
+			}
+		]
+
+		const DVH = [
+			{
+				name: "Normo",
+				orgs: [
+					{ oar: 0, ops: [0, 1, 2] },
+					{ oar: 1, ops: [0, 1, 2] },
+					{ oar: 2, ops: [0, 1] },
+					{ oar: 3, ops: [0, 1] },
+					{ oar: 4, ops: [0, 1, 2] },
+					{ oar: 5, ops: [0] },
+					{ oar: 6, ops: [0, 1] },
+					{ oar: 7, ops: [0] },
+					{ oar: 8, ops: [0] },
+				]
+			}
+		]
+		
+		const CMT = [
+			"Tratamiento con vejiga llena confortable (1/2 litro de agua 30 min antes de RT)", 
+			"Evitar hot spots fuera PTV y en regi\u00F3n uretral"
+		]
+		
+		//==================================================================================================================
+		function setGleason(){
+			const value = getField("df_DX_GLEASON_1").value + getField("df_DX_GLEASON_2").value;
+			setField("df_DX_GLEASON_OUTPUT", value, 7);
+		}
+		//==================================================================================================================
+
+	\stopJSpreamble
+
+\stopcomponent
