@@ -1,0 +1,18 @@
+% !TeX root = ./cyc.tex
+
+
+\startenvironment cyc_fields
+  \product cyc
+  
+  \setupfields[][height=4.5mm,frame=off, offset=0mm, boffset=0.2mm, toffset=-0.3mm, loffset=-0.2mm, roffset=0.8mm]
+
+  \setupfield[sf_DX_PS][width=50mm, align=middle, focusin=JS(setFont{7})]
+  
+  \definefield[df_DX_PS][line][sf_DX_PS]
+
+  \definefield[df_TNM_T][popup][sf_TNME][, T0, T1, T1a, T1b, T1c, T2, T2a, T2b, T2c, T3a, T3b, T3c, T4a, T4b]
+  \definefield[df_TNM_N][popup][sf_TNME][, N0, N1 (N+), N2 (N+), N3 (N+)]
+  \definefield[df_TNM_M][popup][sf_TNME][, M0, M1 (M+)]
+  \definefield[df_TNM_E][popup][sf_TNME][, EI, EIIA, EIIB, EIIC, EIIIA, EIIIB, EIIIC, EIVA, EIVB]
+
+\stopenvironment

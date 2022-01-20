@@ -1,0 +1,188 @@
+\startcomponent cyc_scripts
+  \product cyc
+
+	\startJSpreamble {CYC} used now
+		
+		const RTX = [
+		{
+			name: "35Fx: PTV",
+			ptv: [0],
+			dvh: 0, 
+			cmt: [0]
+		},
+		{
+			name: "35Fx: PTV_1 + PTV_2",
+			ptv: [0, 0],
+			dvh: 0, 
+			cmt: [0]
+		},
+		{
+			name: "35Fx: PTV_1 + PTV_2 + PTV_3",
+			ptv: [0, 0, 0],
+			dvh: 0, 
+			cmt: [0]
+		},
+		{
+			name: "33Fx: PTV",
+			ptv: [1],
+			dvh: 0, 
+			cmt: [0]
+		},
+		{
+			name: "33Fx: PTV_1 + PTV_2",
+			ptv: [1, 1],
+			dvh: 0, 
+			cmt: [0]
+		},
+		{
+			name: "33Fx: PTV_1 + PTV_2 + PTV_3",
+			ptv: [1, 1, 1],
+			dvh: 0, 
+			cmt: [0]
+		},
+		]
+	
+		const PTV = [
+			[
+				{
+					name: "PTV_1 (35)",
+					fract: ["7000 cGy", "=", "200 cGy", "\u00D7", "35 Fx"],
+					ideal: ["V7000 cGy", "\u2265", "95\%"],
+				},
+				{
+					name: "PTV_1 (33)",
+					fract: ["6996 cGy", "=", "212 cGy", "\u00D7", "33 Fx"],
+					ideal: ["V6996 cGy", "\u2265", "95\%"],
+				}
+			],
+			[
+				{
+					name: "PTV_2 (35)",
+					fract: ["6300 cGy", "=", "180 cGy", "\u00D7", "35 Fx"],
+					ideal: ["V6300 cGy", "\u2265", "95\%"],
+				},
+				{
+					name: "PTV_2 (33)",
+					fract: ["5940 cGy", "=", "180 cGy", "\u00D7", "33 Fx"],
+					ideal: ["V5940 cGy", "\u2265", "95\%"],
+				}
+			],
+			[
+				{
+					name: "PTV_3 (35)",
+					fract: ["5600 cGy", "=", "160 cGy", "\u00D7", "35 Fx"],
+					ideal: ["V5600 cGy", "\u2265", "95\%"],
+				},
+				{
+					name: "PTV_3 (33)",
+					fract: ["5400 cGy", "=", "164 cGy", "\u00D7", "33 Fx"],
+					ideal: ["V5400 cGy", "\u2265", "95\%"],
+				}
+			], 
+			[
+				{
+					name: "PTV_LN+ (35)",
+					fract: ["7000 cGy", "=", "200 cGy", "\u00D7", "35 Fx"],
+					ideal: ["7000 cGy", "\u2265", "95\%"],
+				},
+				{
+					name: "PTV_LN+ (33)",
+					fract: ["6996 cGy", "=", "212 cGy", "\u00D7", "33 Fx"],
+					ideal: ["6996 cGy", "\u2265", "95\%"],
+				}
+			]
+		]	
+
+		const OAR = [
+			
+			{
+				name: "Cerebro", 
+				dvh: ["DMax < V6000 cGy"]
+			},
+			{
+				name: "Tronco cerebral", 
+				dvh: ["DMax < 5000 cGy (5400)"]
+			}, 
+			{
+				name: "Medula espinal", 
+				dvh: ["DMax < 4400 cGy (4500)"]
+			},
+			{
+				name: "Nervios \u00F3pticos", 
+				dvh: ["DMax < 4500 cGy (5400)"] 
+			},
+			{
+				name: "Quiasma", 
+				dvh: ["DMax < 4500 cGy (5400)"]
+			},
+			{
+				name: "Ojos", 
+				dvh: ["V4000 cGy < 0.03 cc"]
+			},
+			{
+				name: "Cristalinos", 
+				dvh: ["V800 cGy < 0.03 cc"] 
+			},
+			{
+				name: "C\u00F3cleas", 
+				dvh: ["DMean < 4500 cGy"] 
+			},
+			{
+				name: "Par\u00F3tida bilateral", 
+				dvh: ["DMean < 2500 cGy"] 
+			},
+			{
+				name: "Par\u00F3tida unilateral", 
+				dvh: ["DMean < 2000 cGy (2600)"] 
+			},
+			{
+				name: "Laringe", 
+				dvh: ["V5000 cGy < 27\%", "DMean < 4400 cGy"]
+			},
+			{
+				name: "Es\u00F3fago", 
+				dvh: ["DMean < 3400 cGy", "V3500 cGy < 50 \%", "V5000 cGy < 40 \%"] 
+			},
+			{
+				name: "Mucosa oral", 
+				dvh: ["DMean < 3000 cGy", "DMean < 5000 cGy"]
+			}, 
+			{
+				name: "Tiroides", 
+				dvh: ["V4000 cGy < 50 \%"]
+			}, 
+			{
+				name: "Mand\u00EDbula", 
+				dvh: ["V7000 cGy < 0.03 cc"]
+			},
+			
+		]
+
+		const DVH = [
+			{
+				name: "Normo",
+				orgs: [
+					{ oar: 0, ops: [0] },
+					{ oar: 1, ops: [0] },
+					{ oar: 2, ops: [0] },
+					{ oar: 3, ops: [0] },
+					{ oar: 4, ops: [0] },
+					{ oar: 5, ops: [0] },
+					{ oar: 6, ops: [0] },
+					{ oar: 7, ops: [0] },
+					{ oar: 8, ops: [0] },
+					{ oar: 9, ops: [0] },
+					{ oar: 10, ops: [0, 1] },
+					{ oar: 11, ops: [0, 1, 2] },
+					{ oar: 12, ops: [0] },
+					{ oar: 13, ops: [0] },
+					{ oar: 14, ops: [0] },
+				]
+			}
+		]
+		
+		const CMT = ["Evitar hot spots fuera del PTV"]
+
+	\stopJSpreamble
+
+\stopcomponent
