@@ -1,0 +1,22 @@
+% !TeX root = ./prostate.tex
+
+\startenvironment prostate_fields
+  \product prostate
+  
+  \setupfields[][height=4.5mm,frame=off, offset=0mm, boffset=0.2mm, toffset=-0.3mm, loffset=-0.2mm, roffset=0.8mm]
+
+  \setupfield[sf_DX_PSA][width=10mm, align=middle, focusin=JS(setFont{7})]
+  \setupfield[sf_DX_GLEASON_ENTRY][width=5mm, align=middle, focusin=JS(setFont{7}), focusout=JS(setGleason)]
+  \setupfield[sf_DX_GLEASON_OUTPUT][width=5mm, align=middle, option={readonly, printable}]
+  
+  \definefield[df_DX_PSA][line][sf_DX_PSA]
+  \definefield[df_DX_GLEASON_1][line][sf_DX_GLEASON_ENTRY]
+  \definefield[df_DX_GLEASON_2][line][sf_DX_GLEASON_ENTRY]
+  \definefield[df_DX_GLEASON_OUTPUT][line][sf_DX_GLEASON_OUTPUT]
+
+  \definefield[df_TNM_T][popup][sf_TNME][, T0, T1, T1a, T1b, T1c, T2, T2a, T2b, T2c, T3a, T3b, T3c, T4a, T4b]
+  \definefield[df_TNM_N][popup][sf_TNME][, N0, N1 (N+), N2 (N+), N3 (N+)]
+  \definefield[df_TNM_M][popup][sf_TNME][, M0, M1 (M+)]
+  \definefield[df_TNM_E][popup][sf_TNME][, EI, EIIA, EIIB, EIIC, EIIIA, EIIIB, EIIIC, EIVA, EIVB]
+
+\stopenvironment

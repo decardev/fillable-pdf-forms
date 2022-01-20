@@ -1,0 +1,318 @@
+% !TeX root = ./prostate.tex
+
+\startproduct prostate
+  \project prescription
+  \environment prostate_env
+
+	\component prescription_fields
+	\component prescription_scripts
+	\component prostate_fields
+	\component prostate_scripts
+	
+	\component prescription_header
+
+
+	\bTABLE[setups=maintable]
+
+		\bTR[topframe=on, rulethickness=0.2mm] 
+			\bTD[nc=4] \bf Nombre: \eTD
+			\bTD[nc=7] \field[df_NAME] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \bf Apellido: \eTD
+			\bTD[nc=7] \field[df_LAST_NAME] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=4] \bf Documento: \eTD
+			\bTD[nc=7] \field[df_ID] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Nacimiento:\eTD
+			\bTD[nc=1] \field[df_BIRTH_D] \eTD
+			\bTD[nc=1, align=center] /\eTD
+			\bTD[nc=1] \field[df_BIRTH_M] \eTD
+			\bTD[nc=1, align=center] /\eTD
+			\bTD[nc=2] \field[df_BIRTH_Y] \eTD
+			\bTD[nc=2] \eTD
+			\bTD[nc=3] \bf Edad: \eTD
+			\bTD[nc=7] \field[df_AGE] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=4] \bf HC: \eTD
+			\bTD[nc=7] \field[df_HC] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Provincia: \eTD	
+			\bTD[nc=7] \field[df_REGION] \eTD	
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \bf Ciudad: \eTD
+			\bTD[nc=7] \field[df_HOME] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=4] \bf Teléfono: \eTD
+			\bTD[nc=7] \field[df_PHONE] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Obra Social: \eTD
+			\bTD[nc=7] \field[df_SOCIAL] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \bf Número: \eTD
+			\bTD[nc=7] \field[df_SOCIAL_NUMBER] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=4] \bf Derivante: \eTD
+			\bTD[nc=7] \field[df_DERIVATION_DOCTOR] \eTD
+		\eTR
+
+		\bTR[height=10mm, toffset=2mm, topframe=on, rulethickness=0.2mm] 
+			\bTD[nc=34, align=center] \bfc CÁNCER DE PROSTATA\eTD 
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \bf PSA: \eTD
+			\bTD[nc=2] \field[df_DX_PSA] \eTD
+			\bTD[nc=2] ng/mL \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \bf Gleason: \eTD
+			\bTD[nc=1] \field[df_DX_GLEASON_1] \eTD
+			\bTD[nc=1, align=middle] + \eTD
+			\bTD[nc=1] \field[df_DX_GLEASON_2] \eTD
+			\bTD[nc=1, align=middle] = \eTD
+			\bTD[nc=1] \field[df_DX_GLEASON_OUTPUT] \eTD
+			\bTD[nc=4] \eTD
+			\bTD[nc=2] \bf TNM: \eTD
+			\bTD[nc=3] \field[df_TNM_T] \eTD
+			\bTD[nc=3] \field[df_TNM_N] \eTD
+			\bTD[nc=3] \field[df_TNM_M] \eTD
+			\bTD[nc=1] \bf E: \eTD
+			\bTD[nc=3] \field[df_TNM_E] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=4] \bf Karnofsky: \eTD
+			\bTD[nc=2] \field[df_DX_KARNOFSKY] \eTD				
+			\bTD[nc=1] \eTD
+			\bTD[nc=5] \bf Comorbilidades: \eTD
+			\bTD[nc=22] \field[df_COMPLICATIONS] \eTD
+		\eTR
+
+		\bTR[height=40mm] 
+			\bTD[nc=34] \field[df_HISTORY] \eTD 
+		\eTR 
+		
+		\bTR \bTD[nc=34, nr=2] \eTD \eTR 
+		\bTR \bTD[nc=34] \eTD \eTR 
+
+		
+		\bTR 
+			\bTD[nc=4] \bf Derivación: \eTD
+			\bTD[nc=18] \field[df_DERIVATION_INDICATIONS] \eTD
+			\bTD[nc=2, align=middle] \bf RT: \eTD 
+			\bTD[nc=3] \field[df_TECHNIQUE]\eTD
+			\bTD[nc=3, align=middle] \bf FECHA: \eTD
+			\bTD[nc=4] \field[df_START_DATE]\eTD
+		\eTR
+
+		\bTR \eTR
+
+		\bTR 
+			\bTD[nc=5] \eTD
+			\bTD[nc=10] \field[df_RTX_OPS] \eTD
+		\eTR 
+
+		\bTR 
+			\bTD[nc=5] \eTD	
+			\bTD[nc=6] \bf PTV\eTD
+			\bTD[nc=11, align=middle] \bf FRACCIONAMIENTO\eTD
+			\bTD[nc=7, align=middle] \bf IDEAL \eTD
+			\bTD[nc=5] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=5] \eTD
+			\bTD[nc=5, topframe=on] \bf \field[df_PTV0_ZONE] \eTD
+			\bTD[nc=1, topframe=on] \eTD
+			\bTD[nc=3, topframe=on] \field[df_PTV0_FX0] \eTD
+			\bTD[nc=1, topframe=on] \field[df_PTV0_FX1] \eTD
+			\bTD[nc=3, topframe=on] \field[df_PTV0_FX2] \eTD
+			\bTD[nc=1, topframe=on] \field[df_PTV0_FX3] \eTD
+			\bTD[nc=2, topframe=on] \field[df_PTV0_FX4] \eTD
+			\bTD[nc=1, topframe=on] \eTD
+			\bTD[nc=3, topframe=on] \field[df_PTV0_ID0] \eTD
+			\bTD[nc=1, topframe=on] \field[df_PTV0_ID1] \eTD
+			\bTD[nc=3, topframe=on] \field[df_PTV0_ID2] \eTD
+			\bTD[nc=5] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=5] \eTD
+			\bTD[nc=5] \bf \field[df_PTV1_ZONE] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_PTV1_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV1_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV1_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV1_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV1_FX4] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_PTV1_ID0] \eTD
+			\bTD[nc=1] \field[df_PTV1_ID1] \eTD
+			\bTD[nc=3] \field[df_PTV1_ID2] \eTD
+			\bTD[nc=5] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=5] \eTD
+			\bTD[nc=5] \bf \field[df_PTV2_ZONE] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_PTV2_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV2_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV2_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV2_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV2_FX4] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_PTV2_ID0] \eTD
+			\bTD[nc=1] \field[df_PTV2_ID1] \eTD
+			\bTD[nc=3] \field[df_PTV2_ID2] \eTD
+			\bTD[nc=5] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=5] \eTD
+			\bTD[nc=5] \bf \field[df_PTV3_ZONE] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_PTV3_FX0] \eTD
+			\bTD[nc=1] \field[df_PTV3_FX1] \eTD
+			\bTD[nc=3] \field[df_PTV3_FX2] \eTD
+			\bTD[nc=1] \field[df_PTV3_FX3] \eTD
+			\bTD[nc=2] \field[df_PTV3_FX4] \eTD
+			\bTD[nc=1] \eTD
+			\bTD[nc=3] \field[df_PTV3_ID0] \eTD
+			\bTD[nc=1] \field[df_PTV3_ID1] \eTD
+			\bTD[nc=3] \field[df_PTV3_ID2] \eTD
+			\bTD[nc=5] \eTD
+		\eTR
+
+		\bTR \eTR
+		\bTR \eTR
+		\bTR \eTR 
+
+		\bTR 
+			\bTD[nc=7] \eTD
+			\bTD[nc=19, align=middle] \bf Restricciones a Órganos Recomendadas: \eTD
+			\bTD[nc=7] \field[df_OAR_OPS] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9, topframe=on] \field[df_OAR0_NAME]  \eTD
+			\bTD[nc=7, topframe=on] \field[df_OAR0_DVH0] \eTD
+			\bTD[nc=7, topframe=on] \field[df_OAR0_DVH1] \eTD
+			\bTD[nc=7, topframe=on] \field[df_OAR0_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR1_NAME] \eTD
+			\bTD[nc=7] \field[df_OAR1_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR1_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR1_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR2_NAME]  \eTD
+			\bTD[nc=7] \field[df_OAR2_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR2_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR2_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR3_NAME]  \eTD
+			\bTD[nc=7] \field[df_OAR3_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR3_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR3_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR4_NAME]  \eTD
+			\bTD[nc=7] \field[df_OAR4_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR4_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR4_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR5_NAME] \eTD
+			\bTD[nc=7] \field[df_OAR5_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR5_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR5_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR6_NAME]  \eTD
+			\bTD[nc=7] \field[df_OAR6_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR6_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR6_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR7_NAME] \eTD
+			\bTD[nc=7] \field[df_OAR7_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR7_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR7_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR8_NAME] \eTD
+			\bTD[nc=7] \field[df_OAR8_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR8_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR8_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+		
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR9_NAME] \eTD
+			\bTD[nc=7] \field[df_OAR9_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR9_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR9_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR 
+			\bTD[nc=2] \eTD
+			\bTD[nc=9] \field[df_OAR10_NAME] \eTD
+			\bTD[nc=7] \field[df_OAR10_DVH0] \eTD
+			\bTD[nc=7] \field[df_OAR10_DVH1] \eTD
+			\bTD[nc=7] \field[df_OAR10_DVH2] \eTD
+			\bTD[nc=2] \eTD
+		\eTR
+
+		\bTR[height=17mm] \bTD[nc=34] \eTD \eTR 
+
+		\bTR 			
+			\bTD[nc=5] \bf Observaciones: \eTD 
+			\bTD[nc=21] \field[df_COMMENT0] \eTD 
+		\eTR 
+
+		\bTR[bottomframe=on, rulethickness=0.2mm] 			
+			\bTD[nc=5] \eTD 
+			\bTD[nc=21] \field[df_COMMENT1] \eTD 
+			\bTD[nc=8, align=middle] \bf Firma\eTD 
+		\eTR 
+
+	\eTABLE
+
+\stopproduct
