@@ -1,16 +1,8 @@
 \startcomponent prescription_scripts
 
-	\setupinteraction[
-    state=start,
-    title=Prescripción Radioterapia \getvariable{MAIN}{KEYWORD} - INTECNUS,
-    author={Diego Carrasco (@decardev)},
-    keyword=Prescripción \getvariable{MAIN}{KEYWORD} Radioterapia Automatización Medicina INTECNUS @decardev,
-    openaction=FitHeight
-  ]
-
 	\startJSpreamble {INITIAL} used now
 		
-		//==================================================================================================================
+		//==================================================================================================================		
 		function setFont(size, field = this.event.target){
 			field.textFont = font.Helv;
 			field.textSize = size;
@@ -21,9 +13,9 @@
 			const field = (typeof name === "string")? getField(name): name;
 			const fName = (typeof name === "string")? name: name.name;
 
-			console.println("Setting field: " + fName);
-			console.println("With value: " + value); + 
-			console.println("With size: " + size);
+			// console.println("Setting field: " + fName);
+			// console.println("With value: " + value); + 
+			// console.println("With size: " + size);
 			
 			if (Array.isArray(value)) { 
 				field.setItems(value);
@@ -33,7 +25,7 @@
 			setFont(size, field);
 			
 			if (currentValueIndices != null) {
-				console.println("In CVI: " + currentValueIndices);
+				// console.println("In CVI: " + currentValueIndices);
 				if (currentValueIndices == "clear") { field.clearItems() }
 				else if (currentValueIndices == "blank") { field.value = "" }
 				else { field.currentValueIndices = currentValueIndices }
@@ -45,24 +37,28 @@
 		}
 		
 
-		function setTextAreaProps(size =  8, mcl = 2048){
+		function setTextAreaProps(size =  8){
 			var field = this.event.target;
 			
-			field.doNotScroll = true;
+			field.doNotScroll = false;
 			field.textSize = size;
 			field.charLimit = mcl;
 		}
 
-		function setTextAreaFormat(size = 8, cpl = 100, mct = 1000){
+		function setTextAreaFormat(size, lines, cpl=100){
 			var field = this.event.target;
 			const nline = field.value.split(/\r\n|\r|\n/).length;
-			const nchar = field.value.length;
-			
-			if (nline * cpl + nchar > mct) {
-				field.textSize = size - 1;
-			} else {
-				field.textSize = size;
-			}
+			const chars = field.value.length;
+
+			field.textSize = size;
+			field.doNotScroll = false;
+			field.charLimit = 10000;
+
+			if (nline + chars/cpl > lines) {field.textSize = 0; }
+
+			// HST.forEach((el, ind) => {
+			// 	if (nline + chars/200 > el) { field.textSize = size - ind - 1; }	
+			// })
 		}
 
 		function setAge(){
@@ -89,6 +85,25 @@
 			field.setAction("Keystroke", "AFDate_KeystrokeEx(\""+cFormat+"\")");
 			setFont(7, field);
 		}
+
+		function getValueByID(array, id){
+			var filter = array.filter(el => el.id == id);
+			if (Array.isArray(filter) && filter.length  ) {
+				return filter[0];
+			} else {
+				console.println("Could not find id: " + id);
+			}
+		}
+
+		function getIndexByID(array, id){
+			var index = array.map(el => el.id).indexOf(id);
+			if (index >= 0) {
+				return index;
+			} else {
+				console.println("Could not find id: " + id);
+			}
+		}
+
 		//==================================================================================================================
 
 		//==================================================================================================================
@@ -110,11 +125,11 @@
 
 			if (mode >= 0) {	
 				RTX[mode].ptv.forEach( (el, ind) => {
-					setField("df_PTV" + ind + "_ZONE", PTV[ind][el].name, 7);
-					setPTVdvh(ind, el);
+					setField("df_PTV" + ind + "_ZONE", getValueByID(PTV, el).name, 7);
+					setPTVdvh(ind, getIndexByID(PTV, el));
 				});
-				setField("df_OAR_OPS", DVH[RTX[mode].dvh].name, 7);
-				setOARdvh(RTX[mode].dvh);
+				setField("df_OAR_OPS", getValueByID(DVH, RTX[mode].dvh).name, 7);
+				setOARdvh(getIndexByID(DVH, RTX[mode].dvh));
 				setCMTval(RTX[mode].cmt);
 			}
 		}
@@ -135,7 +150,7 @@
 		}
 
 		function setPTVops(num){
-			setField(this.event.target, PTV[num].map(item => item.name), 7);
+			setField(this.event.target, PTV.map(item => item.name), 7);
 		}
 
 		function setPTVdvh(num, mode = this.event.target.currentValueIndices){
@@ -144,10 +159,12 @@
 			const name = "df_PTV" + num;
 
 			if (mode >= 0) {
-				PTV[num][mode].fract.forEach((val, ind) => setField(name + "_FX" + ind, val, 7));
-				PTV[num][mode].ideal.forEach((val, ind) => setField(name + "_ID" + ind, val, 7));
-				if ("acept" in PTV[num][mode]) {
-					PTV[num][mode].acept.forEach((val, ind) => setField(name + "_AC" + ind, val, 7));	
+				// console.println("Selected Mode: " + mode);
+
+				PTV[mode].fract.forEach((val, ind) => setField(name + "_FX" + ind, val, 7));
+				PTV[mode].ideal.forEach((val, ind) => setField(name + "_ID" + ind, val, 7));
+				if ("acept" in PTV[mode]) {
+					PTV[mode].acept.forEach((val, ind) => setField(name + "_AC" + ind, val, 7));	
 				}
 			}
 		}
@@ -165,19 +182,19 @@
 		}
 
 		function setOARops(){
-			setField(this.event.target, DVH.map(item => item.name), 9, "blank");
+			setField(this.event.target, DVH.map(el => el.name), 9, "blank");
 		}
 
 		function setOARdvh(mode = this.event.target.currentValueIndices){
 			resetOARdvh();
-			
 
 			if (mode >= 0) {
-				DVH[mode].orgs.forEach( (org, i) => {
-					setField("df_OAR" + i + "_NAME", OAR.map(el => el.name), 7, org.oar);
+				DVH[mode].orgs.forEach( (org, ind) => {
+					var selOAR = getValueByID(OAR, org.id);
+					setField("df_OAR" + ind + "_NAME", selOAR.name, 7);
 					[0, 1, 2].forEach(el => {
-						var op = (el < org.ops.length)? org.ops[el] : null; 
-						setField("df_OAR" + i + "_DVH" + el, OAR[org.oar].dvh, 7, op);
+						var op = (el < org.ops.length)? getIndexByID(selOAR.dvh, org.ops[el]) : null; 
+						setField("df_OAR" + ind + "_DVH" + el, selOAR.dvh.map(dvh => dvh.data), 7, op);
 					})
 				})
 			}
@@ -197,21 +214,30 @@
 			resetORGdvh(num);
 		
 			if ( org >= 0) {
-				[0, 1, 2].forEach( el => setField("df_OAR" + num + "_DVH" + el, OAR[org].dvh, 7) );
+				var dvh = OAR[org].dvh.map(el => el.data);
+				[0, 1, 2].forEach( el => setField("df_OAR" + num + "_DVH" + el, dvh, 7) );
 			}
 		}
 		//==================================================================================================================
 
 		//==================================================================================================================
 		function setCMTops(){
-			setField(this.event.target, CMT, 7);
+			setField(this.event.target, CMT.map(el => el.value), 7);
 		}
 
 		function setCMTval(vec){
-			vec.forEach((el, ind) => setField("df_COMMENT" + ind, CMT[el], 7));
+			vec.forEach((id, ind) => setField("df_COMMENT" + ind, getValueByID(CMT, id).value, 7));
 		}
 		//==================================================================================================================
 
 	\stopJSpreamble
+
+	\setupinteraction[
+    state=start,
+    title=Prescripción Radioterapia \getvariable{MAIN}{KEYWORD} - INTECNUS,
+    author={Diego Carrasco (@decardev)},
+    keyword=Prescripción \getvariable{MAIN}{KEYWORD} Radioterapia Automatización Medicina INTECNUS @decardev,
+    openaction=FitHeight
+  ]
 
 \stopcomponent

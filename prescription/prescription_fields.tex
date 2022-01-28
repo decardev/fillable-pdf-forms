@@ -12,7 +12,6 @@
   
   \setupfield[sf_TNME][width=15mm, focusin=JS(setFont{7})]
   \setupfield[sf_COMPLICATIONS][width=110mm, focusin=JS(setFont{7})]
-  \setupfield[sf_HISTORY][height=49.5mm, width=170mm, focusin=JS(setTextAreaProps{8, 2048}), focusout=JS(setTextAreaFormat{8, 100, 1000})]
   \setupfield[sf_COMMENT][width=105mm, focusin=JS(setFont{7}), focusin=JS(setCMTops)]
   
   \setupfield[sf_DX_10][width=10mm, focusin=JS(setFont{7})]
@@ -73,17 +72,17 @@
   \definefield[df_HOME][line][sf_DEMOGRAPHIC_35]
   
   \definefield[df_REGION][popup][sf_DEMOGRAPHIC_POPUP_35][
-    , Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, 
+    CABA, Buenos Aires, Catamarca, Chaco, Chubut, Córdoba, 
     Corrientes, Entre Ríos, Formosa, Jujuy, La Pampa, La Rioja, 
-    Mendoza, Misiones, Neuquén, Río Negro, Salta, San Jua, San Luis, 
-    Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumá
+    Mendoza, Misiones, Neuquén, Río Negro, Salta, San Juan, San Luis, 
+    Santa Cruz, Santa Fe, Santiago del Estero, Tierra del Fuego, Tucumán
   ]
   \definefield[df_WORK][line][sf_DEMOGRAPHIC_35]
   \definefield[df_PHONE][line][sf_DEMOGRAPHIC_35]
 
   \definefield[df_SOCIAL][combo][sf_DEMOGRAPHIC_POPUP_35][
     ACA SALUD, AMEPBA, CAJA FORENSE, DIBA, 
-    GALEANO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUSS, 
+    GALENO, INTEGRAL SALUD, IOSE, IPROSS, MEDICUS, 
     MEDIFE, OMINT, OSBA, OSDE, OSECAC, OSPAT, OSPE, UP,
     OSPECON, OSPLAD, OSSEG, OSUTHGRA, PAMI, POLICIA FEDERAL, 
     SALUD PUBLICA, SANCOR SALUD, SERGOS, SMG, SOSUNC, SWISS MEDICAL
@@ -93,9 +92,7 @@
   \definefield[df_DERIVATION_CENTER][line][sf_DEMOGRAPHIC_35]
   
   \definefield[df_DX_KARNOFSKY][line][sf_DX_10]
-  \definefield[df_COMPLICATIONS][line][sf_COMPLICATIONS]
-  \definefield[df_HISTORY][text][sf_HISTORY]
-  
+  \definefield[df_COMPLICATIONS][line][sf_COMPLICATIONS]  
   \definefield[df_DERIVATION_INDICATIONS][line][sf_DX_90]
   
   \definefield[df_TECHNIQUE][popup][sf_TECHNIQUE][, 3D, IMRT, VMAT]
