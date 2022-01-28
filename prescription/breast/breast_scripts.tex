@@ -6,359 +6,336 @@
 		const RTX = [
 			{
 				name: "DER HIPO: PTV",
-				ptv: [0],
-				dvh: 3, 
-				cmt: [0]
+				ptv: ["3ecd7d2a"],
+				dvh: "18adbb3f", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "DER HIPO: PTV+BOOST",
-				ptv: [0, 4],
-				dvh: 3, 
-				cmt: [0]
+				ptv: ["3ecd7d2a", "b651a816"],
+				dvh: "18adbb3f", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "DER NORMO: PTV",
-				ptv: [1],
-				dvh: 1, 
-				cmt: [0]
+				ptv: ["58b6f05c"],
+				dvh: "5aad23a2", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "DER NORMO: PTV+BOOST",
-				ptv: [1, 5],
-				dvh: 1, 
-				cmt: [0]
+				ptv: ["58b6f05c", "ac4787fb"],
+				dvh: "5aad23a2", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "DER NORMO: PTV+LN",
-				ptv: [1, 2],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["58b6f05c", "d370d1f3"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "DER NORMO: PTV+LN+BOOST",
-				ptv: [1, 2, 4],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["58b6f05c", "d370d1f3", "ac4787fb"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "DER NORMO: PTV+LN+CMI",
-				ptv: [1, 2, 1],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["58b6f05c", "d370d1f3", "286d579e"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "DER NORMO: PTV+LN+CMI+BOOST",
-				ptv: [1, 2, 1, 1],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["58b6f05c", "d370d1f3", "286d579e", "ac4787fb"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "IZQ HIPO: PTV",
-				ptv: [2],
-				dvh: 3, 
-				cmt: [0]
+				ptv: ["b700ee44"],
+				dvh: "18adbb3f", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "IZQ HIPO: PTV+BOOST",
-				ptv: [2, 4],
-				dvh: 3, 
-				cmt: [0]
+				ptv: ["b700ee44", "b651a816"],
+				dvh: "18adbb3f", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "IZQ NORMO: PTV",
-				ptv: [3],
-				dvh: 0, 
-				cmt: [0]
+				ptv: ["bc801701"],
+				dvh: "86a2d22e", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "IZQ NORMO: PTV+BOOST",
-				ptv: [3, 5],
-				dvh: 0, 
-				cmt: [0]
+				ptv: ["bc801701", "ac4787fb"],
+				dvh: "86a2d22e", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "IZQ NORMO: PTV+LN",
-				ptv: [3, 2],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["bc801701", "d370d1f3"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "IZQ NORMO: PTV+LN+BOOST",
-				ptv: [3, 2, 4],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["bc801701", "d370d1f3", "ac4787fb"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			},
 			{
 				name: "IZQ NORMO: PTV+LN+CMI",
-				ptv: [3, 2, 1],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["bc801701", "d370d1f3", "286d579e"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			}, 
 			{
 				name: "IZQ NORMO: PTV+LN+CMI+BOOST",
-				ptv: [3, 2, 1, 1],
-				dvh: 2, 
-				cmt: [0]
+				ptv: ["bc801701", "d370d1f3", "286d579e", "ac4787fb"],
+				dvh: "c84b93d4", 
+				cmt: ["c93ae130"]
 			}, 
-		]
-
-		const PTV = [
-			[
-				{
-					name: "PTV_VMD Hipo",
-					fract: ["4005 cGy", "=", "267 cGy", "\u00D7", "15 Fx"],
-					ideal: ["V3885 cGy", "\u2265", "95\%", "D98\%", "\u2265", "3800 cGy", "D2\%", "\u2264", "4205 cGy"],
-					acept: ["V3805 cGy", "\u2265", "90\%", "D98\%", "\u2265", "3600 cGy", "D2\%", "\u2264", "4285 cGy"],
-				},
-				{
-					name: "PTV_VMD Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4850 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4750 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "90\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5350 cGy"],
-				},
-				{
-					name: "PTV_VMI Hipo",
-					fract: ["4005 cGy", "=", "267 cGy", "\u00D7", "15 Fx"],
-					ideal: ["V3885 cGy", "\u2265", "95\%", "D98\%", "\u2265", "3800 cGy", "D2\%", "\u2264", "4205 cGy"],
-					acept: ["V3805 cGy", "\u2265", "90\%", "D98\%", "\u2265", "3600 cGy", "D2\%", "\u2264", "4285 cGy"],
-				}, 
-				{
-					name: "PTV_VMI Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4850 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4750 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "90\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5350 cGy"],
-				},
-			],
-			[
-				{
-					name: "PTV_VMI Hipo",
-					fract: ["4005 cGy", "=", "267 cGy", "\u00D7", "15 Fx"],
-					ideal: ["V3885 cGy", "\u2265", "95\%", "D98\%", "\u2265", "3800 cGy", "D2\%", "\u2264", "4205 cGy"],
-					acept: ["V3805 cGy", "\u2265", "90\%", "D98\%", "\u2265", "3600 cGy", "D2\%", "\u2264", "4285 cGy"],
-				}, 
-				{
-					name: "PTV_VMI Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4850 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4750 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "90\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5350 cGy"],
-				},
-				{
-					name: "PTV_LN Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
-				}, 
-				{
-					name: "PTV_CMI Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
-				}, 
-				{
-					name: "BOOST Hipo",
-					fract: ["1068 cGy", "=", "267 cGy", "\u00D7", "4 Fx"],
-					ideal: ["V1036 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1175 cGy"],
-					acept: ["V1036 cGy", "\u2265", "90\%", "D2\%", "\u2264", "1175 cGy"],
-				},
-				{
-					name: "BOOST Normo",
-					fract: ["1600 cGy", "=", "200 cGy", "\u00D7", "8 Fx"],
-					ideal: ["V1552 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1760 cGy"],
-					acept: ["V1522 cGy", "\u2265", "90\%", "D2\%", "\u2264", "1760 cGy"],
-				},
-			],
-			[
-				{
-					name: "PTV_LN Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
-				}, 
-				{
-					name: "PTV_CMI Normo",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
-				}, 
-				{
-					name: "PTV_LN_CMI",
-					fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
-					ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
-					acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
-				}, 
-				{
-					name: "BOOST Hipo",
-					fract: ["1068 cGy", "=", "267 cGy", "\u00D7", "4 Fx"],
-					ideal: ["V1036 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1175 cGy"],
-					acept: ["V1036 cGy", "\u2265", "90\%", "D2\%", "\u2264", "1175 cGy"],
-				},
-				{
-					name: "BOOST Normo",
-					fract: ["1600 cGy", "=", "200 cGy", "\u00D7", "8 Fx"],
-					ideal: ["V1552 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1760 cGy"],
-					acept: ["V1522 cGy", "\u2265", "90\%", "D2\%", "\u2264", "1760 cGy"],
-				},
-			],
-			[
-				{
-					name: "BOOST Hipo",
-					fract: ["1068 cGy", "=", "267 cGy", "\u00D7", "4 Fx"],
-					ideal: ["V1036 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1175 cGy"],
-					acept: ["V1036 cGy", "\u2265", "90\%", "D2\%", "\u2264", "1175 cGy"],
-				},
-				{
-					name: "BOOST Normo",
-					fract: ["1600 cGy", "=", "200 cGy", "\u00D7", "8 Fx"],
-					ideal: ["V1552 cGy", "\u2265", "95\%", "D2\%", "\u2264", "1760 cGy"],
-					acept: ["V1522 cGy", "\u2265", "90\%", "D2\%", "\u2264", "1760 cGy"],
-				}
-			]
-		]
-
-		const OAR = [
-			{	
-				name: "CORAZ\u00D3N",
-				dvh: [
-					"V2500 cGy < 5\% (10\%)", 
-					"V2500 cGy < 0\% (2\%)",
-					"V2000 cGy < 5\%",
-					"V1500 cGy < 30\% (35\%)", 
-					"V1500 cGy < 10\% (15\%)",
-					"V1000 cGy < 30\% (35\%)",
-					"V200 cGy < 30\%",
-					"DMean < 400 cGy (550 cGy)", 
-					"DMean < 320 cGy (400 cGy)"
-				]
-			},
-			{
-				name: "PULM\u00D3N IPSILATERAL",
-				dvh: [
-					"V2000 cGy < 25\% (35\%)", 
-					"V2000 cGy < 15\% (20\%)", 
-					"V1200 cGy < 15\% (20\%)", 
-					"V1000 cGy < 50\% (65\%)", 
-					"V1000 cGy < 35\% (40\%)", 
-					"V800 cGy < 30\% (35\%)", 
-					"V500 cGy < 65\% (75\%)", 
-					"V500 cGy < 50\% (55\%)", 
-					"V400 cGy < 40\%"
-				]
-			}, 
-			{
-				name: "PULM\u00D3N CONTRALATERAL",
-				dvh: [
-					"V500 cGy < 30\%", 
-					"V500 cGy < 10\% (15\%)",
-					"V400 cGy < 10\%", 
-					"V500 cGy < 10\% (15\%)"
-				]
-			}, 
-			{
-				name:"MAMA CONTRALATERAL",        
-				dvh: [
-					"V550 cGy < 10\% (15\%)", 
-					"V300 cGy < 5\% (10\%)", 
-					"V200 cGy < 5\% (10\%)", 
-					"DMean < 400 cGy (450 cGy)", 
-					"DMean < 100 cGy (200 cGy)", 
-					"Dmax 0,03 cc < 240 cGy"
-				]
-			},
-			{
-				name: "TIROIDES",
-				dvh: [
-					"V4000 cGy < 50\%", 
-					"DMax 0,03 cc < 2500 cGy"
-				]
-			}, 
-			{
-				name: "M\u00C9DULA",
-				dvh: [
-					"Dmax 0,03 cc < 2500 cGy"
-				]
-			}, 
-			{
-				name: "ES\u00D3FAGO",
-				dvh: [
-					"V5000 cGy < 2\% (5\%)", 
-					"V3500 cGy < 50\% (60\%)"
-				]
-			},
-			{
-				name: "H\u00DAMERO IPSILATERAL",	  
-				dvh: [
-					"DMax 0,03 cc < 4000 cGy"
-				]
-			}, 
-			{
-				name: "H\u00CDGADO",
-				dvh: [
-					"V1500 cGy < 3\%", 
-					"DMean < 440 cGy"
-				]
-			}
 		]
 
 		const DVH = [
 			{
+				id: "86a2d22e", 
 				name: "VMI Normo",
 				orgs: [
-					{ oar: 0, ops: [0, 3, 7] },
-					{ oar: 1, ops: [1, 4, 7] },
-					{ oar: 2, ops: [0] },
-					{ oar: 3, ops: [0, 3] },
-					{ oar: 4, ops: [0, 1] },
-					{ oar: 5, ops: [0] },
-					{ oar: 6, ops: [0, 1] },
-					{ oar: 7, ops: [0] },
-					{ oar: 8, ops: [0] },
+					{ id: "e4cc225d", ops: ["3effa2da", "2bec70e5", "3f16bc73"] },
+					{ id: "5ab49380", ops: ["9928aeb6", "21f113c6", "d6199ce5"] },
+					{ id: "df48793c", ops: ["b4335eb6"] },
+					{ id: "34f37f6b", ops: ["2f664f24", "b49fe055"] },
+					{ id: "d8e9a4c3", ops: ["46c402da", "7fb2b9a1"] },
+					{ id: "9dd5d04b", ops: ["cc6bae4e"] },
+					{ id: "abf28a27", ops: ["3bc7317c", "60564577"] },
+					{ id: "d17f3971", ops: ["554d09bd"] },
+					{ id: "d1161c70", ops: ["483593f8"] },
 				]
 			},
 			{
+				id: "5aad23a2", 
 				name: "VMD Normo",
 				orgs: [
-					{ oar: 0, ops: [1, 4, 7] },
-					{ oar: 1, ops: [1, 4, 7] },
-					{ oar: 2, ops: [0] },
-					{ oar: 3, ops: [0, 3] },
-					{ oar: 4, ops: [0, 1] },
-					{ oar: 5, ops: [0] },
-					{ oar: 6, ops: [0, 1] },
-					{ oar: 7, ops: [0] },
-					{ oar: 8, ops: [0] },
+					{ id: "e4cc225d", ops: ["e85b5abb", "2520bb29", "3f16bc73"] },
+					{ id: "5ab49380", ops: ["9928aeb6", "21f113c6", "d6199ce5"] },
+					{ id: "df48793c", ops: ["b4335eb6"] },
+					{ id: "34f37f6b", ops: ["2f664f24", "b49fe055"] },
+					{ id: "d8e9a4c3", ops: ["46c402da", "7fb2b9a1"] },
+					{ id: "9dd5d04b", ops: ["cc6bae4e"] },
+					{ id: "abf28a27", ops: ["3bc7317c", "60564577"] },
+					{ id: "d17f3971", ops: ["554d09bd"] },
+					{ id: "d1161c70", ops: ["483593f8"] },
 				]
 			},
 			{
+				id: "c84b93d4", 
 				name: "LN_CMI Normo",
 				orgs: [
-					{ oar: 0, ops: [0, 2, 5] },
-					{ oar: 0, ops: [7] },
-					{ oar: 1, ops: [0, 3, 6] },
-					{ oar: 2, ops: [1] },
-					{ oar: 3, ops: [1, 4] },
-					{ oar: 4, ops: [0] },
-					{ oar: 5, ops: [0] },
-					{ oar: 6, ops: [0, 1] },			
-					{ oar: 7, ops: [0] },			
+					{ id: "e4cc225d", ops: ["3effa2da", "f49dd8d4", "31228054"] },
+					{ id: "e4cc225d", ops: ["3f16bc73"] },
+					{ id: "5ab49380", ops: ["83c507ef", "e455f839", "b7b00ea0"] },
+					{ id: "df48793c", ops: ["e0c56acf"] },
+					{ id: "34f37f6b", ops: ["8a2e8782", "5167f57f"] },
+					{ id: "d8e9a4c3", ops: ["46c402da"] },
+					{ id: "9dd5d04b", ops: ["cc6bae4e"] },
+					{ id: "abf28a27", ops: ["3bc7317c", "60564577"] },			
+					{ id: "d17f3971", ops: ["554d09bd"] },			
 				]
 			},
 			{
+				id: "18adbb3f", 
 				name: "VM Hipo",
 				orgs: [
-					{ oar: 0, ops: [2, 6, 8] },
-					{ oar: 1, ops: [2, 5, 8] },
-					{ oar: 2, ops: [2] },
-					{ oar: 3, ops: [2, 4, 5] },
-					{ oar: 7, ops: [0] },
-					{ oar: 8, ops: [0, 1] }
+					{ id: "e4cc225d", ops: ["f49dd8d4", "0c385b1b", "e9dee5f2"]},
+					{ id: "5ab49380", ops: ["afb10ece", "8aab96a1", "376ba0a8"]},
+					{ id: "df48793c", ops: ["37e87039"]},
+					{ id: "34f37f6b", ops: ["7389e8b1", "5167f57f", "6dc9c21a"]},
+					{ id: "d17f3971", ops: ["554d09bd"]},
+					{ id: "d1161c70", ops: ["483593f8", "882b39e2"]},
+
 				]
 			},
 		]
-		
-		const CMT = [
-			"Evitar hot spots fuera del PTV"
+
+		const PTV = [
+			{
+				id: "3ecd7d2a",
+				name: "PTV_VMD Hipo",
+				fract: ["4005 cGy", "=", "267 cGy", "\u00D7", "15 Fx"],
+				ideal: ["V3885 cGy", "\u2265", "95\%", "D98\%", "\u2265", "3800 cGy", "D2\%", "\u2264", "4205 cGy"],
+				acept: ["V3805 cGy", "\u2265", "90\%", "D98\%", "\u2265", "3600 cGy", "D2\%", "\u2264", "4285 cGy"],
+			},
+			{
+				id: "58b6f05c",
+				name: "PTV_VMD Normo",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V4850 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4750 cGy", "D2\%", "\u2264", "5250 cGy"],
+				acept: ["V4750 cGy", "\u2265", "90\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5350 cGy"],
+			},
+			{
+				id: "b700ee44",
+				name: "PTV_VMI Hipo",
+				fract: ["4005 cGy", "=", "267 cGy", "\u00D7", "15 Fx"],
+				ideal: ["V3885 cGy", "\u2265", "95\%", "D98\%", "\u2265", "3800 cGy", "D2\%", "\u2264", "4205 cGy"],
+				acept: ["V3805 cGy", "\u2265", "90\%", "D98\%", "\u2265", "3600 cGy", "D2\%", "\u2264", "4285 cGy"],
+			}, 
+			{
+				id: "bc801701",
+				name: "PTV_VMI Normo",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V4850 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4750 cGy", "D2\%", "\u2264", "5250 cGy"],
+				acept: ["V4750 cGy", "\u2265", "90\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5350 cGy"],
+			},		
+			{
+				id: "d370d1f3",
+				name: "PTV_LN Normo",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
+				acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
+			}, 
+			{
+				id: "286d579e",
+				name: "PTV_CMI Normo",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
+				acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
+			}, 
+			{
+				id: "f8453465",
+				name: "PTV_CMI 4600",
+				fract: ["4600 cGy", "=", "200 cGy", "\u00D7", "23 Fx"],
+				ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
+				acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
+			}, 
+			
+			{
+				id: "ef1fb17f",
+				name: "PTV_LN_CMI",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4500 cGy", "D2\%", "\u2264", "5250 cGy"],
+				acept: ["V4750 cGy", "\u2265", "95\%", "D98\%", "\u2265", "4275 cGy", "D2\%", "\u2264", "5350 cGy"],
+			}, 
+			{
+				id: "b651a816",
+				name: "BOOST Hipo",
+				fract: ["1068 cGy", "=", "267 cGy", "\u00D7", "4 Fx"],
+				ideal: ["V1036 cGy", "\u2265", "95\%"],
+				acept: ["V1036 cGy", "\u2265", "90\%"],
+			},
+			{
+				id: "ac4787fb",
+				name: "BOOST Normo",
+				fract: ["1600 cGy", "=", "200 cGy", "\u00D7", "8 Fx"],
+				ideal: ["V1552 cGy", "\u2265", "95\%"],
+				acept: ["V1522 cGy", "\u2265", "90\%"],
+			},
 		]
 
+		const OAR = [
+			{
+				id: "e4cc225d",
+				name: "CORAZ\u00D3N",
+				dvh: [
+					{id: "3effa2da", data: "V2500 cGy < 5\% (10\%)"}, 
+					{id: "e85b5abb", data: "V2500 cGy < 0\% (2\%)"},
+					{id: "f49dd8d4", data: "V2000 cGy < 5\%"},
+					{id: "2bec70e5", data: "V1500 cGy < 30\% (35\%)"}, 
+					{id: "2520bb29", data: "V1500 cGy < 10\% (15\%)"},
+					{id: "31228054", data: "V1000 cGy < 30\% (35\%)"},
+					{id: "0c385b1b", data: "V200 cGy < 30\%"},
+					{id: "3f16bc73", data: "DMean < 400 cGy (550 cGy)"}, 
+					{id: "e9dee5f2", data: "DMean < 320 cGy (400 cGy)"}
+				]
+			},
+			{
+				id: "5ab49380",
+				name: "PULM\u00D3N IPSILATERAL",
+				dvh: [
+					{id: "83c507ef", data: "V2000 cGy < 25\% (35\%)"}, 
+					{id: "9928aeb6", data: "V2000 cGy < 15\% (20\%)"}, 
+					{id: "afb10ece", data: "V1200 cGy < 15\% (20\%)"}, 
+					{id: "e455f839", data: "V1000 cGy < 50\% (65\%)"}, 
+					{id: "21f113c6", data: "V1000 cGy < 35\% (40\%)"}, 
+					{id: "8aab96a1", data: "V800 cGy < 30\% (35\%)"}, 
+					{id: "b7b00ea0", data: "V500 cGy < 65\% (75\%)"}, 
+					{id: "d6199ce5", data: "V500 cGy < 50\% (55\%)"}, 
+					{id: "376ba0a8", data: "V400 cGy < 40\%"},
+				]
+			}, 
+			{
+				id: "df48793c",
+				name: "PULM\u00D3N CONTRALATERAL",
+				dvh: [
+					{id: "b4335eb6", data: "V500 cGy < 30\%"}, 
+					{id: "e0c56acf", data: "V500 cGy < 10\% (15\%)"},
+					{id: "37e87039", data: "V400 cGy < 10\%"}, 
+					{id: "e10f1811", data: "V500 cGy < 10\% (15\%)"},
+				]
+			}, 
+			{
+				id: "34f37f6b",
+				name:"MAMA CONTRALATERAL",        
+				dvh: [
+					{id: "2f664f24", data: "V550 cGy < 10\% (15\%)"}, 
+					{id: "8a2e8782", data: "V300 cGy < 5\% (10\%)"}, 
+					{id: "7389e8b1", data: "V200 cGy < 5\% (10\%)"}, 
+					{id: "b49fe055", data: "DMean < 400 cGy (450 cGy)"}, 
+					{id: "5167f57f", data: "DMean < 100 cGy (200 cGy)"}, 
+					{id: "6dc9c21a", data: "Dmax 0.03 cc < 240 cGy"},
+				]
+			},
+			{
+				id: "d8e9a4c3",
+				name: "TIROIDES",
+				dvh: [
+					{id: "46c402da", data: "V4000 cGy < 50\%"}, 
+					{id: "7fb2b9a1", data: "DMax 0.03 cc < 2500 cGy"}, 
+				]
+			}, 
+			{
+				id: "9dd5d04b",
+				name: "M\u00C9DULA",
+				dvh: [
+					{id: "cc6bae4e", data: "Dmax 0.03 cc < 2500 cGy"},
+				]
+			}, 
+			{
+				id: "abf28a27",
+				name: "ES\u00D3FAGO",
+				dvh: [
+					{id: "3bc7317c", data: "V5000 cGy < 2\% (5\%)"}, 
+					{id: "60564577", data: "V3500 cGy < 50\% (60\%)"},
+				]
+			},
+			{
+				id: "d17f3971",
+				name: "H\u00DAMERO IPSILATERAL",	  
+				dvh: [
+					{id: "554d09bd", data: "DMax 0.03 cc < 4000 cGy"}
+				]
+			}, 
+			{
+				id: "d1161c70",
+				name: "H\u00CDGADO",
+				dvh: [
+					{id: "483593f8", data: "V1500 cGy < 3\%"} , 
+					{id: "882b39e2", data: "DMean < 440 cGy"}
+				]
+			}
+		]
+
+		const CMT = [
+			{
+				id: "c93ae130",
+				value: "Evitar hot spots fuera del PTV"
+			}
+		]
 		//==================================================================================================================
 
 		//==================================================================================================================

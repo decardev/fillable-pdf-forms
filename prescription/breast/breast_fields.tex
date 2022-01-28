@@ -4,10 +4,10 @@
   \product breast
   
   \setupfields[][height=4.5mm,frame=off, offset=0mm, boffset=0.2mm, toffset=-0.3mm, loffset=-0.2mm, roffset=0.8mm]
-
-  \setupfield[sf_DX_PS][width=10mm, focusin=JS(setFont{7})]
   
+  \setupfield[sf_DX_PS][width=10mm, focusin=JS(setFont{7})]
   \setupfield[sf_DX_LATERALIDAD][width=50mm, focusin=JS(setFont{7})]
+  \setupfield[sf_HISTORY][height=49.5mm, width=170mm, focusin=JS(setTextAreaFormat{8, 15}), focusout=JS(setTextAreaFormat{8, 15})]
 
   \definefield[df_DX_PS][line][sf_DX_PS]
   \definefield[df_DX_LATERALIDAD][popup][sf_DX_LATERALIDAD][
@@ -35,6 +35,7 @@
   \definefield[df_TNM_N][popup][sf_TNME][, N0, N1, N1NOS, N2a, N2b, N2NOS, N3a, N3b, N3c, N3NOS, NX]
   \definefield[df_TNM_M][popup][sf_TNME][, M0, M0(i+), M1]
   \definefield[df_TNM_E][popup][sf_TNME][, E0, EIA, EIB, EIIA, EIIB, EIIIA, EIIIB, EIIIC, EIIINOS, EIV, EUNK]
+  \definefield[df_HISTORY][text][sf_HISTORY]
 
 
 \stopenvironment
