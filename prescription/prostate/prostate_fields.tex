@@ -8,7 +8,9 @@
   \setupfield[sf_DX_PSA][width=10mm, align=middle, focusin=JS(setFont{7})]
   \setupfield[sf_DX_GLEASON_ENTRY][width=5mm, align=middle, focusin=JS(setFont{7}), focusout=JS(setGleason)]
   \setupfield[sf_DX_GLEASON_OUTPUT][width=5mm, align=middle, option={readonly, printable}]
-  
+  \setupfield[sf_HISTORY][height=49.5mm, width=170mm, focusin=JS(setTextAreaFormat{8, 15}), focusout=JS(setTextAreaFormat{8, 15})]
+
+
   \definefield[df_DX_PSA][line][sf_DX_PSA]
   \definefield[df_DX_GLEASON_1][line][sf_DX_GLEASON_ENTRY]
   \definefield[df_DX_GLEASON_2][line][sf_DX_GLEASON_ENTRY]
@@ -18,5 +20,7 @@
   \definefield[df_TNM_N][popup][sf_TNME][, N0, N1 (N+), N2 (N+), N3 (N+)]
   \definefield[df_TNM_M][popup][sf_TNME][, M0, M1 (M+)]
   \definefield[df_TNM_E][popup][sf_TNME][, EI, EIIA, EIIB, EIIC, EIIIA, EIIIB, EIIIC, EIVA, EIVB]
+  \definefield[df_HISTORY][text][sf_HISTORY]
+
 
 \stopenvironment

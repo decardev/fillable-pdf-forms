@@ -4,122 +4,161 @@
 	\startJSpreamble {PROSTATE} used now
 		
 		const RTX = [
-		{
-			name: "HIPO SIB 31: PTV",
-			ptv: [0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		{
-			name: "HIPO SIB 31: PTV + VS",
-			ptv: [0, 0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		{
-			name: "HIPO SIB 31: PTV + VS + LN",
-			ptv: [0, 0, 0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		{
-			name: "HIPO SIB 31: PTV + VS + LN + LN(+)",
-			ptv: [0, 0, 0, 0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		]
-	
-		const PTV = [
-			[
-				{
-					name: "PTV_PR",
-					fract: ["7440 cGy", "=", "240 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V7440 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_VS",
-					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V5580 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_LN",
-					fract: ["5270 cGy", "=", "170 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V5270 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_LN+",
-					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V5580 cGy", "\u2265", "95\%"],
-				}
-			]
-		]	
-
-		const OAR = [
-			{	
-				name: "VEJIGA", 
-				dvh: ["V7000 cGy < 10\% (20\%)", "V6100 cGy < 53\%", "V5700 cGy < 50\%"]
-			},
-			{ 
-				name: "RECTO", 
-				dvh: ["V7000 cGy < 10\% (20\%)", "V4000 cGy < 45\%", "V5300 cGy < 35\%"]        
+			{
+				name: "HIPO SIB 31: PTV",
+				ptv: ["44ae4731"],
+				dvh: "587b185b", 
+				cmt: ["bfff04fe", "da503787"]
 			},
 			{
-				name: "ANO", 
-				dvh: ["V3100 cGy < 60\%", "V3500 cGy < 40\%"]  
-			}, 
-			{ 
-				name: "CABEZAS FEMORALES", 
-				dvh: ["V5000 cGy < 5\% (10\%)", "DMax < 5200 cGy"] 
+				name: "HIPO SIB 31: PTV + VS",
+				ptv: ["44ae4731", "45214a52"],
+				dvh: "587b185b", 
+				cmt: ["bfff04fe", "da503787"]
 			},
 			{
-				name: "INTESTINO", 
-				dvh: ["V5000 cGy < 1 cc", "V3900 cGy < 195 cc", "V4500 cGy < 150 cc"]
+				name: "HIPO SIB 31: PTV + VS + LN",
+				ptv: ["44ae4731", "45214a52", "a3e8114f"],
+				dvh: "587b185b", 
+				cmt: ["bfff04fe", "da503787"]
 			},
 			{
-				name: "CANAL MEDULAR", 
-				dvh: ["5000 cGy < 0.03 cc"]
-			},  
-			{
-				name: "BULBO", 
-				dvh: ["V4400 cGy < 50\%", "DMean < 5000 cGy"]
-			},
-			{
-				name: "PENE",
-				dvh: ["V3000 cGy < 1 cc"]
-			},
-			{
-				name: "TESTICULOS",
-				dvh: ["V300 cGy < 0.03 cc"]
+				name: "HIPO SIB 31: PTV + VS + LN + LN(+)",
+				ptv: ["44ae4731", "45214a52", "a3e8114f", "7b2db253"],
+				dvh: "587b185b", 
+				cmt: ["bfff04fe", "da503787"]
 			}
 		]
 
 		const DVH = [
 			{
+				id: "587b185b",
 				name: "Normo",
 				orgs: [
-					{ oar: 0, ops: [0, 1, 2] },
-					{ oar: 1, ops: [0, 1, 2] },
-					{ oar: 2, ops: [0, 1] },
-					{ oar: 3, ops: [0, 1] },
-					{ oar: 4, ops: [0, 1, 2] },
-					{ oar: 5, ops: [0] },
-					{ oar: 6, ops: [0, 1] },
-					{ oar: 7, ops: [0] },
-					{ oar: 8, ops: [0] },
+					{ id: "cb65b828", ops: ["03137893", "56d88e71", "9fd4381c"] },
+					{ id: "baaa4386", ops: ["ecf161bb", "48c325a5", "10d2683e"] },
+					{ id: "19be5895", ops: ["6cb3110a", "7ce84eb6"] },
+					{ id: "adeef737", ops: ["58db9d01", "a8e0cdd5"] },
+					{ id: "5aadca68", ops: ["36a7f426", "87c1789d", "3574b87d"] },
+					{ id: "59c1d62f", ops: ["c11b2019"] },
+					{ id: "fad0008f", ops: ["8549d98a", "a191a3f6"] },
+					{ id: "35b5e7c2", ops: ["a0b7530a"] },
+					{ id: "f25df2ac", ops: ["cfc9ee26"] },
+				]
+			}
+		]
+
+		const PTV = [
+				{
+					id: "44ae4731",
+					name: "PTV_PR",
+					fract: ["7440 cGy", "=", "240 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V7440 cGy", "\u2265", "95\%"],
+				},
+				{
+					id: "45214a52",
+					name: "PTV_VS",
+					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5580 cGy", "\u2265", "95\%"],
+				},
+				{
+					id: "a3e8114f",
+					name: "PTV_LN",
+					fract: ["5270 cGy", "=", "170 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5270 cGy", "\u2265", "95\%"],
+				},
+				{
+					id: "7b2db253",
+					name: "PTV_LN+",
+					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
+					ideal: ["V5580 cGy", "\u2265", "95\%"],
+				}
+		]	
+
+		const OAR = [
+			{	
+				id: "cb65b828",
+				name: "VEJIGA", 
+				dvh: [
+					{id: "03137893", data:"V7000 cGy < 10\% (20\%)"}, 
+					{id: "56d88e71", data:"V6100 cGy < 53\%"}, 
+					{id: "9fd4381c", data:"V5700 cGy < 50\%"}
+				]
+			},
+			{ 
+				id: "baaa4386",
+				name: "RECTO", 
+				dvh: [
+					{id: "ecf161bb", data:"V7000 cGy < 10\% (20\%)"}, 
+					{id: "10d2683e", data:"V5300 cGy < 35\%"},
+					{id: "48c325a5", data:"V4000 cGy < 45\%"} 
+				]        
+			},
+			{
+				id: "19be5895",
+				name: "ANO", 
+				dvh: [
+					{id: "7ce84eb6", data:"V3500 cGy < 40\%"},
+					{id: "6cb3110a", data:"V3100 cGy < 60\%"} 
+				]  
+			}, 
+			{ 
+				id: "adeef737",
+				name: "CABEZAS FEMORALES", 
+				dvh: [
+					{id: "a8e0cdd5", data:"DMax 0.03 cc < 5200 cGy"},
+					{id: "58db9d01", data:"V5000 cGy < 5\% (10\%)"}
+				] 
+			},
+			{
+				id: "5aadca68",
+				name: "INTESTINO", 
+				dvh: [
+					{id: "36a7f426", data: "V5000 cGy < 1 cc"}, 
+					{id: "3574b87d", data: "V4500 cGy < 150 cc"},
+					{id: "87c1789d", data: "V3900 cGy < 195 cc"}, 
+				]
+			},
+			{
+				id: "59c1d62f",
+				name: "CANAL MEDULAR", 
+				dvh: [
+					{id: "c11b2019", data: "5000 cGy < 0.03 cc"}
+				]
+			},  
+			{
+				id: "fad0008f",
+				name: "BULBO", 
+				dvh: [
+					{id: "8549d98a", data: "V4400 cGy < 50\%"}, 
+					{id: "a191a3f6", data: "DMean < 5000 cGy"}
+				]
+			},
+			{
+				id: "35b5e7c2",
+				name: "PENE",
+				dvh: [
+					{id: "a0b7530a", data: "V3000 cGy < 1 cc"}
+				]
+			},
+			{
+				id: "f25df2ac",
+				name: "TESTICULOS",
+				dvh: [
+					{id: "cfc9ee26", data: "DMax 0.03 cc < 300 cGy"}
 				]
 			}
 		]
 		
 		const CMT = [
-			"Tratamiento con vejiga llena confortable (1/2 litro de agua 30 min antes de RT)", 
-			"Evitar hot spots fuera PTV y en regi\u00F3n uretral"
+			{
+				id: "bfff04fe",
+				value: "Tratamiento con vejiga llena confortable (1/2 litro de agua 30 min antes de RT)", 
+			}, 
+			{
+				id: "da503787", 
+				value: "Evitar hot spots fuera PTV y en regi\u00F3n uretral"
+			}
 		]
 		
 		//==================================================================================================================
