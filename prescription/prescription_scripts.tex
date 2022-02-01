@@ -109,8 +109,10 @@
 		//==================================================================================================================
 		function resetRTX(){
 			[0, 1, 2, 3].forEach( el => {
-				resetPTVdvh(el);
-				setField("df_PTV" + el + "_ZONE", "", 7, "clear");
+				if (getField("df_PTV" + el + "_ZONE")){
+					resetPTVdvh(el);
+					setField("df_PTV" + el + "_ZONE", "", 7, "clear");
+				}
 			});
 			resetOARdvh();
 			setField("df_OAR_OPS", "", 7, "clear");
@@ -182,7 +184,7 @@
 		}
 
 		function setOARops(){
-			setField(this.event.target, DVH.map(el => el.name), 9, "blank");
+			setField(this.event.target, DVH.map(el => el.name), 7, "blank");
 		}
 
 		function setOARdvh(mode = this.event.target.currentValueIndices){

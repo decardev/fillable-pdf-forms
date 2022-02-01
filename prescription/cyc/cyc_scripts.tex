@@ -6,182 +6,212 @@
 		const RTX = [
 		{
 			name: "35Fx: PTV",
-			ptv: [0],
-			dvh: 0, 
-			cmt: [0]
+			ptv: ["4e9779a3"],
+			dvh: "c8f2fad5", 
+			cmt: ["fa85af34"]
 		},
 		{
 			name: "35Fx: PTV_1 + PTV_2",
-			ptv: [0, 0],
-			dvh: 0, 
-			cmt: [0]
+			ptv: ["4e9779a3", "e7db36e1"],
+			dvh: "c8f2fad5", 
+			cmt: ["fa85af34"]
 		},
 		{
 			name: "35Fx: PTV_1 + PTV_2 + PTV_3",
-			ptv: [0, 0, 0],
-			dvh: 0, 
-			cmt: [0]
+			ptv: ["4e9779a3", "e7db36e1", "cf58c40e"],
+			dvh: "c8f2fad5", 
+			cmt: ["fa85af34"]
 		},
 		{
 			name: "33Fx: PTV",
-			ptv: [1],
-			dvh: 0, 
-			cmt: [0]
+			ptv: ["87d6caf9"],
+			dvh: "c8f2fad5", 
+			cmt: ["fa85af34"]
 		},
 		{
 			name: "33Fx: PTV_1 + PTV_2",
-			ptv: [1, 1],
-			dvh: 0, 
-			cmt: [0]
+			ptv: ["87d6caf9", "73870190"],
+			dvh: "c8f2fad5", 
+			cmt: ["fa85af34"]
 		},
 		{
 			name: "33Fx: PTV_1 + PTV_2 + PTV_3",
-			ptv: [1, 1, 1],
-			dvh: 0, 
-			cmt: [0]
+			ptv: ["87d6caf9", "73870190", "c870a1aa"],
+			dvh: "c8f2fad5", 
+			cmt: ["fa85af34"]
 		},
 		]
 	
-		const PTV = [
-			[
-				{
-					name: "PTV_1 (35)",
-					fract: ["7000 cGy", "=", "200 cGy", "\u00D7", "35 Fx"],
-					ideal: ["V7000 cGy", "\u2265", "95\%"],
-				},
-				{
-					name: "PTV_1 (33)",
-					fract: ["6996 cGy", "=", "212 cGy", "\u00D7", "33 Fx"],
-					ideal: ["V6996 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_2 (35)",
-					fract: ["6300 cGy", "=", "180 cGy", "\u00D7", "35 Fx"],
-					ideal: ["V6300 cGy", "\u2265", "95\%"],
-				},
-				{
-					name: "PTV_2 (33)",
-					fract: ["5940 cGy", "=", "180 cGy", "\u00D7", "33 Fx"],
-					ideal: ["V5940 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_3 (35)",
-					fract: ["5600 cGy", "=", "160 cGy", "\u00D7", "35 Fx"],
-					ideal: ["V5600 cGy", "\u2265", "95\%"],
-				},
-				{
-					name: "PTV_3 (33)",
-					fract: ["5400 cGy", "=", "164 cGy", "\u00D7", "33 Fx"],
-					ideal: ["V5400 cGy", "\u2265", "95\%"],
-				}
-			], 
-			[
-				{
-					name: "PTV_LN+ (35)",
-					fract: ["7000 cGy", "=", "200 cGy", "\u00D7", "35 Fx"],
-					ideal: ["7000 cGy", "\u2265", "95\%"],
-				},
-				{
-					name: "PTV_LN+ (33)",
-					fract: ["6996 cGy", "=", "212 cGy", "\u00D7", "33 Fx"],
-					ideal: ["6996 cGy", "\u2265", "95\%"],
-				}
-			]
-		]	
-
-		const OAR = [
-			
-			{
-				name: "Cerebro", 
-				dvh: ["DMax < V6000 cGy"]
-			},
-			{
-				name: "Tronco cerebral", 
-				dvh: ["DMax < 5000 cGy (5400)"]
-			}, 
-			{
-				name: "Medula espinal", 
-				dvh: ["DMax < 4400 cGy (4500)"]
-			},
-			{
-				name: "Nervios \u00F3pticos", 
-				dvh: ["DMax < 4500 cGy (5400)"] 
-			},
-			{
-				name: "Quiasma", 
-				dvh: ["DMax < 4500 cGy (5400)"]
-			},
-			{
-				name: "Ojos", 
-				dvh: ["V4000 cGy < 0.03 cc"]
-			},
-			{
-				name: "Cristalinos", 
-				dvh: ["V800 cGy < 0.03 cc"] 
-			},
-			{
-				name: "C\u00F3cleas", 
-				dvh: ["DMean < 4500 cGy"] 
-			},
-			{
-				name: "Par\u00F3tida bilateral", 
-				dvh: ["DMean < 2500 cGy"] 
-			},
-			{
-				name: "Par\u00F3tida unilateral", 
-				dvh: ["DMean < 2000 cGy (2600)"] 
-			},
-			{
-				name: "Laringe", 
-				dvh: ["V5000 cGy < 27\%", "DMean < 4400 cGy"]
-			},
-			{
-				name: "Es\u00F3fago", 
-				dvh: ["DMean < 3400 cGy", "V3500 cGy < 50 \%", "V5000 cGy < 40 \%"] 
-			},
-			{
-				name: "Mucosa oral", 
-				dvh: ["DMean < 3000 cGy", "DMean < 5000 cGy"]
-			}, 
-			{
-				name: "Tiroides", 
-				dvh: ["V4000 cGy < 50 \%"]
-			}, 
-			{
-				name: "Mand\u00EDbula", 
-				dvh: ["V7000 cGy < 0.03 cc"]
-			},
-			
-		]
-
 		const DVH = [
 			{
+				id: "c8f2fad5",
 				name: "Normo",
 				orgs: [
-					{ oar: 0, ops: [0] },
-					{ oar: 1, ops: [0] },
-					{ oar: 2, ops: [0] },
-					{ oar: 3, ops: [0] },
-					{ oar: 4, ops: [0] },
-					{ oar: 5, ops: [0] },
-					{ oar: 6, ops: [0] },
-					{ oar: 7, ops: [0] },
-					{ oar: 8, ops: [0] },
-					{ oar: 9, ops: [0] },
-					{ oar: 10, ops: [0, 1] },
-					{ oar: 11, ops: [0, 1, 2] },
-					{ oar: 12, ops: [0] },
-					{ oar: 13, ops: [0] },
-					{ oar: 14, ops: [0] },
+					{ id: "07cd7bda", ops: ["1c1faeff"] },
+					{ id: "c9484fb7", ops: ["cd21a4d9"] },
+					{ id: "2e5a4bb5", ops: ["25fb1337"] },
+					{ id: "37b4c351", ops: ["553125e3"] },
+					{ id: "bd88d9d1", ops: ["7c7b2ee6"] },
+					{ id: "d5c0de01", ops: ["e0de9e06"] },
+					{ id: "239a7a4e", ops: ["bc7f81aa"] },
+					{ id: "326e8c23", ops: ["1d1d0d93"] },
+					{ id: "1f58725d", ops: ["449a34f8"] },
+					{ id: "8a6da923", ops: ["aeb247cb"] },
+					{ id: "8ea5a4f4", ops: ["1b0e4e45", "79779a8e"] },
+					{ id: "89bbeb64", ops: ["6045b484", "2426618c", "cf242587"] },
+					{ id: "dd59a85c", ops: ["700ca389", "ae721e40"] },
+					{ id: "881a0e9d", ops: ["f73f2ace"] },
+					{ id: "468f6c98", ops: ["03ca9ecd"] },
 				]
 			}
 		]
-		
-		const CMT = ["Evitar hot spots fuera del PTV"]
+
+		const PTV = [
+			{
+				id: "4e9779a3",
+				name: "PTV_1 (35)",
+				fract: ["7000 cGy", "=", "200 cGy", "\u00D7", "35 Fx"],
+				ideal: ["V7000 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "87d6caf9",
+				name: "PTV_1 (33)",
+				fract: ["6996 cGy", "=", "212 cGy", "\u00D7", "33 Fx"],
+				ideal: ["V6996 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "e7db36e1",
+				name: "PTV_2 (35)",
+				fract: ["6300 cGy", "=", "180 cGy", "\u00D7", "35 Fx"],
+				ideal: ["V6300 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "73870190",
+				name: "PTV_2 (33)",
+				fract: ["5940 cGy", "=", "180 cGy", "\u00D7", "33 Fx"],
+				ideal: ["V5940 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "cf58c40e",
+				name: "PTV_3 (35)",
+				fract: ["5600 cGy", "=", "160 cGy", "\u00D7", "35 Fx"],
+				ideal: ["V5600 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "c870a1aa",
+				name: "PTV_3 (33)",
+				fract: ["5400 cGy", "=", "164 cGy", "\u00D7", "33 Fx"],
+				ideal: ["V5400 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "a4b2ce6a",
+				name: "PTV_LN+ (35)",
+				fract: ["7000 cGy", "=", "200 cGy", "\u00D7", "35 Fx"],
+				ideal: ["7000 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "12f9e851",
+				name: "PTV_LN+ (33)",
+				fract: ["6996 cGy", "=", "212 cGy", "\u00D7", "33 Fx"],
+				ideal: ["6996 cGy", "\u2265", "95\%"],
+			}
+		]	
+
+		const OAR = [	
+			{
+				id: "07cd7bda",
+				name: "Cerebro", 
+				dvh: [{id: "1c1faeff", data: "DMax 0.03 cc < V6000 cGy"}]
+			},
+			{
+				id: "c9484fb7",
+				name: "Tronco cerebral", 
+				dvh: [{id: "cd21a4d9", data: "DMax 0.03 cc < 5000 cGy"}]
+			}, 
+			{
+				id: "2e5a4bb5",
+				name: "Medula espinal", 
+				dvh: [{id: "25fb1337", data: "DMax 0.03 cc < 4400 cGy"}]
+			},
+			{
+				id: "37b4c351",
+				name: "Nervios \u00F3pticos", 
+				dvh: [{id: "553125e3", data: "DMax 0.03 cc < 4500 cGy"}] 
+			},
+			{
+				id: "bd88d9d1",
+				name: "Quiasma", 
+				dvh: [{id: "7c7b2ee6", data: "DMax 0.03 cc < 4500 cGy"}]
+			},
+			{
+				id: "d5c0de01",
+				name: "Ojos", 
+				dvh: [{id: "e0de9e06", data: "DMax 0.03 cc < 4000 cGy"}]
+			},
+			{
+				id: "239a7a4e",
+				name: "Cristalinos", 
+				dvh: [{id: "bc7f81aa", data: "DMax 0.03 cc < 800 cGy"}] 
+			},
+			{
+				id: "326e8c23",
+				name: "C\u00F3cleas", 
+				dvh: [{id: "1d1d0d93", data: "DMean < 4500 cGy"}] 
+			},
+			{
+				id: "1f58725d",
+				name: "Par\u00F3tida bilateral", 
+				dvh: [{id: "449a34f8", data: "DMean < 2500 cGy"}] 
+			},
+			{
+				id: "8a6da923",
+				name: "Par\u00F3tida unilateral", 
+				dvh: [{id: "aeb247cb", data: "DMean < 2000 cGy (2600)"}] 
+			},
+			{
+				id: "8ea5a4f4",
+				name: "Laringe", 
+				dvh: [
+					{id: "1b0e4e45", data: "V5000 cGy < 27\%"}, 
+					{id: "79779a8e", data: "DMean < 4400 cGy"}
+				]
+			},
+			{
+				id: "89bbeb64",
+				name: "Es\u00F3fago", 
+				dvh: [
+					{id: "6045b484", data: "V5000 cGy < 40 \%"},
+					{id: "2426618c", data: "V3500 cGy < 50 \%"}, 
+					{id: "cf242587", data: "DMean < 3400 cGy"}
+				] 
+			},
+			{
+				id: "dd59a85c",
+				name: "Mucosa oral", 
+				dvh: [
+					{id: "700ca389", data: "DMean < 5000 cGy"},
+					{id: "ae721e40", data: "DMean < 3000 cGy"} 
+				]
+			}, 
+			{
+				id: "881a0e9d",
+				name: "Tiroides", 
+				dvh: [{id: "f73f2ace", data: "V4000 cGy < 50 \%"}]
+			}, 
+			{
+				id: "468f6c98",
+				name: "Mand\u00EDbula", 
+				dvh: [{id: "03ca9ecd", data: "DMax 0.03 cc < V7000 cGy"}]
+			},
+			
+		]
+
+		const CMT = [
+			{
+				id: "fa85af34", 
+				value: "Evitar hot spots fuera del PTV"
+			}
+		]
 
 	\stopJSpreamble
 

@@ -1,133 +1,189 @@
-\startcomponent prostate_scripts
-  \product prostate
+\startcomponent cervix_scripts
+  \product cervix
 
-	\startJSpreamble {PROSTATE} used now
+	\startJSpreamble {CERVIX} used now
 		
 		const RTX = [
-		{
-			name: "HIPO SIB 31: PTV",
-			ptv: [0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		{
-			name: "HIPO SIB 31: PTV + VS",
-			ptv: [0, 0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		{
-			name: "HIPO SIB 31: PTV + VS + LN",
-			ptv: [0, 0, 0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
-		{
-			name: "HIPO SIB 31: PTV + VS + LN + LN(+)",
-			ptv: [0, 0, 0, 0],
-			dvh: 0, 
-			cmt: [0, 1]
-		},
+			{
+				name: "50Gy: PTV",
+				ptv: ["dfefc521"],
+				dvh: "91b32161", 
+				cmt: ["e0e946e6", "47ad1062"]
+			},
+			{
+				name: "50Gy: PTV + LN",
+				ptv: ["dfefc521", "f34b71c5"],
+				dvh: "91b32161", 
+				cmt: ["e0e946e6", "47ad1062"]
+			},
+			{
+				name: "50/60Gy: PTV + LN + BOOST",
+				ptv: ["dfefc521", "f34b71c5", "7212ac63"],
+				dvh: "91b32161", 
+				cmt: ["e0e946e6", "47ad1062"]
+			},
+			{
+				name: "46Gy: PTV",
+				ptv: ["917705cf"],
+				dvh: "0a1e70c5", 
+				cmt: ["e0e946e6", "47ad1062"]
+			},
+			{
+				name: "46Gy: PTV + LN",
+				ptv: ["917705cf", "c37916ef"],
+				dvh: "0a1e70c5", 
+				cmt: ["e0e946e6", "47ad1062"]
+			},
 		]
 	
+		const DVH = [
+			{
+				id: "91b32161",
+				name: "Normo 50Gy",
+				orgs: [
+					{ id: "cb8bc796", ops: ["2bba87aa", "d2a83099"] },
+					{ id: "0ce951cd", ops: ["b987f750", "44155088"] },
+					{ id: "2d47ecae", ops: ["54bb55eb", "2e4459d1"] },
+					{ id: "a2aa6bec", ops: ["2cae9675", "6f0a8a70", "bc4e8fe2"] },
+					{ id: "b7e50d3b", ops: ["b5f12741"] },
+					{ id: "dc4a80aa", ops: ["96f845b7", "91eb11c7"] },
+					{ id: "9f14f3aa", ops: ["7b111281", "7e3d01de", "ab85399a"] },
+					{ id: "9f14f3aa", ops: ["6b7db3cd"] },
+				]
+			}, 
+			{
+				id: "0a1e70c5",
+				name: "Normo 46Gy",
+				orgs: [
+					{ id: "cb8bc796", ops: ["32c6c5c3", "7841b191", "4afc5606"] },
+					{ id: "2d47ecae", ops: ["9c1abe06", "272e8fb0", "3556f520"] },
+					{ id: "a2aa6bec", ops: ["47bd59be", "522317b2", "10dd7106"] },
+					{ id: "c11a0f49", ops: ["af23d0bc"] },
+				]
+			}
+		]
+
 		const PTV = [
-			[
-				{
-					name: "PTV_PR",
-					fract: ["7440 cGy", "=", "240 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V7440 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_VS",
-					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V5580 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_LN",
-					fract: ["5270 cGy", "=", "170 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V5270 cGy", "\u2265", "95\%"],
-				}
-			],
-			[
-				{
-					name: "PTV_LN+",
-					fract: ["5580 cGy", "=", "180 cGy", "\u00D7", "31 Fx"],
-					ideal: ["V5580 cGy", "\u2265", "95\%"],
-				}
-			]
+			{
+				id: "dfefc521",
+				name: "PTV_T 50Gy",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V5000 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "917705cf",
+				name: "PTV_T 46Gy",
+				fract: ["4600 cGy", "=", "200 cGy", "\u00D7", "23 Fx"],
+				ideal: ["V4600 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "f34b71c5",
+				name: "PTV_LN 50Gy",
+				fract: ["5000 cGy", "=", "200 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V5000 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "c37916ef",
+				name: "PTV_LN 46Gy",
+				fract: ["4600 cGy", "=", "200 cGy", "\u00D7", "23 Fx"],
+				ideal: ["V4600 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "7212ac63",
+				name: "PTV_BOOST LN+",
+				fract: ["6000 cGy", "=", "240 cGy", "\u00D7", "25 Fx"],
+				ideal: ["V6000 cGy", "\u2265", "95\%"],
+			}
 		]	
 
 		const OAR = [
 			{	
-				name: "VEJIGA", 
-				dvh: ["V7000 cGy < 10\% (20\%)", "V6100 cGy < 53\%", "V5700 cGy < 50\%"]
-			},
-			{ 
-				name: "RECTO", 
-				dvh: ["V7000 cGy < 10\% (20\%)", "V4000 cGy < 45\%", "V5300 cGy < 35\%"]        
-			},
-			{
-				name: "ANO", 
-				dvh: ["V3100 cGy < 60\%", "V3500 cGy < 40\%"]  
-			}, 
-			{ 
+				id: "cb8bc796",
 				name: "CABEZAS FEMORALES", 
-				dvh: ["V5000 cGy < 5\% (10\%)", "DMax < 5200 cGy"] 
+				dvh: [
+					{id: "2bba87aa", data: "DMax 0.03 cc < V5200 cGy"},
+					{id: "32c6c5c3", data: "V4400 cGy < 5\% (10\%)"},
+					{id: "7841b191", data: "V4000 cGy < 35\%"},
+					{id: "d2a83099", data: "V3500 cGy < 10\%"},
+					{id: "4afc5606", data: "V3000 cGy < 50\%"},
+				]
+			},
+			{ 
+				id: "0ce951cd",
+				name: "RECTO", 
+				dvh: [
+					{id: "b987f750", data: "V5000 cGy < 50\%"},
+					{id: "44155088", data: "V4000 cGy < 40-60\%"},
+				]        
+			},
+			{ 
+				id: "2d47ecae",
+				name: "VEJIGA", 
+				dvh: [
+					{id: "9c1abe06", data: "V5000 cGy < 5\% (10\%)"},
+					{id: "2e4459d1", data: "V4500 cGy < 35\%"},
+					{id: "272e8fb0", data: "V4000 cGy < 35\% (50\%)"},
+					{id: "54bb55eb", data: "V4000 cGy < 40-60\%"},
+					{id: "3556f520", data: "V3500 cGy < 50\% (70\%)"},
+				]       
 			},
 			{
+				id: "a2aa6bec",
 				name: "INTESTINO", 
-				dvh: ["V5000 cGy < 1 cc", "V3900 cGy < 195 cc", "V4500 cGy < 150 cc"]
+				dvh: [					
+					{id: "2cae9675", data: "DMax 0.03 cc < 4600 cGy"},
+					{id: "47bd59be", data: "V4500 cGy < 40cc (60cc)"},
+					{id: "6f0a8a70", data: "V4500 cGy < 195cc"},
+					{id: "bc4e8fe2", data: "V4000 cGy < 30\%"},
+					{id: "522317b2", data: "V3500 cGy < 300 cc (600cc)"},
+					{id: "10dd7106", data: "V3000 cGy < 400 cc"},
+				]
 			},
 			{
+				id: "b7e50d3b",
 				name: "CANAL MEDULAR", 
-				dvh: ["5000 cGy < 0.03 cc"]
+				dvh: [
+					{id: "b5f12741", data: "DMax < V5000 cGy"},
+				]
 			},  
 			{
-				name: "BULBO", 
-				dvh: ["V4400 cGy < 50\%", "DMean < 5000 cGy"]
+				id: "dc4a80aa",
+				name: "RI\u00D1ONES (COMBINADOS)", 
+				dvh: [
+					{id: "96f845b7", data: "V2000 cGy < 30\% (35\%)"},
+					{id: "91eb11c7", data: "DMedia < 1500 cGy (1800 cGy)"},
+				]
 			},
 			{
-				name: "PENE",
-				dvh: ["V3000 cGy < 1 cc"]
+				id: "9f14f3aa",
+				name: "RI\u00D1ONES", 
+				dvh: [
+					{id: "7b111281", data: "V1800 cGy < 15\%"},
+					{id: "7e3d01de", data: "V1400 cGy < 30\%"},
+					{id: "ab85399a", data: "DMedia < 1500 cGy (1800 cGy)"},
+					{id: "6b7db3cd", data: "DMax 0.03 cc < 3000 cGy"},
+				]
 			},
 			{
-				name: "TESTICULOS",
-				dvh: ["V300 cGy < 0.03 cc"]
-			}
+				id: "c11a0f49",
+				name: "PIEL",
+				dvh: [
+					{id: "af23d0bc", data: "DMax 0.03 cc < 4000 cGy (4500 cGy)"},
+				]
+			},
+
 		]
 
-		const DVH = [
+		const CMT = [
 			{
-				name: "Normo",
-				orgs: [
-					{ oar: 0, ops: [0, 1, 2] },
-					{ oar: 1, ops: [0, 1, 2] },
-					{ oar: 2, ops: [0, 1] },
-					{ oar: 3, ops: [0, 1] },
-					{ oar: 4, ops: [0, 1, 2] },
-					{ oar: 5, ops: [0] },
-					{ oar: 6, ops: [0, 1] },
-					{ oar: 7, ops: [0] },
-					{ oar: 8, ops: [0] },
-				]
+				id: "e0e946e6", 
+				value: "Evitar hot spots fuera PTV",
+			}, 
+			{
+				id: "47ad1062",
+				value:	"Continua con Braquiterapia finalizada la RT externa", 
 			}
 		]
-		
-		const CMT = [
-			"Tratamiento con vejiga llena confortable (1/2 litro de agua 30 min antes de RT)", 
-			"Evitar hot spots fuera PTV y en regi\u00F3n uretral"
-		]
-		
-		//==================================================================================================================
-		function setGleason(){
-			const value = getField("df_DX_GLEASON_1").value + getField("df_DX_GLEASON_2").value;
-			setField("df_DX_GLEASON_OUTPUT", value, 7);
-		}
-		//==================================================================================================================
 
 	\stopJSpreamble
 

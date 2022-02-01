@@ -1,0 +1,20 @@
+% !TeX root = ./rectum.tex
+
+\startenvironment rectum_fields
+  \product rectum
+  
+  \setupfields[][height=4.5mm,frame=off, offset=0mm, boffset=0.2mm, toffset=-0.3mm, loffset=-0.2mm, roffset=0.8mm]
+
+  \setupfield[sf_DX_PS][width=50mm, focusin=JS(setFont{7})]
+  \setupfield[sf_HISTORY][height=49.5mm, width=170mm, focusin=JS(setTextAreaFormat{8, 15}), focusout=JS(setTextAreaFormat{8, 15})]
+
+
+  \definefield[df_DX_PS][line][sf_DX_PS]
+  \definefield[df_TNM_T][popup][sf_TNME][, TX, T0, Tis, T1, T2, T3, T4, T4a, T4b]
+  \definefield[df_TNM_N][popup][sf_TNME][, NX, N0, N1, N1a, N1b, N1c, N2, N2a, N2b]
+  \definefield[df_TNM_M][popup][sf_TNME][, M0 ,M1 ,M1a, M1b, M1c]
+  \definefield[df_TNM_E][popup][sf_TNME][, E0, EI, EIIA, EIIB, EIIC, EIIIA, EIIIA, EIIIB, EIIIB, EIIIB, EIIIC, EIIIC, EIIIC, EIVA, EIVB, EIVC]
+  \definefield[df_HISTORY][text][sf_HISTORY]
+
+
+\stopenvironment

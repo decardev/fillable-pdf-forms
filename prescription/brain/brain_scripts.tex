@@ -1,0 +1,109 @@
+\startcomponent brain_scripts
+  \product brain
+
+	\startJSpreamble {BRAIN} used now
+		
+		const RTX = [
+			{
+				name: "NORMO",
+				ptv: ["17dbe3eb"],
+				dvh: "7c682bc9", 
+				cmt: ["346abe59"]
+			},
+			{
+				name: "NORMO HIPOCAMPOS",
+				ptv: ["8d62414d"],
+				dvh: "99d810e5", 
+				cmt: ["346abe59", "12a9a99d"]
+			}
+		]
+	
+		const DVH = [
+			{
+				id: "7c682bc9",
+				name: "NORMO",
+				orgs: [
+					{ id: "a0fdb7b6", ops: ["a30ad272"] },
+					{ id: "56b69ca4", ops: ["0fc1de37"] },
+				]
+			}, 
+			{
+				id: "99d810e5",
+				name: "NORMO HIPOCAMPO",
+				orgs: [
+					{ id: "a0fdb7b6", ops: ["a30ad272"] },
+					{ id: "56b69ca4", ops: ["0fc1de37"] },
+					{ id: "76aea197", ops: ["ef73310c"] },
+					{ id: "91828e3e", ops: ["0dd3c757"] },
+					{ id: "20070dd9", ops: ["36b1a7f6"] },
+				]
+			}
+		]
+
+		const PTV = [
+			{
+				id: "17dbe3eb",
+				name: "PTV",
+				fract: ["3000 cGy", "=", "300 cGy", "\u00D7", "10 Fx"],
+				ideal: ["V3000 cGy", "\u2265", "95\%"],
+			},
+			{
+				id: "8d62414d",
+				name: "PTV\u2000",
+				fract: ["3000 cGy", "=", "300 cGy", "\u00D7", "10 Fx"],
+				ideal: ["V4600 cGy", "\u2265", "95\%", "D2\%", "\u2264", "3750 cGy", "D98\%", "\u2265", "2500 cGy"],
+			},
+		]	
+
+		const OAR = [
+			{	
+				id: "a0fdb7b6",
+				name: "OJOS", 
+				dvh: [
+					{id: "a30ad272", data: "DMax 0.03 cc < 3000 cGy"},
+				]
+			},
+			{ 
+				id: "56b69ca4",
+				name: "CRISTALINOS", 
+				dvh: [
+					{id: "0fc1de37", data: "DMax 0.03 cc < 1000 cGy"},
+				]        
+			},
+			{	
+				id: "76aea197",
+				name: "HIPOCAMPOS (PRV 5mm)", 
+				dvh: [
+					{id: "ef73310c", data: "DMax 0.03 cc < 1600 cGy"},
+				]
+			},
+			{	
+				id: "91828e3e",
+				name: "QUIASMA", 
+				dvh: [
+					{id: "0dd3c757", data: "DMax 0.03 cc < 3750 cGy"},
+				]
+			},
+			{	
+				id: "20070dd9",
+				name: "NERVIOS \u00D3PTICOS", 
+				dvh: [
+					{id: "36b1a7f6", data: "DMax 0.03 cc < 3750 cGy"},
+				]
+			},
+		]
+
+		const CMT = [
+			{
+				id: "346abe59", 
+				value: "Evitar hot spots fuera PTV",
+			}, 
+			{
+				id: "12a9a99d",
+				value:	"No enfriar CTVs", 
+			}
+		]
+
+	\stopJSpreamble
+
+\stopcomponent
